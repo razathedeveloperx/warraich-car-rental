@@ -55,9 +55,9 @@ export function Navbar() {
       </div>
 
       {/* Main Navbar */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex h-16 items-center justify-between">
-        <Link href="/" className="flex items-center gap-2.5 group">
-          <div className="relative w-10 h-10 shrink-0">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex h-14 items-center justify-between">
+        <Link href="/" className="flex items-center gap-2 group">
+          <div className="relative w-8 h-8 shrink-0">
             <Image
               src="/Warraich-Motors-logo.png"
               alt="Warraich Motors Gujrat"
@@ -66,12 +66,12 @@ export function Navbar() {
               priority
             />
           </div>
-          <div className="leading-tight">
-            <div className="font-bold text-base sm:text-lg text-slate-900 tracking-tight">
+          <div className="leading-none">
+            <div className="font-bold text-sm sm:text-base text-slate-900 tracking-tight">
               WARRAICH <span className="text-brand-600">MOTORS</span>
             </div>
-            <div className="text-[10px] font-medium tracking-wider text-slate-500 uppercase">
-              Rent A Car &bull; Gujrat
+            <div className="text-[9px] font-medium tracking-wider text-slate-500 uppercase mt-0.5">
+              Gujrat Car Rental
             </div>
           </div>
         </Link>

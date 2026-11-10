@@ -41,9 +41,9 @@ export function HeroSearch() {
   return (
     <form
       onSubmit={handleSearch}
-      className="bg-white rounded-2xl shadow-sm p-4 sm:p-5 border border-slate-200/90"
+      className="bg-white/95 backdrop-blur-md rounded-xl shadow-md p-3.5 sm:p-4 border border-white/60"
     >
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-3.5">
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-3">
         {/* Location */}
         <div>
           <label className="block text-[11px] font-semibold text-slate-600 uppercase tracking-wider mb-1.5 flex items-center gap-1.5">

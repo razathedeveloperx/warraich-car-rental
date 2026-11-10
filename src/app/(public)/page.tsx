@@ -92,75 +92,62 @@ export default async function HomePage() {
 
   return (
     <div className="bg-stone-50/60">
-      {/* Minimal Hero & 85% Width Banner */}
-      <section className="pt-8 pb-12 sm:pt-10 sm:pb-14 bg-white border-b border-slate-200/70">
-        {/* Minimal, to-the-point header copy */}
-        <div className="w-[85%] mx-auto flex flex-col md:flex-row md:items-end justify-between gap-4">
-          <div className="space-y-1.5">
-            <p className="text-xs font-semibold uppercase tracking-widest text-brand-600">
-              Gujrat &bull; 24/7 Car Rental
-            </p>
-            <h1 className="text-2xl sm:text-4xl font-bold tracking-tight text-slate-900">
-              Warraich Motors &amp; Rent A Car
-            </h1>
-            <p className="text-sm text-slate-500 max-w-xl">
-              Self-drive and chauffeur-driven vehicles in Gujrat &mdash; transparent PKR rates and airport transfers.
-            </p>
+      {/* Screen-Height Optimized Hero with Banner Background (85% width) */}
+      <section className="py-4 sm:py-6 bg-white border-b border-slate-200/70">
+        <div className="w-[85%] mx-auto relative rounded-2xl overflow-hidden shadow-md border border-slate-200/80 min-h-[460px] lg:h-[calc(100vh-116px)] lg:max-h-[640px] flex flex-col justify-between p-5 sm:p-8 lg:p-10 bg-slate-900">
+          {/* Background Banner Image */}
+          <Image
+            src="/warraich-motors-banner.JPG"
+            alt="Warraich Motors and Rent A Car Gujrat"
+            fill
+            className="object-cover object-center"
+            priority
+            sizes="85vw"
+          />
+
+          {/* Calm Gradient Overlay for Crisp Readability */}
+          <div className="absolute inset-0 bg-gradient-to-b from-slate-950/75 via-slate-950/40 to-slate-950/85 pointer-events-none" />
+
+          {/* Minimal Top Content */}
+          <div className="relative z-10 flex flex-col md:flex-row md:items-start justify-between gap-4">
+            <div className="space-y-1.5 max-w-xl">
+              <p className="text-[11px] font-semibold uppercase tracking-widest text-brand-200">
+                GT Road, Gujrat &bull; 24/7 Service
+              </p>
+              <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight text-white">
+                Warraich Motors &amp; Rent A Car
+              </h1>
+              <p className="text-xs sm:text-sm text-slate-200">
+                Self-drive &amp; chauffeur cars in Gujrat &mdash; verified fleet, transparent PKR rates.
+              </p>
+            </div>
+
+            <div className="flex items-center gap-2 shrink-0">
+              <a
+                href="tel:03136225135"
+                className="inline-flex items-center gap-1.5 bg-brand-600 hover:bg-brand-700 text-white font-semibold px-3.5 py-2 rounded-lg transition text-xs"
+              >
+                <Phone className="w-3.5 h-3.5" />
+                <span>0313 6225135</span>
+              </a>
+              <a
+                href="https://wa.me/923136225135?text=Hello%20Warraich%20Motors,%20I%20want%20to%20rent%20a%20car%20in%20Gujrat"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1.5 bg-white/95 hover:bg-white text-slate-800 font-semibold px-3.5 py-2 rounded-lg transition text-xs"
+              >
+                <MessageCircle className="w-3.5 h-3.5 text-emerald-600" />
+                <span>WhatsApp</span>
+              </a>
+            </div>
           </div>
 
-          <div className="flex items-center gap-2.5 shrink-0">
-            <a
-              href="tel:03136225135"
-              className="inline-flex items-center gap-1.5 bg-brand-600 hover:bg-brand-700 text-white font-semibold px-4 py-2.5 rounded-lg transition text-xs"
-            >
-              <Phone className="w-3.5 h-3.5" />
-              <span>0313 6225135</span>
-            </a>
-            <a
-              href="https://wa.me/923136225135?text=Hello%20Warraich%20Motors,%20I%20want%20to%20rent%20a%20car%20in%20Gujrat"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-1.5 border border-slate-200 hover:border-emerald-300 bg-white hover:bg-emerald-50 text-slate-700 hover:text-emerald-700 font-semibold px-4 py-2.5 rounded-lg transition text-xs"
-            >
-              <MessageCircle className="w-3.5 h-3.5 text-emerald-600" />
-              <span>WhatsApp</span>
-            </a>
+          {/* Search Bar anchored inside hero bottom */}
+          <div className="relative z-10 mt-6 lg:mt-auto">
+            <HeroSearch />
           </div>
-        </div>
-
-        {/* 85% Width Showroom Banner Image */}
-        <div className="w-[85%] mx-auto mt-6">
-          <div className="relative w-full aspect-[2/1] rounded-2xl overflow-hidden shadow-md border border-slate-200/80 bg-slate-900">
-            <Image
-              src="/warraich-motors-banner.JPG"
-              alt="Warraich Motors and Rent A Car Gujrat Banner"
-              fill
-              className="object-cover"
-              priority
-              sizes="85vw"
-            />
-          </div>
-        </div>
-
-        {/* Search Bar aligned at 85% width */}
-        <div className="w-[85%] mx-auto mt-6">
-          <HeroSearch />
         </div>
       </section>
-
-      {/* Calm Hub Location Strip */}
-      <div className="bg-slate-900 text-slate-300 py-2.5 text-xs border-b border-slate-800">
-        <div className="w-[85%] mx-auto flex flex-col sm:flex-row items-center justify-between gap-2 text-center sm:text-left">
-          <div className="flex items-center gap-2">
-            <MapPin className="w-3.5 h-3.5 text-brand-300 shrink-0" />
-            <span>Mian, GT Rd, Small Industrial Area, Punjab, Gujrat, 50700</span>
-          </div>
-          <div className="text-slate-400">
-            Serving Gujrat, Kharian, Dinga &amp; Lalamusa &bull;{" "}
-            <span className="text-slate-200 font-medium">24/7 Helpline: 0313 6225135</span>
-          </div>
-        </div>
-      </div>
 
       {/* ========================================================================= */}
       {/* FUNNEL STAGE 1: AVAILABLE NOW */}
