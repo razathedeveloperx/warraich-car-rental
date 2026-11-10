@@ -1,6 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { Phone, Mail, MapPin, Clock, MessageCircle, ShieldCheck } from "lucide-react";
+import { SocialLinks } from "@/components/public/SocialLinks";
 
 export function Footer() {
   return (
@@ -33,6 +34,12 @@ export function Footer() {
             <div className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-slate-800 border border-slate-700 text-slate-300 text-xs font-medium">
               <ShieldCheck className="w-3.5 h-3.5 text-brand-300" />
               <span>Registered Fleet &bull; Gujrat</span>
+            </div>
+            <div className="pt-1">
+              <div className="text-[11px] font-semibold uppercase tracking-wider text-slate-400 mb-2">
+                Follow Us
+              </div>
+              <SocialLinks variant="dark" />
             </div>
           </div>
 

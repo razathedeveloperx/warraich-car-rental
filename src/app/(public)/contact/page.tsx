@@ -1,6 +1,7 @@
-import { MapPin, Phone, Mail, Clock, MessageSquare } from "lucide-react";
+import { MapPin, Phone, Mail, Clock, MessageSquare, Share2 } from "lucide-react";
 import { prisma } from "@/lib/db";
 import { FALLBACK_SETTINGS } from "@/lib/fallback-data";
+import { SocialLinks } from "@/components/public/SocialLinks";
 
 export const dynamic = "force-dynamic";
 
@@ -85,6 +86,14 @@ export default async function ContactPage() {
                 Emergency Fleet Dispatch: 24 Hours Non-Stop
               </p>
             </div>
+          </div>
+
+          <div className="p-6 bg-white rounded-2xl border border-slate-200 shadow-sm space-y-3">
+            <div className="flex items-center gap-2">
+              <Share2 className="w-4 h-4 text-brand-600" />
+              <h3 className="font-bold text-slate-900 text-sm">Follow Warraich Motors</h3>
+            </div>
+            <SocialLinks variant="light" showLabels />
           </div>
         </div>
 
