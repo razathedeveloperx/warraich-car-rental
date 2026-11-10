@@ -267,7 +267,7 @@ export default async function BookingStatusPage({
           </div>
 
           <div className="bg-slate-900 text-white p-6 rounded-2xl shadow-sm space-y-4">
-            <h2 className="text-sm font-bold uppercase tracking-wider text-red-400">
+            <h2 className="text-sm font-bold uppercase tracking-wider text-brand-300">
               Need Assistance?
             </h2>
             <p className="text-xs text-slate-300 leading-relaxed">

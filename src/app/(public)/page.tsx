@@ -7,17 +7,14 @@ import {
   ShieldCheck,
   Award,
   Clock,
-  Car,
   CheckCircle2,
   Phone,
   MessageCircle,
   MapPin,
   ArrowRight,
-  Sparkles,
   Plane,
   Star,
   Users,
-  Lock,
 } from "lucide-react";
 
 import { FALLBACK_CARS, FALLBACK_SETTINGS } from "@/lib/fallback-data";
@@ -83,7 +80,6 @@ export default async function HomePage() {
     currentlyBookedCars = FALLBACK_CARS.filter((c) => c.funnelStatus === "CURRENTLY_BOOKED");
   }
 
-  // Fallback checks
   if (availableCars.length === 0) {
     availableCars = FALLBACK_CARS.filter((c) => c.funnelStatus === "AVAILABLE_NOW");
   }
@@ -95,139 +91,116 @@ export default async function HomePage() {
   }
 
   return (
-    <div className="bg-slate-50">
-      {/* Hero Section */}
-      <section className="relative bg-gradient-to-b from-slate-950 via-slate-900 to-slate-950 text-white pt-10 pb-20 sm:pb-28 overflow-hidden border-b border-red-950/40">
-        {/* Subtle automotive mesh & crimson radial glows */}
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,_var(--tw-gradient-stops))] from-red-600/15 via-transparent to-transparent pointer-events-none" />
-        <div className="absolute inset-0 bg-[linear-gradient(to_right,#1f2937_1px,transparent_1px),linear-gradient(to_bottom,#1f2937_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)] opacity-20 pointer-events-none" />
-
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center max-w-4xl mx-auto space-y-4">
-            {/* Logo Badge & 24 Hours Service Pill */}
-            <div className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-red-950/80 border border-red-600/40 text-red-200 text-xs font-bold uppercase tracking-wider shadow-lg shadow-red-900/20">
-              <span className="w-2 h-2 rounded-full bg-red-500 animate-pulse" />
-              <span>Warraich Motors &bull; 24 Hours Rental Service</span>
-              <span className="hidden sm:inline text-red-400">|</span>
-              <span className="hidden sm:inline text-slate-300">GT Road, Gujrat</span>
-            </div>
-
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black tracking-tight leading-[1.15] text-white">
-              Drive with Prestige & Luxury in{" "}
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-red-500 via-red-400 to-rose-300">
-                Gujrat & Punjab
-              </span>
-            </h1>
-
-            <p className="text-base sm:text-lg text-slate-300 leading-relaxed max-w-3xl mx-auto font-normal">
-              From executive Toyota Prado & Fortuner Legender to Corolla Grande, Civic RS, and economy Yaris & Alto. Guaranteed showroom condition, 24/7 roadside helpline, transparent PKR pricing, and optional verified chauffeurs.
+    <div className="bg-stone-50/60">
+      {/* Minimal Hero & 85% Width Banner */}
+      <section className="pt-8 pb-12 sm:pt-10 sm:pb-14 bg-white border-b border-slate-200/70">
+        {/* Minimal, to-the-point header copy */}
+        <div className="w-[85%] mx-auto flex flex-col md:flex-row md:items-end justify-between gap-4">
+          <div className="space-y-1.5">
+            <p className="text-xs font-semibold uppercase tracking-widest text-brand-600">
+              Gujrat &bull; 24/7 Car Rental
             </p>
-
-            {/* Direct Quick Action CTAs */}
-            <div className="pt-2 flex flex-wrap items-center justify-center gap-3">
-              <a
-                href="tel:03136225135"
-                className="inline-flex items-center gap-2 bg-red-600 hover:bg-red-700 text-white font-bold px-6 py-3 rounded-xl shadow-lg shadow-red-600/30 transition transform hover:-translate-y-0.5 text-sm"
-              >
-                <Phone className="w-4 h-4" />
-                <span>Call Hotline: 0313 6225135</span>
-              </a>
-
-              <a
-                href="https://wa.me/923136225135?text=Hello%20Warraich%20Motors,%20I%20want%20to%20rent%20a%20car%20in%20Gujrat"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 bg-emerald-600 hover:bg-emerald-700 text-white font-bold px-6 py-3 rounded-xl shadow-lg shadow-emerald-600/25 transition transform hover:-translate-y-0.5 text-sm"
-              >
-                <MessageCircle className="w-4 h-4" />
-                <span>Instant WhatsApp Dispatch</span>
-              </a>
-            </div>
+            <h1 className="text-2xl sm:text-4xl font-bold tracking-tight text-slate-900">
+              Warraich Motors &amp; Rent A Car
+            </h1>
+            <p className="text-sm text-slate-500 max-w-xl">
+              Self-drive and chauffeur-driven vehicles in Gujrat &mdash; transparent PKR rates and airport transfers.
+            </p>
           </div>
 
-          {/* Hero Search Box */}
-          <div className="mt-10 max-w-5xl mx-auto">
-            <HeroSearch />
+          <div className="flex items-center gap-2.5 shrink-0">
+            <a
+              href="tel:03136225135"
+              className="inline-flex items-center gap-1.5 bg-brand-600 hover:bg-brand-700 text-white font-semibold px-4 py-2.5 rounded-lg transition text-xs"
+            >
+              <Phone className="w-3.5 h-3.5" />
+              <span>0313 6225135</span>
+            </a>
+            <a
+              href="https://wa.me/923136225135?text=Hello%20Warraich%20Motors,%20I%20want%20to%20rent%20a%20car%20in%20Gujrat"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1.5 border border-slate-200 hover:border-emerald-300 bg-white hover:bg-emerald-50 text-slate-700 hover:text-emerald-700 font-semibold px-4 py-2.5 rounded-lg transition text-xs"
+            >
+              <MessageCircle className="w-3.5 h-3.5 text-emerald-600" />
+              <span>WhatsApp</span>
+            </a>
           </div>
+        </div>
 
-          {/* Quick trust metrics */}
-          <div className="mt-12 grid grid-cols-2 md:grid-cols-4 gap-6 text-center max-w-4xl mx-auto pt-8 border-t border-slate-800/80">
-            <div className="space-y-1">
-              <div className="text-2xl sm:text-3xl font-black text-red-500">100%</div>
-              <div className="text-xs text-slate-300 font-medium">Guaranteed Available Cars</div>
-            </div>
-            <div className="space-y-1">
-              <div className="text-2xl sm:text-3xl font-black text-red-500">0 Hidden</div>
-              <div className="text-xs text-slate-300 font-medium">Extra Charges at Pickup</div>
-            </div>
-            <div className="space-y-1">
-              <div className="text-2xl sm:text-3xl font-black text-red-500">24 / 7</div>
-              <div className="text-xs text-slate-300 font-medium">Hotline & Roadside Care</div>
-            </div>
-            <div className="space-y-1">
-              <div className="text-2xl sm:text-3xl font-black text-red-500">Airports</div>
-              <div className="text-xs text-slate-300 font-medium">Sialkot &bull; ISB &bull; LHE Handovers</div>
-            </div>
+        {/* 85% Width Showroom Banner Image */}
+        <div className="w-[85%] mx-auto mt-6">
+          <div className="relative w-full aspect-[2/1] rounded-2xl overflow-hidden shadow-md border border-slate-200/80 bg-slate-900">
+            <Image
+              src="/warraich-motors-banner.JPG"
+              alt="Warraich Motors and Rent A Car Gujrat Banner"
+              fill
+              className="object-cover"
+              priority
+              sizes="85vw"
+            />
           </div>
+        </div>
+
+        {/* Search Bar aligned at 85% width */}
+        <div className="w-[85%] mx-auto mt-6">
+          <HeroSearch />
         </div>
       </section>
 
-      {/* Address & Hub Micro Banner */}
-      <div className="bg-slate-900 text-slate-300 py-3 border-b border-slate-800 text-xs">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-2 text-center sm:text-left">
+      {/* Calm Hub Location Strip */}
+      <div className="bg-slate-900 text-slate-300 py-2.5 text-xs border-b border-slate-800">
+        <div className="w-[85%] mx-auto flex flex-col sm:flex-row items-center justify-between gap-2 text-center sm:text-left">
           <div className="flex items-center gap-2">
-            <MapPin className="w-4 h-4 text-red-500 shrink-0" />
-            <span>
-              <strong>Main Hub Location:</strong> Mian, GT Rd, Small Industrial Area, Punjab, Gujrat, 50700
-            </span>
+            <MapPin className="w-3.5 h-3.5 text-brand-300 shrink-0" />
+            <span>Mian, GT Rd, Small Industrial Area, Punjab, Gujrat, 50700</span>
           </div>
-          <div className="flex items-center gap-4 text-slate-400">
-            <span>Serving Gujrat, Kharian, Dinga, Lalamusa & Jalalpur</span>
-            <span className="hidden md:inline">&bull;</span>
-            <span className="text-emerald-400 font-semibold">24/7 Helpline: 0313 6225135</span>
+          <div className="text-slate-400">
+            Serving Gujrat, Kharian, Dinga &amp; Lalamusa &bull;{" "}
+            <span className="text-slate-200 font-medium">24/7 Helpline: 0313 6225135</span>
           </div>
         </div>
       </div>
 
       {/* ========================================================================= */}
-      {/* FUNNEL STAGE 1: 🟢 AVAILABLE RIGHT NOW (Ready to Drive Today) */}
+      {/* FUNNEL STAGE 1: AVAILABLE NOW */}
       {/* ========================================================================= */}
-      <section className="py-14 sm:py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex flex-col md:flex-row md:items-end justify-between mb-8 pb-4 border-b border-slate-200">
+      <section className="py-12 sm:py-16 w-[85%] mx-auto">
+        <div className="flex flex-col md:flex-row md:items-end justify-between mb-8 pb-4 border-b border-slate-200/80">
           <div>
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-100 text-emerald-800 text-xs font-extrabold uppercase tracking-wider mb-2">
-              <span className="w-2 h-2 rounded-full bg-emerald-600 animate-ping" />
-              <span>Category 1 &bull; Instant Delivery</span>
+            <div className="inline-flex items-center gap-2 px-2.5 py-1 rounded-full bg-emerald-50 text-emerald-800 border border-emerald-200/80 text-[11px] font-semibold uppercase tracking-wider mb-2">
+              <span className="w-1.5 h-1.5 rounded-full bg-emerald-600" />
+              <span>Ready Today</span>
             </div>
-            <h2 className="text-3xl sm:text-4xl font-black text-slate-950 tracking-tight">
-              🟢 Available Right Now in Gujrat
+            <h2 className="text-2xl sm:text-3xl font-bold text-slate-900 tracking-tight">
+              Available Now in Gujrat
             </h2>
-            <p className="text-slate-600 text-sm mt-1 max-w-2xl">
-              Parked at our GT Road showroom, fully washed, inspected, and ready for handover within 30 minutes. Self-drive or with professional chauffeur.
+            <p className="text-slate-500 text-sm mt-1">
+              Inspected and ready at our GT Road hub for immediate self-drive or chauffeur handover.
             </p>
           </div>
 
-          <div className="mt-4 md:mt-0 flex items-center gap-3">
+          <div className="mt-4 md:mt-0 flex items-center gap-4">
             <a
               href="https://wa.me/923136225135?text=Hello%20Warraich%20Motors,%20what%20cars%20are%20available%20for%20rent%20right%20now?"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-1.5 bg-emerald-50 text-emerald-700 hover:bg-emerald-100 font-bold px-4 py-2 rounded-lg text-xs border border-emerald-300 transition"
+              className="inline-flex items-center gap-1.5 text-xs font-semibold text-emerald-700 hover:text-emerald-800 bg-emerald-50 hover:bg-emerald-100 px-3.5 py-2 rounded-lg border border-emerald-200 transition"
             >
               <MessageCircle className="w-3.5 h-3.5" />
               <span>Ask Current Slot</span>
             </a>
             <Link
               href="/cars"
-              className="inline-flex items-center gap-1 text-sm font-bold text-red-600 hover:text-red-700"
+              className="inline-flex items-center gap-1 text-sm font-semibold text-brand-600 hover:text-brand-700"
             >
-              <span>View All Fleet</span>
+              <span>View All</span>
               <ArrowRight className="w-4 h-4" />
             </Link>
           </div>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-7">
           {availableCars.map((car) => (
             <CarCard key={car.id} car={car} />
           ))}
@@ -235,28 +208,22 @@ export default async function HomePage() {
       </section>
 
       {/* ========================================================================= */}
-      {/* FUNNEL STAGE 2: 🟡 ARRIVING SOON & ROTATION (Reserve Next Slot Ahead) */}
+      {/* FUNNEL STAGE 2: AVAILABLE SOON */}
       {/* ========================================================================= */}
-      <section className="py-14 sm:py-20 bg-amber-500/5 border-y border-amber-500/20">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex flex-col md:flex-row md:items-end justify-between mb-8 pb-4 border-b border-amber-200/60">
+      <section className="py-12 sm:py-16 bg-white border-y border-slate-200/70">
+        <div className="w-[85%] mx-auto">
+          <div className="flex flex-col md:flex-row md:items-end justify-between mb-8 pb-4 border-b border-slate-200/80">
             <div>
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-100 text-amber-900 text-xs font-extrabold uppercase tracking-wider mb-2">
-                <Clock className="w-3.5 h-3.5 text-amber-700" />
-                <span>Category 2 &bull; Pre-Book & Advance Slots</span>
+              <div className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-amber-50 text-amber-900 border border-amber-200/80 text-[11px] font-semibold uppercase tracking-wider mb-2">
+                <Clock className="w-3 h-3 text-amber-700" />
+                <span>Advance Booking</span>
               </div>
-              <h2 className="text-3xl sm:text-4xl font-black text-slate-950 tracking-tight">
-                🟡 Will Be Available Soon
+              <h2 className="text-2xl sm:text-3xl font-bold text-slate-900 tracking-tight">
+                Will Be Available Soon
               </h2>
-              <p className="text-slate-600 text-sm mt-1 max-w-2xl">
-                High-demand vehicles returning from active rentals or scheduled detailing. Lock your preferred date in advance for upcoming weddings, family tours, and airport pick-ups.
+              <p className="text-slate-500 text-sm mt-1">
+                Returning soon from active trips or detailing &mdash; pre-book to lock your upcoming dates.
               </p>
-            </div>
-
-            <div className="mt-4 md:mt-0">
-              <span className="text-xs text-amber-900 font-semibold bg-amber-100/80 px-3 py-1.5 rounded-lg border border-amber-300/50">
-                ⚡ Slots fill fast on weekends & wedding dates
-              </span>
             </div>
           </div>
 
@@ -269,20 +236,20 @@ export default async function HomePage() {
       </section>
 
       {/* ========================================================================= */}
-      {/* FUNNEL STAGE 3: 🔴 CURRENTLY BOOKED FLEET (On Active Duty & VIP Protocol) */}
+      {/* FUNNEL STAGE 3: CURRENTLY BOOKED */}
       {/* ========================================================================= */}
-      <section className="py-14 sm:py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex flex-col md:flex-row md:items-end justify-between mb-8 pb-4 border-b border-slate-200">
+      <section className="py-12 sm:py-16 w-[85%] mx-auto">
+        <div className="flex flex-col md:flex-row md:items-end justify-between mb-8 pb-4 border-b border-slate-200/80">
           <div>
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-rose-100 text-rose-800 text-xs font-extrabold uppercase tracking-wider mb-2">
-              <Lock className="w-3.5 h-3.5 text-rose-700" />
-              <span>Category 3 &bull; Live Fleet Status & Social Proof</span>
+            <div className="inline-flex items-center gap-2 px-2.5 py-1 rounded-full bg-brand-50 text-brand-700 border border-brand-200 text-[11px] font-semibold uppercase tracking-wider mb-2">
+              <span className="w-1.5 h-1.5 rounded-full bg-brand-600" />
+              <span>On Active Duty</span>
             </div>
-            <h2 className="text-3xl sm:text-4xl font-black text-slate-950 tracking-tight">
-              🔴 Currently Booked Fleet
+            <h2 className="text-2xl sm:text-3xl font-bold text-slate-900 tracking-tight">
+              Currently Booked Fleet
             </h2>
-            <p className="text-slate-600 text-sm mt-1 max-w-2xl">
-              See why Gujrat and overseas Pakistani families trust Warraich Motors. These vehicles are currently on active VIP protocol, motorway travel, and royal wedding duty. Join the priority waitlist for their return.
+            <p className="text-slate-500 text-sm mt-1">
+              Vehicles currently serving weddings, VIP protocol, and outstation tours. Join the waitlist for their next slot.
             </p>
           </div>
 
@@ -291,7 +258,7 @@ export default async function HomePage() {
               href="https://wa.me/923136225135?text=Hello%20Warraich%20Motors,%20I%20want%20to%20inquire%20about%20future%20dates%20for%20your%20luxury%20fleet"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-1.5 text-xs font-bold text-rose-700 hover:text-rose-800 bg-rose-50 px-3.5 py-2 rounded-lg border border-rose-200 transition"
+              className="inline-flex items-center gap-1.5 text-xs font-semibold text-brand-700 hover:text-brand-800 bg-brand-50 px-3.5 py-2 rounded-lg border border-brand-200 transition"
             >
               <Users className="w-3.5 h-3.5" />
               <span>Join Priority Waitlist</span>
@@ -299,7 +266,7 @@ export default async function HomePage() {
           </div>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-7">
           {currentlyBookedCars.map((car) => (
             <CarCard key={car.id} car={car} />
           ))}
@@ -307,84 +274,84 @@ export default async function HomePage() {
       </section>
 
       {/* Overseas Pakistanis & Airport Transfers Section */}
-      <section className="bg-slate-950 text-white py-16 sm:py-20 border-y border-red-950">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            <div className="space-y-6">
-              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-red-950 border border-red-700/60 text-red-300 text-xs font-bold uppercase tracking-wider">
-                <Plane className="w-3.5 h-3.5 text-red-400" />
-                <span>Dedicated Airport Concierge</span>
+      <section className="bg-slate-900 text-white py-14 sm:py-16 border-y border-slate-800">
+        <div className="w-[85%] mx-auto">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
+            <div className="space-y-5">
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-slate-800 border border-slate-700 text-brand-300 text-xs font-semibold uppercase tracking-wider">
+                <Plane className="w-3.5 h-3.5" />
+                <span>Airport Concierge</span>
               </div>
-              <h2 className="text-3xl sm:text-4xl font-black tracking-tight leading-tight">
-                Visiting Gujrat from UK, Europe, or Gulf?{" "}
-                <span className="text-red-500">We Meet You at the Terminal</span>
+              <h2 className="text-2xl sm:text-3xl font-bold tracking-tight leading-snug">
+                Arriving from Abroad?{" "}
+                <span className="text-brand-300">We Meet You at the Terminal</span>
               </h2>
-              <p className="text-slate-300 text-sm sm:text-base leading-relaxed">
-                Skip airport taxi hassles. Warraich Motors provides seamless vehicle delivery at your arrival terminal. We track your flight in real-time, coordinate via WhatsApp, and have your chosen car fueled and ready at the gate.
+              <p className="text-slate-300 text-sm leading-relaxed">
+                Direct terminal handovers at Sialkot, Islamabad, and Lahore airports. We track your flight and coordinate on WhatsApp so your vehicle is waiting when you land.
               </p>
 
-              <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-2">
-                <div className="bg-slate-900/90 p-4 rounded-xl border border-slate-800">
-                  <div className="font-extrabold text-white text-sm">Sialkot Airport (SKT)</div>
-                  <div className="text-xs text-red-400 mt-1 font-semibold">~45 Mins Express</div>
-                  <p className="text-[11px] text-slate-400 mt-1">Direct Sambrial / GT Road delivery</p>
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-3.5 pt-1">
+                <div className="bg-slate-800/70 p-4 rounded-xl border border-slate-700/80">
+                  <div className="font-semibold text-white text-sm">Sialkot (SKT)</div>
+                  <div className="text-xs text-brand-300 mt-1">~45 Mins Express</div>
+                  <p className="text-[11px] text-slate-400 mt-1">Direct GT Road delivery</p>
                 </div>
 
-                <div className="bg-slate-900/90 p-4 rounded-xl border border-slate-800">
-                  <div className="font-extrabold text-white text-sm">Islamabad (ISB)</div>
-                  <div className="text-xs text-red-400 mt-1 font-semibold">~2 Hrs Via M-2</div>
-                  <p className="text-[11px] text-slate-400 mt-1">Direct terminal chauffeur pickup</p>
+                <div className="bg-slate-800/70 p-4 rounded-xl border border-slate-700/80">
+                  <div className="font-semibold text-white text-sm">Islamabad (ISB)</div>
+                  <div className="text-xs text-brand-300 mt-1">~2 Hrs Via M-2</div>
+                  <p className="text-[11px] text-slate-400 mt-1">Terminal chauffeur pickup</p>
                 </div>
 
-                <div className="bg-slate-900/90 p-4 rounded-xl border border-slate-800">
-                  <div className="font-extrabold text-white text-sm">Lahore (LHE)</div>
-                  <div className="text-xs text-red-400 mt-1 font-semibold">~2.5 Hrs Via Motorway</div>
-                  <p className="text-[11px] text-slate-400 mt-1">Allama Iqbal Terminal handover</p>
+                <div className="bg-slate-800/70 p-4 rounded-xl border border-slate-700/80">
+                  <div className="font-semibold text-white text-sm">Lahore (LHE)</div>
+                  <div className="text-xs text-brand-300 mt-1">~2.5 Hrs Motorway</div>
+                  <p className="text-[11px] text-slate-400 mt-1">Allama Iqbal terminal</p>
                 </div>
               </div>
 
-              <div className="pt-2">
+              <div className="pt-1">
                 <a
                   href="https://wa.me/923136225135?text=Hello%20Warraich%20Motors,%20I%20am%20arriving%20at%20the%20airport%20and%20need%20a%20car"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 bg-red-600 hover:bg-red-700 text-white font-bold py-3 px-6 rounded-xl shadow-lg shadow-red-600/30 transition text-sm"
+                  className="inline-flex items-center gap-2 bg-brand-600 hover:bg-brand-700 text-white font-semibold py-2.5 px-5 rounded-lg transition text-xs sm:text-sm"
                 >
                   <MessageCircle className="w-4 h-4" />
-                  <span>Pre-Book Airport Car on WhatsApp</span>
+                  <span>Book Airport Pickup</span>
                 </a>
               </div>
             </div>
 
-            {/* Testimonials / Social Proof Card */}
+            {/* Testimonials */}
             <div className="space-y-4">
-              <div className="bg-slate-900/80 p-6 rounded-2xl border border-slate-800 space-y-3">
+              <div className="bg-slate-800/60 p-5 rounded-2xl border border-slate-700/80 space-y-2.5">
                 <div className="flex items-center gap-1 text-amber-400">
                   {[...Array(5)].map((_, i) => (
-                    <Star key={i} className="w-4 h-4 fill-amber-400" />
+                    <Star key={i} className="w-3.5 h-3.5 fill-amber-400" />
                   ))}
                 </div>
-                <p className="text-sm text-slate-200 italic leading-relaxed">
-                  &ldquo;Booked a Fortuner Legender for our family wedding in Kharian coming from Birmingham. Car was spotless, driver was extremely courteous, and pricing was completely transparent. Best rental in Gujrat.&rdquo;
+                <p className="text-sm text-slate-200 leading-relaxed">
+                  &ldquo;Booked a Fortuner Legender for our family wedding in Kharian coming from Birmingham. Spotless vehicle, courteous driver, and transparent pricing.&rdquo;
                 </p>
-                <div className="text-xs font-bold text-white flex justify-between">
-                  <span>Chaudhry Kamran &bull; Birmingham, UK</span>
-                  <span className="text-slate-400">Fortuner Legender Rental</span>
+                <div className="text-xs font-medium text-slate-400 flex justify-between pt-1">
+                  <span className="text-white">Chaudhry Kamran &bull; Birmingham, UK</span>
+                  <span>Fortuner Legender</span>
                 </div>
               </div>
 
-              <div className="bg-slate-900/80 p-6 rounded-2xl border border-slate-800 space-y-3">
+              <div className="bg-slate-800/60 p-5 rounded-2xl border border-slate-700/80 space-y-2.5">
                 <div className="flex items-center gap-1 text-amber-400">
                   {[...Array(5)].map((_, i) => (
-                    <Star key={i} className="w-4 h-4 fill-amber-400" />
+                    <Star key={i} className="w-3.5 h-3.5 fill-amber-400" />
                   ))}
                 </div>
-                <p className="text-sm text-slate-200 italic leading-relaxed">
-                  &ldquo;Rented a Corolla Grande for two weeks during my visit to Jalalpur Jattan. Handover at Sialkot airport was right on time. No hidden deposits, returned my security promptly. Highly recommended.&rdquo;
+                <p className="text-sm text-slate-200 leading-relaxed">
+                  &ldquo;Rented a Corolla Grande for two weeks in Jalalpur Jattan. Sialkot airport handover was right on time and the deposit was returned promptly.&rdquo;
                 </p>
-                <div className="text-xs font-bold text-white flex justify-between">
-                  <span>Naveed Warraich &bull; Oslo, Norway</span>
-                  <span className="text-slate-400">Corolla Altis Grande</span>
+                <div className="text-xs font-medium text-slate-400 flex justify-between pt-1">
+                  <span className="text-white">Naveed Warraich &bull; Oslo, Norway</span>
+                  <span>Corolla Altis Grande</span>
                 </div>
               </div>
             </div>
@@ -393,48 +360,45 @@ export default async function HomePage() {
       </section>
 
       {/* Why Choose Warraich Motors */}
-      <section className="bg-white py-16 sm:py-20 border-b border-slate-200">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center max-w-2xl mx-auto mb-14">
-            <div className="text-xs font-bold text-red-600 tracking-wider uppercase">
-              The Warraich Motors Guarantee
-            </div>
-            <h2 className="text-3xl font-black text-slate-900 tracking-tight mt-1">
-              Why Gujrat Trusts Us for Every Journey
-            </h2>
-            <p className="text-slate-600 text-sm mt-3">
-              We eliminate rental uncertainty through guaranteed vehicle health, background-verified chauffeurs, and upfront transparent billing.
+      <section className="bg-white py-14 sm:py-16 border-b border-slate-200/70">
+        <div className="w-[85%] mx-auto">
+          <div className="text-center max-w-xl mx-auto mb-10">
+            <p className="text-xs font-semibold text-brand-600 tracking-wider uppercase">
+              Our Standard
             </p>
+            <h2 className="text-2xl sm:text-3xl font-bold text-slate-900 tracking-tight mt-1">
+              Why Gujrat Trusts Warraich Motors
+            </h2>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div className="bg-slate-50 p-7 rounded-2xl border border-slate-200/80 space-y-3.5 hover:border-red-300 transition">
-              <div className="w-12 h-12 rounded-xl bg-red-100 text-red-600 flex items-center justify-center">
-                <ShieldCheck className="w-6 h-6" />
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div className="bg-stone-50/70 p-6 rounded-2xl border border-slate-200/80 space-y-3">
+              <div className="w-10 h-10 rounded-xl bg-brand-50 text-brand-600 border border-brand-200/70 flex items-center justify-center">
+                <ShieldCheck className="w-5 h-5" />
               </div>
-              <h3 className="font-extrabold text-lg text-slate-900">25-Point Mechanical Handover</h3>
+              <h3 className="font-bold text-base text-slate-900">25-Point Inspection</h3>
               <p className="text-sm text-slate-600 leading-relaxed">
-                Brakes, tires, fluids, and ice-cold AC are thoroughly tested before every rental handover. Spotlessly vacuumed and sanitized interiors.
+                Brakes, tires, fluids, and AC are checked before every handover, with clean sanitized interiors.
               </p>
             </div>
 
-            <div className="bg-slate-50 p-7 rounded-2xl border border-slate-200/80 space-y-3.5 hover:border-emerald-300 transition">
-              <div className="w-12 h-12 rounded-xl bg-emerald-100 text-emerald-600 flex items-center justify-center">
-                <Award className="w-6 h-6" />
+            <div className="bg-stone-50/70 p-6 rounded-2xl border border-slate-200/80 space-y-3">
+              <div className="w-10 h-10 rounded-xl bg-emerald-50 text-emerald-700 border border-emerald-200/70 flex items-center justify-center">
+                <Award className="w-5 h-5" />
               </div>
-              <h3 className="font-extrabold text-lg text-slate-900">Verified Chauffeurs (Optional)</h3>
+              <h3 className="font-bold text-base text-slate-900">Verified Chauffeurs</h3>
               <p className="text-sm text-slate-600 leading-relaxed">
-                Travelling intercity or attending a VIP Barat? Hire our courteous, uniformed chauffeurs with expert knowledge of GT Road, Motorways, and northern routes.
+                Courteous, uniformed drivers experienced with GT Road, Motorways, weddings, and northern routes.
               </p>
             </div>
 
-            <div className="bg-slate-50 p-7 rounded-2xl border border-slate-200/80 space-y-3.5 hover:border-purple-300 transition">
-              <div className="w-12 h-12 rounded-xl bg-purple-100 text-purple-600 flex items-center justify-center">
-                <Clock className="w-6 h-6" />
+            <div className="bg-stone-50/70 p-6 rounded-2xl border border-slate-200/80 space-y-3">
+              <div className="w-10 h-10 rounded-xl bg-slate-100 text-slate-700 border border-slate-200 flex items-center justify-center">
+                <Clock className="w-5 h-5" />
               </div>
-              <h3 className="font-extrabold text-lg text-slate-900">24/7 Roadside Assistance</h3>
+              <h3 className="font-bold text-base text-slate-900">24/7 Roadside Care</h3>
               <p className="text-sm text-slate-600 leading-relaxed">
-                Our emergency response team is on call 24 hours daily on GT Road. In the rare event of a tire or mechanical issue, immediate replacement or assistance is dispatched.
+                Our Gujrat dispatch team is on call 24/7 for immediate support or vehicle replacement if needed.
               </p>
             </div>
           </div>
@@ -442,35 +406,36 @@ export default async function HomePage() {
       </section>
 
       {/* Gujrat Hub Location & CTA */}
-      <section className="py-16 sm:py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="bg-gradient-to-r from-slate-950 via-slate-900 to-red-950 text-white rounded-3xl p-8 sm:p-12 shadow-2xl flex flex-col lg:flex-row items-center justify-between gap-8 border border-red-900/50">
-          <div className="space-y-4 max-w-2xl">
-            <div className="inline-flex items-center gap-2 text-xs font-bold text-red-400 uppercase tracking-wider">
-              <MapPin className="w-4 h-4 text-red-500" /> Mian, GT Rd, Small Industrial Area, Gujrat
+      <section className="py-12 sm:py-16 w-[85%] mx-auto">
+        <div className="bg-slate-900 text-white rounded-2xl p-8 sm:p-10 flex flex-col lg:flex-row items-center justify-between gap-6 border border-slate-800">
+          <div className="space-y-3 max-w-2xl">
+            <div className="inline-flex items-center gap-1.5 text-xs font-semibold text-brand-300 uppercase tracking-wider">
+              <MapPin className="w-3.5 h-3.5" />
+              <span>Mian, GT Rd, Small Industrial Area, Gujrat</span>
             </div>
-            <h2 className="text-3xl sm:text-4xl font-black tracking-tight">
-              Ready to Reserve Your Car in Gujrat?
+            <h2 className="text-2xl sm:text-3xl font-bold tracking-tight">
+              Ready to Reserve Your Car?
             </h2>
             <p className="text-slate-300 text-sm leading-relaxed">
-              Book online in 2 minutes or reach out directly via phone or WhatsApp. Our fleet manager will confirm vehicle availability and prepare your car.
+              Book online or message us on WhatsApp. Our team will confirm availability and prepare your car.
             </p>
-            <div className="flex flex-wrap gap-4 pt-2 text-sm text-slate-300">
-              <div className="flex items-center gap-2">
+            <div className="flex flex-wrap gap-4 pt-1 text-xs text-slate-300">
+              <div className="flex items-center gap-1.5">
                 <CheckCircle2 className="w-4 h-4 text-emerald-400" /> Free cancellation 24h before
               </div>
-              <div className="flex items-center gap-2">
-                <CheckCircle2 className="w-4 h-4 text-emerald-400" /> Cash or Bank Transfer accepted
+              <div className="flex items-center gap-1.5">
+                <CheckCircle2 className="w-4 h-4 text-emerald-400" /> Cash &amp; Bank Transfer
               </div>
-              <div className="flex items-center gap-2">
-                <CheckCircle2 className="w-4 h-4 text-emerald-400" /> Doorstep Delivery available
+              <div className="flex items-center gap-1.5">
+                <CheckCircle2 className="w-4 h-4 text-emerald-400" /> Doorstep Delivery
               </div>
             </div>
           </div>
 
-          <div className="flex flex-col sm:flex-row gap-4 shrink-0 w-full sm:w-auto">
+          <div className="flex flex-col sm:flex-row gap-3 shrink-0 w-full sm:w-auto">
             <a
               href="tel:03136225135"
-              className="bg-red-600 hover:bg-red-700 text-white font-bold py-3.5 px-6 rounded-xl text-center shadow-lg shadow-red-600/30 transition flex items-center justify-center gap-2 text-sm"
+              className="bg-brand-600 hover:bg-brand-700 text-white font-semibold py-3 px-5 rounded-xl text-center transition flex items-center justify-center gap-2 text-sm"
             >
               <Phone className="w-4 h-4" />
               <span>Call 0313 6225135</span>
@@ -479,7 +444,7 @@ export default async function HomePage() {
               href="https://wa.me/923136225135?text=Hello%20Warraich%20Motors,%20I%20want%20to%20reserve%20a%20car"
               target="_blank"
               rel="noopener noreferrer"
-              className="bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-3.5 px-6 rounded-xl text-center shadow-lg shadow-emerald-600/25 transition flex items-center justify-center gap-2 text-sm"
+              className="bg-emerald-700 hover:bg-emerald-800 text-white font-semibold py-3 px-5 rounded-xl text-center transition flex items-center justify-center gap-2 text-sm"
             >
               <MessageCircle className="w-4 h-4" />
               <span>WhatsApp Booking</span>

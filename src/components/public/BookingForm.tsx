@@ -174,33 +174,33 @@ export function BookingForm({ car, extras, initialPickup, initialReturn }: Booki
       <form onSubmit={handleSubmit} className="space-y-6">
         {/* Step 1: Dates & Location */}
         <div>
-          <h3 className="text-xs font-bold uppercase tracking-wider text-red-600 mb-3 flex items-center gap-1.5">
-            <span className="w-5 h-5 rounded-full bg-red-100 text-red-600 flex items-center justify-center text-xs font-bold">1</span>
-            Rental Period & Locations
+          <h3 className="text-xs font-bold uppercase tracking-wider text-brand-600 mb-3 flex items-center gap-1.5">
+            <span className="w-5 h-5 rounded-full bg-brand-100 text-brand-600 flex items-center justify-center text-xs font-bold">1</span>
+            Rental Period &amp; Locations
           </h3>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div>
               <label className="block text-xs font-semibold text-slate-700 mb-1 flex items-center gap-1">
-                <Calendar className="w-3.5 h-3.5 text-slate-400" /> Pickup Date & Time
+                <Calendar className="w-3.5 h-3.5 text-slate-400" /> Pickup Date &amp; Time
               </label>
               <input
                 type="datetime-local"
                 value={pickupDateTime}
                 onChange={(e) => setPickupDateTime(e.target.value)}
-                className="w-full rounded-lg border border-slate-300 py-2 px-3 text-sm focus:ring-2 focus:ring-red-500"
+                className="w-full rounded-lg border border-slate-300 py-2 px-3 text-sm focus:ring-2 focus:ring-brand-500"
                 required
               />
             </div>
 
             <div>
               <label className="block text-xs font-semibold text-slate-700 mb-1 flex items-center gap-1">
-                <Clock className="w-3.5 h-3.5 text-slate-400" /> Return Date & Time
+                <Clock className="w-3.5 h-3.5 text-slate-400" /> Return Date &amp; Time
               </label>
               <input
                 type="datetime-local"
                 value={returnDateTime}
                 onChange={(e) => setReturnDateTime(e.target.value)}
-                className="w-full rounded-lg border border-slate-300 py-2 px-3 text-sm focus:ring-2 focus:ring-red-500"
+                className="w-full rounded-lg border border-slate-300 py-2 px-3 text-sm focus:ring-2 focus:ring-brand-500"
                 required
               />
             </div>
@@ -213,7 +213,7 @@ export function BookingForm({ car, extras, initialPickup, initialReturn }: Booki
                 type="text"
                 value={pickupLocation}
                 onChange={(e) => setPickupLocation(e.target.value)}
-                className="w-full rounded-lg border border-slate-300 py-2 px-3 text-sm focus:ring-2 focus:ring-red-500"
+                className="w-full rounded-lg border border-slate-300 py-2 px-3 text-sm focus:ring-2 focus:ring-brand-500"
                 required
               />
             </div>
@@ -226,7 +226,7 @@ export function BookingForm({ car, extras, initialPickup, initialReturn }: Booki
                 type="text"
                 value={returnLocation}
                 onChange={(e) => setReturnLocation(e.target.value)}
-                className="w-full rounded-lg border border-slate-300 py-2 px-3 text-sm focus:ring-2 focus:ring-red-500"
+                className="w-full rounded-lg border border-slate-300 py-2 px-3 text-sm focus:ring-2 focus:ring-brand-500"
                 required
               />
             </div>
@@ -236,9 +236,9 @@ export function BookingForm({ car, extras, initialPickup, initialReturn }: Booki
         {/* Step 2: Extras & Packages */}
         {extras.length > 0 && (
           <div className="pt-2 border-t border-slate-100">
-            <h3 className="text-xs font-bold uppercase tracking-wider text-red-600 mb-3 flex items-center gap-1.5">
-              <span className="w-5 h-5 rounded-full bg-red-100 text-red-600 flex items-center justify-center text-xs font-bold">2</span>
-              Optional Packages & Add-ons
+            <h3 className="text-xs font-bold uppercase tracking-wider text-brand-600 mb-3 flex items-center gap-1.5">
+              <span className="w-5 h-5 rounded-full bg-brand-100 text-brand-600 flex items-center justify-center text-xs font-bold">2</span>
+              Optional Packages &amp; Add-ons
             </h3>
             <div className="space-y-2.5">
               {extras.map((extra) => {
@@ -248,7 +248,7 @@ export function BookingForm({ car, extras, initialPickup, initialReturn }: Booki
                     key={extra.id}
                     className={`flex items-start justify-between p-3 rounded-xl border cursor-pointer transition ${
                       isChecked
-                        ? "bg-red-50/70 border-red-300 ring-1 ring-red-400"
+                        ? "bg-brand-50/70 border-brand-300 ring-1 ring-brand-400"
                         : "bg-slate-50 border-slate-200 hover:bg-slate-100/70"
                     }`}
                   >
@@ -257,7 +257,7 @@ export function BookingForm({ car, extras, initialPickup, initialReturn }: Booki
                         type="checkbox"
                         checked={isChecked}
                         onChange={() => toggleExtra(extra.id)}
-                        className="mt-1 w-4 h-4 text-red-600 rounded border-slate-300 focus:ring-red-500"
+                        className="mt-1 w-4 h-4 text-brand-600 rounded border-slate-300 focus:ring-brand-500"
                       />
                       <div>
                         <div className="text-sm font-bold text-slate-900">{extra.name}</div>
@@ -283,8 +283,8 @@ export function BookingForm({ car, extras, initialPickup, initialReturn }: Booki
 
         {/* Step 3: Customer Information */}
         <div className="pt-2 border-t border-slate-100">
-          <h3 className="text-xs font-bold uppercase tracking-wider text-red-600 mb-3 flex items-center gap-1.5">
-            <span className="w-5 h-5 rounded-full bg-red-100 text-red-600 flex items-center justify-center text-xs font-bold">3</span>
+          <h3 className="text-xs font-bold uppercase tracking-wider text-brand-600 mb-3 flex items-center gap-1.5">
+            <span className="w-5 h-5 rounded-full bg-brand-100 text-brand-600 flex items-center justify-center text-xs font-bold">3</span>
             Your Contact Information
           </h3>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -297,7 +297,7 @@ export function BookingForm({ car, extras, initialPickup, initialReturn }: Booki
                 placeholder="e.g. Tariq Mehmood"
                 value={fullName}
                 onChange={(e) => setFullName(e.target.value)}
-                className="w-full rounded-lg border border-slate-300 py-2 px-3 text-sm focus:ring-2 focus:ring-red-500"
+                className="w-full rounded-lg border border-slate-300 py-2 px-3 text-sm focus:ring-2 focus:ring-brand-500"
                 required
               />
             </div>
@@ -311,7 +311,7 @@ export function BookingForm({ car, extras, initialPickup, initialReturn }: Booki
                 placeholder="e.g. 0313 6225135"
                 value={phone}
                 onChange={(e) => setPhone(e.target.value)}
-                className="w-full rounded-lg border border-slate-300 py-2 px-3 text-sm focus:ring-2 focus:ring-red-500"
+                className="w-full rounded-lg border border-slate-300 py-2 px-3 text-sm focus:ring-2 focus:ring-brand-500"
                 required
               />
             </div>
@@ -325,7 +325,7 @@ export function BookingForm({ car, extras, initialPickup, initialReturn }: Booki
                 placeholder="e.g. warraichmotorsgujrat@gmail.com"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                className="w-full rounded-lg border border-slate-300 py-2 px-3 text-sm focus:ring-2 focus:ring-red-500"
+                className="w-full rounded-lg border border-slate-300 py-2 px-3 text-sm focus:ring-2 focus:ring-brand-500"
                 required
               />
             </div>
@@ -339,7 +339,7 @@ export function BookingForm({ car, extras, initialPickup, initialReturn }: Booki
                 placeholder="e.g. 34201-1234567-1"
                 value={nationalIdOrPassport}
                 onChange={(e) => setNationalIdOrPassport(e.target.value)}
-                className="w-full rounded-lg border border-slate-300 py-2 px-3 text-sm focus:ring-2 focus:ring-red-500"
+                className="w-full rounded-lg border border-slate-300 py-2 px-3 text-sm focus:ring-2 focus:ring-brand-500"
               />
             </div>
 
@@ -352,7 +352,7 @@ export function BookingForm({ car, extras, initialPickup, initialReturn }: Booki
                 placeholder="e.g. Model Town, Gujrat"
                 value={address}
                 onChange={(e) => setAddress(e.target.value)}
-                className="w-full rounded-lg border border-slate-300 py-2 px-3 text-sm focus:ring-2 focus:ring-red-500"
+                className="w-full rounded-lg border border-slate-300 py-2 px-3 text-sm focus:ring-2 focus:ring-brand-500"
               />
             </div>
 
@@ -365,7 +365,7 @@ export function BookingForm({ car, extras, initialPickup, initialReturn }: Booki
                 placeholder="Any special notes or requirements..."
                 value={customerNotes}
                 onChange={(e) => setCustomerNotes(e.target.value)}
-                className="w-full rounded-lg border border-slate-300 py-2 px-3 text-sm focus:ring-2 focus:ring-red-500"
+                className="w-full rounded-lg border border-slate-300 py-2 px-3 text-sm focus:ring-2 focus:ring-brand-500"
               />
             </div>
           </div>
@@ -389,7 +389,7 @@ export function BookingForm({ car, extras, initialPickup, initialReturn }: Booki
 
             {pricing.extrasTotal > 0 && (
               <div className="flex justify-between text-xs text-slate-600">
-                <span>Selected Add-ons & Extras:</span>
+                <span>Selected Add-ons &amp; Extras:</span>
                 <span className="font-semibold text-slate-900">
                   {formatCurrency(pricing.extrasTotal, car.currency)}
                 </span>
@@ -405,7 +405,7 @@ export function BookingForm({ car, extras, initialPickup, initialReturn }: Booki
 
             <div className="pt-2 border-t border-slate-200 flex justify-between items-baseline">
               <span className="text-sm font-extrabold text-slate-900">Total Rental Cost:</span>
-              <span className="text-xl font-black text-red-600">
+              <span className="text-xl font-black text-brand-600">
                 {formatCurrency(pricing.totalAmount, car.currency)}
               </span>
             </div>
@@ -424,7 +424,7 @@ export function BookingForm({ car, extras, initialPickup, initialReturn }: Booki
         <button
           type="submit"
           disabled={isSubmitting || !pricing}
-          className="w-full bg-red-600 hover:bg-red-700 disabled:opacity-50 text-white font-bold py-3.5 px-6 rounded-xl shadow-lg shadow-red-600/30 transition flex items-center justify-center gap-2"
+          className="w-full bg-brand-600 hover:bg-brand-700 disabled:opacity-50 text-white font-semibold py-3.5 px-6 rounded-xl transition flex items-center justify-center gap-2"
         >
           {isSubmitting ? (
             <>

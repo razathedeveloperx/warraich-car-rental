@@ -4,13 +4,13 @@ import { Phone, Mail, MapPin, Clock, MessageCircle, ShieldCheck } from "lucide-r
 
 export function Footer() {
   return (
-    <footer className="bg-slate-950 text-slate-400 border-t border-slate-800">
+    <footer className="bg-slate-900 text-slate-400 border-t border-slate-800">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-16">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           {/* Brand info */}
           <div className="space-y-4 md:col-span-1">
             <div className="flex items-center gap-3 text-white font-bold text-lg">
-              <div className="relative w-12 h-12 shrink-0">
+              <div className="relative w-11 h-11 shrink-0">
                 <Image
                   src="/Warraich-Motors-logo.png"
                   alt="Warraich Motors Gujrat"
@@ -19,54 +19,54 @@ export function Footer() {
                 />
               </div>
               <div className="leading-tight">
-                <div className="font-black text-white text-lg tracking-tight">
-                  WARRAICH <span className="text-red-500">MOTORS</span>
+                <div className="font-bold text-white text-base tracking-tight">
+                  WARRAICH <span className="text-brand-300">MOTORS</span>
                 </div>
-                <div className="text-[10px] tracking-wider text-slate-400 font-semibold uppercase">
+                <div className="text-[10px] tracking-wider text-slate-400 font-medium uppercase">
                   And Rent A Car &bull; Gujrat
                 </div>
               </div>
             </div>
             <p className="text-sm text-slate-400 leading-relaxed">
-              Gujrat's premier car rental service. Delivering late-model SUVs, luxury wedding protocol vehicles, and dependable sedans with verified chauffeurs, doorstep delivery, and 24/7 support.
+              Gujrat&apos;s trusted car rental service. Delivering late-model SUVs, wedding protocol vehicles, and dependable sedans with verified chauffeurs and 24/7 support.
             </p>
-            <div className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-red-950/60 border border-red-800/40 text-red-300 text-xs font-semibold">
-              <ShieldCheck className="w-3.5 h-3.5 text-red-400" />
-              <span>Registered Fleet &bull; Small Industrial Area, Gujrat</span>
+            <div className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-slate-800 border border-slate-700 text-slate-300 text-xs font-medium">
+              <ShieldCheck className="w-3.5 h-3.5 text-brand-300" />
+              <span>Registered Fleet &bull; Gujrat</span>
             </div>
           </div>
 
           {/* Quick Links */}
           <div className="space-y-3">
-            <h3 className="text-sm font-bold text-white tracking-wider uppercase">Our Popular Fleet</h3>
+            <h3 className="text-xs font-semibold text-white tracking-wider uppercase">Our Popular Fleet</h3>
             <ul className="space-y-2 text-sm">
               <li>
-                <Link href="/cars?category=LUXURY_SUV" className="hover:text-red-400 transition">
+                <Link href="/cars?category=LUXURY_SUV" className="hover:text-brand-300 transition">
                   Toyota Land Cruiser Prado TX
                 </Link>
               </li>
               <li>
-                <Link href="/cars?category=SUV" className="hover:text-red-400 transition">
+                <Link href="/cars?category=SUV" className="hover:text-brand-300 transition">
                   Toyota Fortuner Legender 4x4
                 </Link>
               </li>
               <li>
-                <Link href="/cars?category=SEDAN" className="hover:text-red-400 transition">
+                <Link href="/cars?category=SEDAN" className="hover:text-brand-300 transition">
                   Toyota Corolla Altis Grande 1.8
                 </Link>
               </li>
               <li>
-                <Link href="/cars?category=SEDAN" className="hover:text-red-400 transition">
+                <Link href="/cars?category=SEDAN" className="hover:text-brand-300 transition">
                   Honda Civic RS Turbo 1.5L
                 </Link>
               </li>
               <li>
-                <Link href="/cars?category=ECONOMY" className="hover:text-red-400 transition">
-                  Toyota Yaris & Suzuki Alto 660cc
+                <Link href="/cars?category=ECONOMY" className="hover:text-brand-300 transition">
+                  Toyota Yaris &amp; Suzuki Alto 660cc
                 </Link>
               </li>
               <li>
-                <Link href="/cars?category=VAN" className="hover:text-red-400 transition">
+                <Link href="/cars?category=VAN" className="hover:text-brand-300 transition">
                   Toyota Hiace Grand Cabin (14-Seater)
                 </Link>
               </li>
@@ -75,31 +75,31 @@ export function Footer() {
 
           {/* Rental Policies */}
           <div className="space-y-3">
-            <h3 className="text-sm font-bold text-white tracking-wider uppercase">Information</h3>
+            <h3 className="text-xs font-semibold text-white tracking-wider uppercase">Information</h3>
             <ul className="space-y-2 text-sm">
               <li>
-                <Link href="/about" className="hover:text-red-400 transition">
+                <Link href="/about" className="hover:text-brand-300 transition">
                   About Warraich Motors
                 </Link>
               </li>
               <li>
-                <Link href="/terms" className="hover:text-red-400 transition">
-                  Rental Rules & Requirement
+                <Link href="/terms" className="hover:text-brand-300 transition">
+                  Rental Rules &amp; Requirement
                 </Link>
               </li>
               <li>
-                <Link href="/terms#cancellation" className="hover:text-red-400 transition">
-                  Cancellation & Refund Policy
+                <Link href="/terms#cancellation" className="hover:text-brand-300 transition">
+                  Cancellation &amp; Refund Policy
                 </Link>
               </li>
               <li>
-                <Link href="/privacy" className="hover:text-red-400 transition">
+                <Link href="/privacy" className="hover:text-brand-300 transition">
                   Privacy Policy
                 </Link>
               </li>
               <li>
-                <Link href="/contact" className="hover:text-red-400 transition">
-                  Contact Hub & Location
+                <Link href="/contact" className="hover:text-brand-300 transition">
+                  Contact Hub &amp; Location
                 </Link>
               </li>
             </ul>
@@ -107,10 +107,10 @@ export function Footer() {
 
           {/* Contact Details */}
           <div className="space-y-3">
-            <h3 className="text-sm font-bold text-white tracking-wider uppercase">Gujrat Hub Location</h3>
+            <h3 className="text-xs font-semibold text-white tracking-wider uppercase">Gujrat Hub Location</h3>
             <div className="space-y-3 text-sm">
               <div className="flex items-start gap-2.5">
-                <MapPin className="w-4 h-4 text-red-500 shrink-0 mt-0.5" />
+                <MapPin className="w-4 h-4 text-brand-300 shrink-0 mt-0.5" />
                 <span className="leading-snug text-slate-300">
                   Mian, GT Rd, Small Industrial Area, Punjab, Gujrat, 50700
                 </span>
@@ -133,7 +133,7 @@ export function Footer() {
                 </a>
               </div>
               <div className="flex items-center gap-2.5">
-                <Mail className="w-4 h-4 text-red-400 shrink-0" />
+                <Mail className="w-4 h-4 text-brand-300 shrink-0" />
                 <a
                   href="mailto:warraichmotorsgujrat@gmail.com"
                   className="hover:text-white text-slate-300 break-all"
@@ -142,9 +142,9 @@ export function Footer() {
                 </a>
               </div>
               <div className="flex items-center gap-2.5">
-                <Clock className="w-4 h-4 text-amber-400 shrink-0" />
-                <span className="text-xs text-amber-200 font-medium">
-                  24/7 Dispatch & Roadside Helpline
+                <Clock className="w-4 h-4 text-slate-400 shrink-0" />
+                <span className="text-xs text-slate-300 font-medium">
+                  24/7 Dispatch &amp; Roadside Helpline
                 </span>
               </div>
             </div>

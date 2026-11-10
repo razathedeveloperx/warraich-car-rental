@@ -52,10 +52,10 @@ export function AdminSidebar({ userRole, userName }: AdminSidebarProps) {
             />
           </div>
           <div>
-            <div className="font-black text-sm text-white tracking-tight leading-none">
-              WARRAICH <span className="text-red-500">MOTORS</span>
+            <div className="font-bold text-sm text-white tracking-tight leading-none">
+              WARRAICH <span className="text-brand-300">MOTORS</span>
             </div>
-            <div className="text-[10px] font-semibold text-red-400 uppercase tracking-wider mt-1">
+            <div className="text-[10px] font-semibold text-brand-300 uppercase tracking-wider mt-1">
               Hub Staff Portal ({userRole})
             </div>
           </div>
@@ -73,7 +73,7 @@ export function AdminSidebar({ userRole, userName }: AdminSidebarProps) {
               href={item.href}
               className={`flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-sm font-medium transition ${
                 isActive
-                  ? "bg-red-600 text-white font-semibold shadow-md shadow-red-600/30"
+                  ? "bg-brand-600 text-white font-semibold"
                   : "text-slate-400 hover:text-white hover:bg-slate-800/60"
               }`}
             >

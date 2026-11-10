@@ -41,18 +41,18 @@ export function HeroSearch() {
   return (
     <form
       onSubmit={handleSearch}
-      className="bg-white rounded-2xl shadow-2xl p-5 sm:p-6 border border-slate-200"
+      className="bg-white rounded-2xl shadow-sm p-4 sm:p-5 border border-slate-200/90"
     >
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-3.5">
         {/* Location */}
         <div>
-          <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1.5 flex items-center gap-1.5">
-            <MapPin className="w-3.5 h-3.5 text-red-600" /> Pickup Location
+          <label className="block text-[11px] font-semibold text-slate-600 uppercase tracking-wider mb-1.5 flex items-center gap-1.5">
+            <MapPin className="w-3.5 h-3.5 text-brand-600" /> Pickup Location
           </label>
           <select
             value={pickupLocation}
             onChange={(e) => setPickupLocation(e.target.value)}
-            className="w-full rounded-lg border border-slate-300 py-2.5 px-3 text-sm text-slate-800 focus:outline-none focus:ring-2 focus:ring-red-500 bg-white"
+            className="w-full rounded-lg border border-slate-200 py-2 px-3 text-sm text-slate-800 focus:outline-none focus:ring-2 focus:ring-brand-500/40 focus:border-brand-500 bg-white"
           >
             <option value="Warraich Motors Hub, GT Rd Small Industrial Area, Gujrat">Warraich Motors Hub (GT Rd, Small Industrial Area, Gujrat)</option>
             <option value="Gujrat City Center / Court Road / Rehman Shaheed Rd">Gujrat City Center / Court Road / Rehman Shaheed Rd</option>
@@ -66,42 +66,42 @@ export function HeroSearch() {
 
         {/* Pickup Date & Time */}
         <div>
-          <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1.5 flex items-center gap-1.5">
-            <Calendar className="w-3.5 h-3.5 text-red-600" /> Pickup Date & Time
+          <label className="block text-[11px] font-semibold text-slate-600 uppercase tracking-wider mb-1.5 flex items-center gap-1.5">
+            <Calendar className="w-3.5 h-3.5 text-brand-600" /> Pickup Date & Time
           </label>
           <input
             type="datetime-local"
             value={pickupDateTime}
             onChange={(e) => setPickupDateTime(e.target.value)}
-            className="w-full rounded-lg border border-slate-300 py-2.5 px-3 text-sm text-slate-800 focus:outline-none focus:ring-2 focus:ring-red-500"
+            className="w-full rounded-lg border border-slate-200 py-2 px-3 text-sm text-slate-800 focus:outline-none focus:ring-2 focus:ring-brand-500/40 focus:border-brand-500"
             required
           />
         </div>
 
         {/* Return Date & Time */}
         <div>
-          <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1.5 flex items-center gap-1.5">
-            <Clock className="w-3.5 h-3.5 text-red-600" /> Return Date & Time
+          <label className="block text-[11px] font-semibold text-slate-600 uppercase tracking-wider mb-1.5 flex items-center gap-1.5">
+            <Clock className="w-3.5 h-3.5 text-brand-600" /> Return Date & Time
           </label>
           <input
             type="datetime-local"
             value={returnDateTime}
             onChange={(e) => setReturnDateTime(e.target.value)}
-            className="w-full rounded-lg border border-slate-300 py-2.5 px-3 text-sm text-slate-800 focus:outline-none focus:ring-2 focus:ring-red-500"
+            className="w-full rounded-lg border border-slate-200 py-2 px-3 text-sm text-slate-800 focus:outline-none focus:ring-2 focus:ring-brand-500/40 focus:border-brand-500"
             required
           />
         </div>
 
         {/* Vehicle Category & Submit */}
         <div className="flex flex-col justify-end">
-          <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1.5">
+          <label className="block text-[11px] font-semibold text-slate-600 uppercase tracking-wider mb-1.5">
             Vehicle Type
           </label>
           <div className="flex gap-2">
             <select
               value={category}
               onChange={(e) => setCategory(e.target.value)}
-              className="flex-1 rounded-lg border border-slate-300 py-2.5 px-3 text-sm text-slate-800 focus:outline-none focus:ring-2 focus:ring-red-500 bg-white"
+              className="flex-1 rounded-lg border border-slate-200 py-2 px-3 text-sm text-slate-800 focus:outline-none focus:ring-2 focus:ring-brand-500/40 focus:border-brand-500 bg-white"
             >
               <option value="ALL">All Categories</option>
               <option value="LUXURY_SUV">Luxury SUV (Prado/V8)</option>
@@ -112,10 +112,10 @@ export function HeroSearch() {
             </select>
             <button
               type="submit"
-              className="bg-red-600 hover:bg-red-700 text-white font-bold py-2.5 px-5 rounded-lg flex items-center gap-1.5 shadow-md shadow-red-600/30 transition shrink-0"
+              className="bg-brand-600 hover:bg-brand-700 text-white font-semibold py-2 px-4 rounded-lg flex items-center gap-1.5 transition shrink-0 text-sm"
             >
               <Search className="w-4 h-4" />
-              <span>Find Car</span>
+              <span>Search</span>
             </button>
           </div>
         </div>
