@@ -1,7 +1,7 @@
 import Link from "next/link";
-import Image from "next/image";
 import { prisma } from "@/lib/db";
 import { HeroSearch } from "@/components/public/HeroSearch";
+import { HeroSlider } from "@/components/public/HeroSlider";
 import { CarCard } from "@/components/public/CarCard";
 import {
   ShieldCheck,
@@ -92,59 +92,46 @@ export default async function HomePage() {
 
   return (
     <div className="bg-stone-50/60">
-      {/* Screen-Height Optimized Hero with Banner Background (85% width) */}
-      <section className="py-4 sm:py-6 bg-white border-b border-slate-200/70">
-        <div className="w-[85%] mx-auto relative rounded-2xl overflow-hidden shadow-md border border-slate-200/80 min-h-[460px] lg:h-[calc(100vh-116px)] lg:max-h-[640px] flex flex-col justify-between p-5 sm:p-8 lg:p-10 bg-slate-900">
-          {/* Background Banner Image */}
-          <Image
-            src="/warraich-motors-banner.JPG"
-            alt="Warraich Motors and Rent A Car Gujrat"
-            fill
-            className="object-cover object-center"
-            priority
-            sizes="85vw"
-          />
+      {/* Full-Width Screen-Height Hero with Centered Text & Search Form */}
+      <section className="relative w-full min-h-[500px] lg:h-[calc(100vh-84px)] lg:max-h-[680px] flex items-center justify-center overflow-hidden bg-slate-900">
+        {/* Full-width background banner / slider */}
+        <HeroSlider />
 
-          {/* Calm Gradient Overlay for Crisp Readability */}
-          <div className="absolute inset-0 bg-gradient-to-b from-slate-950/75 via-slate-950/40 to-slate-950/85 pointer-events-none" />
-
-          {/* Minimal Top Content */}
-          <div className="relative z-10 flex flex-col md:flex-row md:items-start justify-between gap-4">
-            <div className="space-y-1.5 max-w-xl">
-              <p className="text-[11px] font-semibold uppercase tracking-widest text-brand-200">
-                GT Road, Gujrat &bull; 24/7 Service
-              </p>
-              <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight text-white">
-                Warraich Motors &amp; Rent A Car
-              </h1>
-              <p className="text-xs sm:text-sm text-slate-200">
-                Self-drive &amp; chauffeur cars in Gujrat &mdash; verified fleet, transparent PKR rates.
-              </p>
-            </div>
-
-            <div className="flex items-center gap-2 shrink-0">
-              <a
-                href="tel:03136225135"
-                className="inline-flex items-center gap-1.5 bg-brand-600 hover:bg-brand-700 text-white font-semibold px-3.5 py-2 rounded-lg transition text-xs"
-              >
-                <Phone className="w-3.5 h-3.5" />
-                <span>0313 6225135</span>
-              </a>
-              <a
-                href="https://wa.me/923136225135?text=Hello%20Warraich%20Motors,%20I%20want%20to%20rent%20a%20car%20in%20Gujrat"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-1.5 bg-white/95 hover:bg-white text-slate-800 font-semibold px-3.5 py-2 rounded-lg transition text-xs"
-              >
-                <MessageCircle className="w-3.5 h-3.5 text-emerald-600" />
-                <span>WhatsApp</span>
-              </a>
-            </div>
+        {/* Centered Text + Form */}
+        <div className="relative z-10 w-full max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-10 flex flex-col items-center text-center gap-6">
+          <div className="space-y-2.5 max-w-2xl">
+            <p className="text-[11px] font-semibold uppercase tracking-widest text-brand-200">
+              GT Road, Gujrat &bull; 24/7 Service
+            </p>
+            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-white">
+              Warraich Motors &amp; Rent A Car
+            </h1>
+            <p className="text-sm sm:text-base text-slate-200">
+              Self-drive &amp; chauffeur vehicles in Gujrat &mdash; transparent PKR rates and airport transfers.
+            </p>
           </div>
 
-          {/* Search Bar anchored inside hero bottom */}
-          <div className="relative z-10 mt-6 lg:mt-auto">
+          <div className="w-full max-w-5xl">
             <HeroSearch />
+          </div>
+
+          <div className="flex flex-wrap items-center justify-center gap-3">
+            <a
+              href="tel:03136225135"
+              className="inline-flex items-center gap-1.5 bg-brand-600 hover:bg-brand-700 text-white font-semibold px-4 py-2 rounded-lg transition text-xs"
+            >
+              <Phone className="w-3.5 h-3.5" />
+              <span>0313 6225135</span>
+            </a>
+            <a
+              href="https://wa.me/923136225135?text=Hello%20Warraich%20Motors,%20I%20want%20to%20rent%20a%20car%20in%20Gujrat"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1.5 bg-white/95 hover:bg-white text-slate-800 font-semibold px-4 py-2 rounded-lg transition text-xs"
+            >
+              <MessageCircle className="w-3.5 h-3.5 text-emerald-600" />
+              <span>WhatsApp Dispatch</span>
+            </a>
           </div>
         </div>
       </section>

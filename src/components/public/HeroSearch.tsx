@@ -2,12 +2,11 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import { Calendar, Clock, MapPin, Search } from "lucide-react";
+import { Calendar, Car, Clock, MapPin, Search } from "lucide-react";
 
 export function HeroSearch() {
   const router = useRouter();
 
-  // Default pickup tomorrow at 10:00, return 3 days later at 10:00
   const getDefaultPickup = () => {
     const d = new Date();
     d.setDate(d.getDate() + 1);
@@ -41,83 +40,103 @@ export function HeroSearch() {
   return (
     <form
       onSubmit={handleSearch}
-      className="bg-white/95 backdrop-blur-md rounded-xl shadow-md p-3.5 sm:p-4 border border-white/60"
+      className="w-full bg-white/95 backdrop-blur-md rounded-2xl shadow-xl p-3.5 sm:p-4 border border-white/80 text-left"
     >
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-3">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-[1.3fr_1.2fr_1.2fr_0.95fr_auto] gap-3 items-end">
         {/* Location */}
-        <div>
-          <label className="block text-[11px] font-semibold text-slate-600 uppercase tracking-wider mb-1.5 flex items-center gap-1.5">
-            <MapPin className="w-3.5 h-3.5 text-brand-600" /> Pickup Location
+        <div className="min-w-0">
+          <label className="text-[11px] font-semibold text-slate-600 uppercase tracking-wider mb-1.5 flex items-center gap-1.5">
+            <MapPin className="w-3.5 h-3.5 text-brand-600 shrink-0" />
+            <span>Pickup Location</span>
           </label>
           <select
             value={pickupLocation}
             onChange={(e) => setPickupLocation(e.target.value)}
-            className="w-full rounded-lg border border-slate-200 py-2 px-3 text-sm text-slate-800 focus:outline-none focus:ring-2 focus:ring-brand-500/40 focus:border-brand-500 bg-white"
+            className="w-full h-11 rounded-xl border border-slate-200 bg-slate-50/70 hover:bg-slate-50 focus:bg-white px-3 text-xs sm:text-sm text-slate-800 font-medium focus:outline-none focus:ring-2 focus:ring-brand-500/30 focus:border-brand-500 transition truncate"
           >
-            <option value="Warraich Motors Hub, GT Rd Small Industrial Area, Gujrat">Warraich Motors Hub (GT Rd, Small Industrial Area, Gujrat)</option>
-            <option value="Gujrat City Center / Court Road / Rehman Shaheed Rd">Gujrat City Center / Court Road / Rehman Shaheed Rd</option>
-            <option value="Kharian Cantt / Lalamusa / Jalalpur Jattan">Kharian Cantt / Lalamusa / Jalalpur Jattan</option>
-            <option value="Sialkot International Airport (SKT)">Sialkot International Airport (SKT) Delivery</option>
-            <option value="Islamabad International Airport (ISB)">Islamabad International Airport (ISB) Delivery</option>
-            <option value="Lahore Allama Iqbal Airport (LHE)">Lahore Allama Iqbal Airport (LHE) Delivery</option>
-            <option value="Custom Doorstep Address (Gujrat & Surroundings)">Custom Doorstep Address (Gujrat & Surroundings)</option>
+            <option value="Warraich Motors Hub, GT Rd Small Industrial Area, Gujrat">
+              Gujrat Hub (GT Rd, Small Industrial Area)
+            </option>
+            <option value="Gujrat City Center / Court Road / Rehman Shaheed Rd">
+              Gujrat City Center / Court Road
+            </option>
+            <option value="Kharian Cantt / Lalamusa / Jalalpur Jattan">
+              Kharian / Lalamusa / Jalalpur Jattan
+            </option>
+            <option value="Sialkot International Airport (SKT)">
+              Sialkot Airport (SKT) Delivery
+            </option>
+            <option value="Islamabad International Airport (ISB)">
+              Islamabad Airport (ISB) Delivery
+            </option>
+            <option value="Lahore Allama Iqbal Airport (LHE)">
+              Lahore Airport (LHE) Delivery
+            </option>
+            <option value="Custom Doorstep Address (Gujrat & Surroundings)">
+              Doorstep Delivery (Gujrat)
+            </option>
           </select>
         </div>
 
         {/* Pickup Date & Time */}
-        <div>
-          <label className="block text-[11px] font-semibold text-slate-600 uppercase tracking-wider mb-1.5 flex items-center gap-1.5">
-            <Calendar className="w-3.5 h-3.5 text-brand-600" /> Pickup Date & Time
+        <div className="min-w-0">
+          <label className="text-[11px] font-semibold text-slate-600 uppercase tracking-wider mb-1.5 flex items-center gap-1.5">
+            <Calendar className="w-3.5 h-3.5 text-brand-600 shrink-0" />
+            <span>Pickup Date</span>
           </label>
           <input
             type="datetime-local"
             value={pickupDateTime}
             onChange={(e) => setPickupDateTime(e.target.value)}
-            className="w-full rounded-lg border border-slate-200 py-2 px-3 text-sm text-slate-800 focus:outline-none focus:ring-2 focus:ring-brand-500/40 focus:border-brand-500"
+            className="w-full h-11 rounded-xl border border-slate-200 bg-slate-50/70 hover:bg-slate-50 focus:bg-white px-3 text-xs sm:text-sm text-slate-800 font-medium focus:outline-none focus:ring-2 focus:ring-brand-500/30 focus:border-brand-500 transition"
             required
           />
         </div>
 
         {/* Return Date & Time */}
-        <div>
-          <label className="block text-[11px] font-semibold text-slate-600 uppercase tracking-wider mb-1.5 flex items-center gap-1.5">
-            <Clock className="w-3.5 h-3.5 text-brand-600" /> Return Date & Time
+        <div className="min-w-0">
+          <label className="text-[11px] font-semibold text-slate-600 uppercase tracking-wider mb-1.5 flex items-center gap-1.5">
+            <Clock className="w-3.5 h-3.5 text-brand-600 shrink-0" />
+            <span>Return Date</span>
           </label>
           <input
             type="datetime-local"
             value={returnDateTime}
             onChange={(e) => setReturnDateTime(e.target.value)}
-            className="w-full rounded-lg border border-slate-200 py-2 px-3 text-sm text-slate-800 focus:outline-none focus:ring-2 focus:ring-brand-500/40 focus:border-brand-500"
+            className="w-full h-11 rounded-xl border border-slate-200 bg-slate-50/70 hover:bg-slate-50 focus:bg-white px-3 text-xs sm:text-sm text-slate-800 font-medium focus:outline-none focus:ring-2 focus:ring-brand-500/30 focus:border-brand-500 transition"
             required
           />
         </div>
 
-        {/* Vehicle Category & Submit */}
-        <div className="flex flex-col justify-end">
-          <label className="block text-[11px] font-semibold text-slate-600 uppercase tracking-wider mb-1.5">
-            Vehicle Type
+        {/* Vehicle Category */}
+        <div className="min-w-0">
+          <label className="text-[11px] font-semibold text-slate-600 uppercase tracking-wider mb-1.5 flex items-center gap-1.5">
+            <Car className="w-3.5 h-3.5 text-brand-600 shrink-0" />
+            <span>Vehicle Type</span>
           </label>
-          <div className="flex gap-2">
-            <select
-              value={category}
-              onChange={(e) => setCategory(e.target.value)}
-              className="flex-1 rounded-lg border border-slate-200 py-2 px-3 text-sm text-slate-800 focus:outline-none focus:ring-2 focus:ring-brand-500/40 focus:border-brand-500 bg-white"
-            >
-              <option value="ALL">All Categories</option>
-              <option value="LUXURY_SUV">Luxury SUV (Prado/V8)</option>
-              <option value="SUV">SUV 4x4 (Fortuner/Revo)</option>
-              <option value="SEDAN">Executive Sedan (Grande/Civic)</option>
-              <option value="ECONOMY">Economy (Yaris/Alto)</option>
-              <option value="VAN">Passenger Van (Hiace)</option>
-            </select>
-            <button
-              type="submit"
-              className="bg-brand-600 hover:bg-brand-700 text-white font-semibold py-2 px-4 rounded-lg flex items-center gap-1.5 transition shrink-0 text-sm"
-            >
-              <Search className="w-4 h-4" />
-              <span>Search</span>
-            </button>
-          </div>
+          <select
+            value={category}
+            onChange={(e) => setCategory(e.target.value)}
+            className="w-full h-11 rounded-xl border border-slate-200 bg-slate-50/70 hover:bg-slate-50 focus:bg-white px-3 text-xs sm:text-sm text-slate-800 font-medium focus:outline-none focus:ring-2 focus:ring-brand-500/30 focus:border-brand-500 transition"
+          >
+            <option value="ALL">All Vehicles</option>
+            <option value="LUXURY_SUV">Luxury SUV</option>
+            <option value="SUV">SUV 4x4</option>
+            <option value="SEDAN">Executive Sedan</option>
+            <option value="ECONOMY">Economy</option>
+            <option value="VAN">Hiace Van</option>
+          </select>
+        </div>
+
+        {/* Search Button */}
+        <div className="sm:col-span-2 lg:col-span-1">
+          <button
+            type="submit"
+            className="w-full lg:w-auto h-11 bg-brand-600 hover:bg-brand-700 text-white font-semibold px-6 rounded-xl flex items-center justify-center gap-2 transition text-sm whitespace-nowrap shadow-sm"
+          >
+            <Search className="w-4 h-4" />
+            <span>Find Car</span>
+          </button>
         </div>
       </div>
     </form>
