@@ -20,15 +20,16 @@ export function Footer() {
                 />
               </div>
               <div className="leading-tight">
-                <div className="font-bold text-white text-base tracking-tight">
-                  WARRAICH <span className="text-gold-300">MOTORS</span>
+                <div className="text-base tracking-tight">
+                  <span className="font-extrabold text-white">WARRAICH</span>{" "}
+                  <span className="font-light text-gold-300">MOTORS</span>
                 </div>
-                <div className="text-[10px] tracking-wider text-stone-400 font-medium uppercase">
+                <div className="text-[10px] tracking-[0.18em] text-stone-400 font-light uppercase">
                   And Rent A Car &bull; Gujrat
                 </div>
               </div>
             </div>
-            <p className="text-sm text-slate-400 leading-relaxed">
+            <p className="text-sm text-stone-400 font-light leading-relaxed">
               Gujrat&apos;s trusted car rental service. Delivering late-model SUVs, wedding protocol vehicles, and dependable sedans with verified chauffeurs and 24/7 support.
             </p>
             <div className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-slate-800 border border-slate-700 text-slate-300 text-xs font-medium">

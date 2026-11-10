@@ -66,10 +66,11 @@ export function Navbar() {
             />
           </div>
           <div className="leading-none">
-            <div className="font-bold text-sm sm:text-base text-stone-950 tracking-tight">
-              WARRAICH <span className="text-brand-600">MOTORS</span>
+            <div className="text-sm sm:text-base tracking-tight">
+              <span className="font-extrabold text-stone-950">WARRAICH</span>{" "}
+              <span className="font-light text-brand-600">MOTORS</span>
             </div>
-            <div className="text-[9px] font-semibold tracking-widest text-stone-500 uppercase mt-0.5">
+            <div className="text-[9px] font-medium tracking-[0.2em] text-stone-500 uppercase mt-0.5">
               Gujrat Car Rental
             </div>
           </div>

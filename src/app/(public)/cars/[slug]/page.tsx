@@ -78,8 +78,9 @@ export default async function CarDetailPage({ params, searchParams }: CarDetailP
                 Model {car.year}
               </span>
             </div>
-            <h1 className="font-display text-3xl sm:text-4xl font-bold text-stone-950 tracking-tight">
-              {car.make} {car.model}
+            <h1 className="text-3xl sm:text-4xl tracking-tight text-stone-950">
+              <span className="font-extrabold">{car.make}</span>{" "}
+              <span className="font-light text-stone-700">{car.model}</span>
             </h1>
             <p className="text-xs text-stone-500 mt-1.5">
               Registered ID: {car.registrationNumber} &bull; Stationed at Gujrat Main Hub

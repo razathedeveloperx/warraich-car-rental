@@ -104,11 +104,11 @@ export default async function HomePage() {
               <span className="text-white/40">&bull;</span>
               <span>24/7 Service</span>
             </div>
-            <h1 className="font-display text-3xl sm:text-5xl lg:text-[52px] font-bold tracking-tight text-white leading-[1.12]">
-              Warraich Motors{" "}
-              <span className="italic font-semibold text-gold-200">&amp; Rent A Car</span>
+            <h1 className="text-3xl sm:text-5xl lg:text-[50px] tracking-tight text-white leading-[1.12]">
+              <span className="font-extrabold">Warraich Motors</span>{" "}
+              <span className="font-extralight text-gold-200">&amp; Rent A Car</span>
             </h1>
-            <p className="text-sm sm:text-base text-stone-200 font-normal max-w-xl mx-auto">
+            <p className="text-sm sm:text-base text-stone-200 font-light max-w-xl mx-auto">
               Verified self-drive &amp; chauffeur vehicles in Gujrat &mdash; instant quotes and airport transfers.
             </p>
           </div>
@@ -150,10 +150,11 @@ export default async function HomePage() {
               </span>
               <span className="w-1.5 h-1.5 rounded-full bg-emerald-600" />
             </div>
-            <h2 className="font-display text-2xl sm:text-4xl font-bold text-stone-950 tracking-tight">
-              Available Now <span className="italic font-semibold text-brand-600">in Gujrat</span>
+            <h2 className="text-2xl sm:text-4xl text-stone-950 tracking-tight">
+              <span className="font-extrabold">Available Now</span>{" "}
+              <span className="font-light text-brand-600">in Gujrat</span>
             </h2>
-            <p className="text-stone-600 text-sm mt-1.5 max-w-xl">
+            <p className="text-stone-600 text-sm font-light mt-1.5 max-w-xl">
               Inspected and ready at our GT Road showroom for immediate self-drive or chauffeur handover.
             </p>
           </div>
@@ -198,10 +199,11 @@ export default async function HomePage() {
                 </span>
                 <Clock className="w-3.5 h-3.5 text-amber-700" />
               </div>
-              <h2 className="font-display text-2xl sm:text-4xl font-bold text-stone-950 tracking-tight">
-                Will Be <span className="italic font-semibold text-stone-600">Available Soon</span>
+              <h2 className="text-2xl sm:text-4xl text-stone-950 tracking-tight">
+                <span className="font-extrabold">Will Be</span>{" "}
+                <span className="font-light text-stone-600">Available Soon</span>
               </h2>
-              <p className="text-stone-600 text-sm mt-1.5 max-w-xl">
+              <p className="text-stone-600 text-sm font-light mt-1.5 max-w-xl">
                 Returning soon from active trips or scheduled detailing &mdash; pre-book to lock your upcoming dates.
               </p>
             </div>
@@ -227,10 +229,11 @@ export default async function HomePage() {
               </span>
               <span className="w-1.5 h-1.5 rounded-full bg-brand-600" />
             </div>
-            <h2 className="font-display text-2xl sm:text-4xl font-bold text-stone-950 tracking-tight">
-              Currently <span className="italic font-semibold text-brand-600">Booked Fleet</span>
+            <h2 className="text-2xl sm:text-4xl text-stone-950 tracking-tight">
+              <span className="font-extrabold">Currently</span>{" "}
+              <span className="font-light text-brand-600">Booked Fleet</span>
             </h2>
-            <p className="text-stone-600 text-sm mt-1.5 max-w-xl">
+            <p className="text-stone-600 text-sm font-light mt-1.5 max-w-xl">
               Vehicles currently serving weddings, VIP protocol, and outstation tours. Join the waitlist for their next slot.
             </p>
           </div>
@@ -264,11 +267,11 @@ export default async function HomePage() {
                 <Plane className="w-3.5 h-3.5 text-gold-300" />
                 <span>Airport Concierge</span>
               </div>
-              <h2 className="font-display text-3xl sm:text-4xl font-bold tracking-tight leading-snug text-white">
-                Arriving from Abroad?{" "}
-                <span className="italic font-semibold text-gold-200">We Meet You at the Terminal</span>
+              <h2 className="text-3xl sm:text-4xl tracking-tight leading-snug text-white">
+                <span className="font-extrabold">Arriving from Abroad?</span>{" "}
+                <span className="font-extralight text-gold-200">We Meet You at the Terminal</span>
               </h2>
-              <p className="text-stone-300 text-sm leading-relaxed">
+              <p className="text-stone-300 text-sm font-light leading-relaxed">
                 Direct terminal handovers at Sialkot, Islamabad, and Lahore airports. We track your flight and coordinate on WhatsApp so your vehicle is waiting when you land.
               </p>
 
@@ -348,8 +351,9 @@ export default async function HomePage() {
             <p className="text-[11px] font-bold text-brand-600 tracking-[0.18em] uppercase">
               Our Standard
             </p>
-            <h2 className="font-display text-2xl sm:text-4xl font-bold text-stone-950 tracking-tight mt-1.5">
-              Why Gujrat Trusts <span className="italic font-semibold text-brand-600">Warraich Motors</span>
+            <h2 className="text-2xl sm:text-4xl text-stone-950 tracking-tight mt-1.5">
+              <span className="font-extrabold">Why Gujrat Trusts</span>{" "}
+              <span className="font-light text-brand-600">Warraich Motors</span>
             </h2>
           </div>
 
@@ -358,8 +362,8 @@ export default async function HomePage() {
               <div className="w-10 h-10 rounded-xl bg-brand-600 text-gold-200 flex items-center justify-center">
                 <ShieldCheck className="w-5 h-5" />
               </div>
-              <h3 className="font-display font-bold text-lg text-stone-950">25-Point Inspection</h3>
-              <p className="text-sm text-stone-600 leading-relaxed">
+              <h3 className="font-bold text-lg text-stone-950 tracking-tight">25-Point Inspection</h3>
+              <p className="text-sm text-stone-600 font-light leading-relaxed">
                 Brakes, tires, fluids, and AC are checked before every handover, with clean sanitized interiors.
               </p>
             </div>
@@ -368,8 +372,8 @@ export default async function HomePage() {
               <div className="w-10 h-10 rounded-xl bg-stone-900 text-gold-200 flex items-center justify-center">
                 <Award className="w-5 h-5" />
               </div>
-              <h3 className="font-display font-bold text-lg text-stone-950">Verified Chauffeurs</h3>
-              <p className="text-sm text-stone-600 leading-relaxed">
+              <h3 className="font-bold text-lg text-stone-950 tracking-tight">Verified Chauffeurs</h3>
+              <p className="text-sm text-stone-600 font-light leading-relaxed">
                 Courteous, uniformed drivers experienced with GT Road, Motorways, weddings, and northern routes.
               </p>
             </div>
@@ -378,8 +382,8 @@ export default async function HomePage() {
               <div className="w-10 h-10 rounded-xl bg-brand-600 text-gold-200 flex items-center justify-center">
                 <Clock className="w-5 h-5" />
               </div>
-              <h3 className="font-display font-bold text-lg text-stone-950">24/7 Roadside Care</h3>
-              <p className="text-sm text-stone-600 leading-relaxed">
+              <h3 className="font-bold text-lg text-stone-950 tracking-tight">24/7 Roadside Care</h3>
+              <p className="text-sm text-stone-600 font-light leading-relaxed">
                 Our Gujrat dispatch team is on call 24/7 for immediate support or vehicle replacement if needed.
               </p>
             </div>
@@ -395,10 +399,11 @@ export default async function HomePage() {
               <MapPin className="w-3.5 h-3.5 text-gold-300" />
               <span>Mian, GT Rd, Small Industrial Area, Gujrat</span>
             </div>
-            <h2 className="font-display text-2xl sm:text-4xl font-bold tracking-tight">
-              Ready to Reserve Your Car?
+            <h2 className="text-2xl sm:text-4xl tracking-tight">
+              <span className="font-extrabold">Ready to</span>{" "}
+              <span className="font-light text-gold-200">Reserve Your Car?</span>
             </h2>
-            <p className="text-stone-300 text-sm leading-relaxed">
+            <p className="text-stone-300 text-sm font-light leading-relaxed">
               Book online or message us on WhatsApp for instant availability and tailored rental packages.
             </p>
             <div className="flex flex-wrap gap-4 pt-1 text-xs text-stone-300">

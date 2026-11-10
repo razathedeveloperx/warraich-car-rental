@@ -105,8 +105,9 @@ export function CarCard({ car, pickup, returnDate }: CarCardProps) {
       <div className="p-5 flex-1 flex flex-col justify-between">
         <div>
           <div className="flex items-start justify-between gap-2">
-            <h3 className="font-display font-bold text-lg text-stone-950 group-hover:text-brand-600 transition leading-snug">
-              {car.make} {car.model}
+            <h3 className="text-base sm:text-lg leading-snug tracking-tight group-hover:text-brand-600 transition">
+              <span className="font-bold text-stone-950">{car.make}</span>{" "}
+              <span className="font-light text-stone-700">{car.model}</span>
             </h3>
           </div>
 
