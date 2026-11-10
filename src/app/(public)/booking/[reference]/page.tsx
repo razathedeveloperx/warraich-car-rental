@@ -1,6 +1,6 @@
 import { notFound } from "next/navigation";
 import { prisma } from "@/lib/db";
-import { formatCurrency, formatDateTime } from "@/lib/utils";
+import { formatDateTime } from "@/lib/utils";
 import {
   CheckCircle2,
   Clock,
@@ -85,16 +85,12 @@ export default async function BookingStatusPage({
 
   const StatusIcon = statusConfig.icon;
 
-  const totalAmount = Number(booking.totalAmount);
-  const amountPaid = Number(booking.amountPaid);
-  const balanceRemaining = Math.max(0, totalAmount - amountPaid);
-
   return (
     <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
       <div className="mb-6 flex items-center justify-between">
         <Link
           href="/cars"
-          className="inline-flex items-center gap-1.5 text-xs font-semibold text-slate-500 hover:text-blue-600 transition"
+          className="inline-flex items-center gap-1.5 text-xs font-semibold text-stone-500 hover:text-brand-600 transition"
         >
           <ArrowLeft className="w-3.5 h-3.5" />
           <span>Browse More Cars</span>
@@ -184,64 +180,22 @@ export default async function BookingStatusPage({
             </div>
           </div>
 
-          {/* Agreed Financial Snapshot Card */}
-          <div className="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm space-y-3">
-            <h2 className="text-sm font-bold uppercase tracking-wider text-slate-700">
-              Agreed Pricing Snapshot
-            </h2>
-            <div className="space-y-2 text-xs">
-              <div className="flex justify-between text-slate-600">
-                <span>Agreed Rental Price:</span>
-                <span className="font-semibold text-slate-900">
-                  {formatCurrency(booking.rentalPrice, booking.currency)}
-                </span>
+          {/* Selected Services Card */}
+          {booking.extras.length > 0 && (
+            <div className="bg-white p-6 rounded-2xl border border-stone-200 shadow-sm space-y-3">
+              <h2 className="text-sm font-bold uppercase tracking-wider text-stone-700">
+                Selected Services &amp; Add-ons
+              </h2>
+              <div className="space-y-1.5 text-xs text-stone-600">
+                {booking.extras.map((extra) => (
+                  <div key={extra.id} className="flex items-center gap-2">
+                    <CheckCircle2 className="w-3.5 h-3.5 text-brand-600 shrink-0" />
+                    <span>{extra.nameSnapshot}</span>
+                  </div>
+                ))}
               </div>
-
-              {booking.extras.length > 0 && (
-                <div className="py-2 border-y border-slate-100 space-y-1.5">
-                  <div className="font-semibold text-slate-700">Selected Add-ons:</div>
-                  {booking.extras.map((extra) => (
-                    <div key={extra.id} className="flex justify-between text-slate-600 pl-2">
-                      <span>
-                        &bull; {extra.nameSnapshot} (Qty: {extra.quantity})
-                      </span>
-                      <span className="font-medium text-slate-800">
-                        {formatCurrency(Number(extra.priceSnapshot) * extra.quantity, booking.currency)}
-                      </span>
-                    </div>
-                  ))}
-                </div>
-              )}
-
-              <div className="flex justify-between text-slate-600">
-                <span>Security Deposit (Refundable upon inspection):</span>
-                <span className="font-semibold text-slate-900">
-                  {formatCurrency(booking.depositAmount, booking.currency)}
-                </span>
-              </div>
-
-              <div className="pt-2 border-t border-slate-200 flex justify-between text-sm font-extrabold text-slate-900">
-                <span>Total Agreed Rental Amount:</span>
-                <span className="text-blue-600">
-                  {formatCurrency(booking.totalAmount, booking.currency)}
-                </span>
-              </div>
-
-              <div className="flex justify-between text-xs text-slate-600">
-                <span>Amount Paid to Date:</span>
-                <span className="font-bold text-emerald-600">
-                  {formatCurrency(booking.amountPaid, booking.currency)}
-                </span>
-              </div>
-
-              {balanceRemaining > 0 && (
-                <div className="flex justify-between text-xs font-bold text-amber-700 bg-amber-50 p-2 rounded-lg">
-                  <span>Balance Payable at Pickup:</span>
-                  <span>{formatCurrency(balanceRemaining, booking.currency)}</span>
-                </div>
-              )}
             </div>
-          </div>
+          )}
         </div>
 
         {/* Right Column: Customer Info & Support Contact (1 col) */}

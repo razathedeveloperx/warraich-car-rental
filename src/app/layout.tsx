@@ -1,12 +1,22 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Plus_Jakarta_Sans, Playfair_Display } from "next/font/google";
 import "./globals.css";
 
-const inter = Inter({ subsets: ["latin"] });
+const plusJakarta = Plus_Jakarta_Sans({
+  subsets: ["latin"],
+  variable: "--font-sans",
+});
+
+const playfairDisplay = Playfair_Display({
+  subsets: ["latin"],
+  variable: "--font-display",
+  style: ["normal", "italic"],
+});
 
 export const metadata: Metadata = {
   title: "Warraich Motors Gujrat | Rent A Car & Luxury Fleet Services",
-  description: "Warraich Motors Gujrat - 24/7 Car Rental Services on GT Road Gujrat. Land Cruiser Prado, Fortuner Legender, Civic RS, Corolla Altis, Yaris, and Hiace Grand Cabin with verified chauffeurs.",
+  description:
+    "Warraich Motors Gujrat - 24/7 Car Rental Services on GT Road Gujrat. Land Cruiser Prado, Fortuner Legender, Civic RS, Corolla Altis, Yaris, and Hiace Grand Cabin with verified chauffeurs.",
   icons: {
     icon: [
       { url: "/Warraich-Motors-logo.png", sizes: "any" },
@@ -23,8 +33,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
-      <body className={inter.className}>{children}</body>
+    <html lang="en" className={`${plusJakarta.variable} ${playfairDisplay.variable}`}>
+      <body className="font-sans antialiased bg-[#FAF8F6] text-stone-900">{children}</body>
     </html>
   );
 }

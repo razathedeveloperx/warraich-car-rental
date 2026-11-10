@@ -1,16 +1,13 @@
 import { notFound } from "next/navigation";
 import { prisma } from "@/lib/db";
 import { BookingForm } from "@/components/public/BookingForm";
-import { formatCurrency } from "@/lib/utils";
 import {
   Users,
   Gauge,
   Fuel,
   Briefcase,
   CheckCircle2,
-  ShieldAlert,
   ArrowLeft,
-  Calendar,
 } from "lucide-react";
 import Link from "next/link";
 
@@ -62,7 +59,7 @@ export default async function CarDetailPage({ params, searchParams }: CarDetailP
       <div className="mb-6">
         <Link
           href="/cars"
-          className="inline-flex items-center gap-1.5 text-xs font-semibold text-slate-500 hover:text-blue-600 transition"
+          className="inline-flex items-center gap-1.5 text-xs font-semibold text-stone-500 hover:text-brand-600 transition"
         >
           <ArrowLeft className="w-3.5 h-3.5" />
           <span>Back to Fleet Catalog</span>
@@ -74,18 +71,18 @@ export default async function CarDetailPage({ params, searchParams }: CarDetailP
         <div className="lg:col-span-7 space-y-8">
           <div>
             <div className="flex items-center gap-2 mb-2">
-              <span className="bg-blue-100 text-blue-700 text-xs font-bold px-2.5 py-0.5 rounded uppercase">
+              <span className="bg-brand-50 text-brand-700 border border-brand-200 text-xs font-semibold px-2.5 py-0.5 rounded uppercase tracking-wider">
                 {car.category.replace("_", " ")}
               </span>
-              <span className="bg-slate-200 text-slate-800 text-xs font-bold px-2.5 py-0.5 rounded">
+              <span className="bg-stone-200 text-stone-800 text-xs font-semibold px-2.5 py-0.5 rounded">
                 Model {car.year}
               </span>
             </div>
-            <h1 className="text-3xl sm:text-4xl font-black text-slate-900 tracking-tight">
+            <h1 className="font-display text-3xl sm:text-4xl font-bold text-stone-950 tracking-tight">
               {car.make} {car.model}
             </h1>
-            <p className="text-xs text-slate-500 mt-1">
-              Registered vehicle ID: {car.registrationNumber} &bull; Stationed at Gujrat Main Hub
+            <p className="text-xs text-stone-500 mt-1.5">
+              Registered ID: {car.registrationNumber} &bull; Stationed at Gujrat Main Hub
             </p>
           </div>
 
@@ -120,79 +117,45 @@ export default async function CarDetailPage({ params, searchParams }: CarDetailP
           </div>
 
           {/* Specifications Grid */}
-          <div className="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm">
-            <h2 className="text-base font-bold text-slate-900 mb-4">Vehicle Specifications</h2>
+          <div className="bg-white p-6 rounded-2xl border border-stone-200 shadow-sm">
+            <h2 className="font-display text-lg font-bold text-stone-900 mb-4">Vehicle Specifications</h2>
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 text-sm">
-              <div className="p-3 bg-slate-50 rounded-xl">
-                <div className="text-slate-500 text-xs flex items-center gap-1.5 mb-1">
-                  <Users className="w-3.5 h-3.5 text-blue-600" /> Seating
+              <div className="p-3 bg-stone-50 rounded-xl border border-stone-100">
+                <div className="text-stone-500 text-xs flex items-center gap-1.5 mb-1">
+                  <Users className="w-3.5 h-3.5 text-brand-600" /> Seating
                 </div>
-                <div className="font-bold text-slate-900">{car.seatingCapacity} Passengers</div>
+                <div className="font-bold text-stone-900">{car.seatingCapacity} Passengers</div>
               </div>
 
-              <div className="p-3 bg-slate-50 rounded-xl">
-                <div className="text-slate-500 text-xs flex items-center gap-1.5 mb-1">
-                  <Gauge className="w-3.5 h-3.5 text-blue-600" /> Transmission
+              <div className="p-3 bg-stone-50 rounded-xl border border-stone-100">
+                <div className="text-stone-500 text-xs flex items-center gap-1.5 mb-1">
+                  <Gauge className="w-3.5 h-3.5 text-brand-600" /> Transmission
                 </div>
-                <div className="font-bold text-slate-900 capitalize">
+                <div className="font-bold text-stone-900 capitalize">
                   {car.transmission.toLowerCase()}
                 </div>
               </div>
 
-              <div className="p-3 bg-slate-50 rounded-xl">
-                <div className="text-slate-500 text-xs flex items-center gap-1.5 mb-1">
-                  <Fuel className="w-3.5 h-3.5 text-blue-600" /> Fuel Type
+              <div className="p-3 bg-stone-50 rounded-xl border border-stone-100">
+                <div className="text-stone-500 text-xs flex items-center gap-1.5 mb-1">
+                  <Fuel className="w-3.5 h-3.5 text-brand-600" /> Fuel Type
                 </div>
-                <div className="font-bold text-slate-900 capitalize">{car.fuelType.toLowerCase()}</div>
+                <div className="font-bold text-stone-900 capitalize">{car.fuelType.toLowerCase()}</div>
               </div>
 
-              <div className="p-3 bg-slate-50 rounded-xl">
-                <div className="text-slate-500 text-xs flex items-center gap-1.5 mb-1">
-                  <Briefcase className="w-3.5 h-3.5 text-blue-600" /> Luggage
+              <div className="p-3 bg-stone-50 rounded-xl border border-stone-100">
+                <div className="text-stone-500 text-xs flex items-center gap-1.5 mb-1">
+                  <Briefcase className="w-3.5 h-3.5 text-brand-600" /> Luggage
                 </div>
-                <div className="font-bold text-slate-900">{car.luggageCapacity} Large Bags</div>
-              </div>
-            </div>
-          </div>
-
-          {/* Rate Tiers Table */}
-          <div className="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm">
-            <h2 className="text-base font-bold text-slate-900 mb-4">Transparent Pricing Tiers</h2>
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 text-center">
-              <div className="p-4 rounded-xl border border-slate-200 bg-slate-50">
-                <div className="text-xs font-semibold text-slate-500 uppercase">Daily Rate</div>
-                <div className="text-xl font-black text-slate-900 mt-1">
-                  {formatCurrency(car.dailyRate, car.currency)}
-                </div>
-                <div className="text-[11px] text-slate-500 mt-1">1 to 6 days</div>
-              </div>
-
-              <div className="p-4 rounded-xl border border-blue-200 bg-blue-50/50">
-                <div className="text-xs font-semibold text-blue-700 uppercase">Weekly Package</div>
-                <div className="text-xl font-black text-blue-600 mt-1">
-                  {formatCurrency(car.weeklyRate, car.currency)}
-                </div>
-                <div className="text-[11px] text-blue-600 mt-1">
-                  ~{formatCurrency(Number(car.weeklyRate) / 7, car.currency)}/day
-                </div>
-              </div>
-
-              <div className="p-4 rounded-xl border border-emerald-200 bg-emerald-50/50">
-                <div className="text-xs font-semibold text-emerald-700 uppercase">Monthly Package</div>
-                <div className="text-xl font-black text-emerald-600 mt-1">
-                  {formatCurrency(car.monthlyRate, car.currency)}
-                </div>
-                <div className="text-[11px] text-emerald-600 mt-1">
-                  ~{formatCurrency(Number(car.monthlyRate) / 30, car.currency)}/day
-                </div>
+                <div className="font-bold text-stone-900">{car.luggageCapacity} Large Bags</div>
               </div>
             </div>
           </div>
 
           {/* Description */}
-          <div className="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm">
-            <h2 className="text-base font-bold text-slate-900 mb-3">Vehicle Overview</h2>
-            <p className="text-sm text-slate-600 leading-relaxed whitespace-pre-line">
+          <div className="bg-white p-6 rounded-2xl border border-stone-200 shadow-sm">
+            <h2 className="font-display text-lg font-bold text-stone-900 mb-3">Vehicle Overview</h2>
+            <p className="text-sm text-stone-600 leading-relaxed whitespace-pre-line">
               {car.description}
             </p>
           </div>

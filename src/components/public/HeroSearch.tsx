@@ -40,19 +40,19 @@ export function HeroSearch() {
   return (
     <form
       onSubmit={handleSearch}
-      className="w-full bg-white/95 backdrop-blur-md rounded-2xl shadow-xl p-3.5 sm:p-4 border border-white/80 text-left"
+      className="w-full bg-white/95 backdrop-blur-md rounded-2xl shadow-2xl p-3.5 sm:p-4 border border-white/80 text-left"
     >
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-[1.3fr_1.2fr_1.2fr_0.95fr_auto] gap-3 items-end">
         {/* Location */}
         <div className="min-w-0">
-          <label className="text-[11px] font-semibold text-slate-600 uppercase tracking-wider mb-1.5 flex items-center gap-1.5">
+          <label className="text-[11px] font-semibold text-stone-600 uppercase tracking-wider mb-1.5 flex items-center gap-1.5">
             <MapPin className="w-3.5 h-3.5 text-brand-600 shrink-0" />
             <span>Pickup Location</span>
           </label>
           <select
             value={pickupLocation}
             onChange={(e) => setPickupLocation(e.target.value)}
-            className="w-full h-11 rounded-xl border border-slate-200 bg-slate-50/70 hover:bg-slate-50 focus:bg-white px-3 text-xs sm:text-sm text-slate-800 font-medium focus:outline-none focus:ring-2 focus:ring-brand-500/30 focus:border-brand-500 transition truncate"
+            className="w-full h-11 rounded-xl border border-stone-200 bg-stone-50/80 hover:bg-stone-50 focus:bg-white px-3 text-xs sm:text-sm text-stone-900 font-medium focus:outline-none focus:ring-2 focus:ring-brand-600/25 focus:border-brand-600 transition truncate"
           >
             <option value="Warraich Motors Hub, GT Rd Small Industrial Area, Gujrat">
               Gujrat Hub (GT Rd, Small Industrial Area)
@@ -80,7 +80,7 @@ export function HeroSearch() {
 
         {/* Pickup Date & Time */}
         <div className="min-w-0">
-          <label className="text-[11px] font-semibold text-slate-600 uppercase tracking-wider mb-1.5 flex items-center gap-1.5">
+          <label className="text-[11px] font-semibold text-stone-600 uppercase tracking-wider mb-1.5 flex items-center gap-1.5">
             <Calendar className="w-3.5 h-3.5 text-brand-600 shrink-0" />
             <span>Pickup Date</span>
           </label>
@@ -88,14 +88,14 @@ export function HeroSearch() {
             type="datetime-local"
             value={pickupDateTime}
             onChange={(e) => setPickupDateTime(e.target.value)}
-            className="w-full h-11 rounded-xl border border-slate-200 bg-slate-50/70 hover:bg-slate-50 focus:bg-white px-3 text-xs sm:text-sm text-slate-800 font-medium focus:outline-none focus:ring-2 focus:ring-brand-500/30 focus:border-brand-500 transition"
+            className="w-full h-11 rounded-xl border border-stone-200 bg-stone-50/80 hover:bg-stone-50 focus:bg-white px-3 text-xs sm:text-sm text-stone-900 font-medium focus:outline-none focus:ring-2 focus:ring-brand-600/25 focus:border-brand-600 transition"
             required
           />
         </div>
 
         {/* Return Date & Time */}
         <div className="min-w-0">
-          <label className="text-[11px] font-semibold text-slate-600 uppercase tracking-wider mb-1.5 flex items-center gap-1.5">
+          <label className="text-[11px] font-semibold text-stone-600 uppercase tracking-wider mb-1.5 flex items-center gap-1.5">
             <Clock className="w-3.5 h-3.5 text-brand-600 shrink-0" />
             <span>Return Date</span>
           </label>
@@ -103,21 +103,21 @@ export function HeroSearch() {
             type="datetime-local"
             value={returnDateTime}
             onChange={(e) => setReturnDateTime(e.target.value)}
-            className="w-full h-11 rounded-xl border border-slate-200 bg-slate-50/70 hover:bg-slate-50 focus:bg-white px-3 text-xs sm:text-sm text-slate-800 font-medium focus:outline-none focus:ring-2 focus:ring-brand-500/30 focus:border-brand-500 transition"
+            className="w-full h-11 rounded-xl border border-stone-200 bg-stone-50/80 hover:bg-stone-50 focus:bg-white px-3 text-xs sm:text-sm text-stone-900 font-medium focus:outline-none focus:ring-2 focus:ring-brand-600/25 focus:border-brand-600 transition"
             required
           />
         </div>
 
         {/* Vehicle Category */}
         <div className="min-w-0">
-          <label className="text-[11px] font-semibold text-slate-600 uppercase tracking-wider mb-1.5 flex items-center gap-1.5">
+          <label className="text-[11px] font-semibold text-stone-600 uppercase tracking-wider mb-1.5 flex items-center gap-1.5">
             <Car className="w-3.5 h-3.5 text-brand-600 shrink-0" />
             <span>Vehicle Type</span>
           </label>
           <select
             value={category}
             onChange={(e) => setCategory(e.target.value)}
-            className="w-full h-11 rounded-xl border border-slate-200 bg-slate-50/70 hover:bg-slate-50 focus:bg-white px-3 text-xs sm:text-sm text-slate-800 font-medium focus:outline-none focus:ring-2 focus:ring-brand-500/30 focus:border-brand-500 transition"
+            className="w-full h-11 rounded-xl border border-stone-200 bg-stone-50/80 hover:bg-stone-50 focus:bg-white px-3 text-xs sm:text-sm text-stone-900 font-medium focus:outline-none focus:ring-2 focus:ring-brand-600/25 focus:border-brand-600 transition"
           >
             <option value="ALL">All Vehicles</option>
             <option value="LUXURY_SUV">Luxury SUV</option>

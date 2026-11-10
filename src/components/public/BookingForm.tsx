@@ -2,8 +2,7 @@
 
 import { useState, useMemo } from "react";
 import { useRouter } from "next/navigation";
-import { calculateBookingPrice, calculateRentalDays } from "@/lib/booking-engine/pricing";
-import { formatCurrency } from "@/lib/utils";
+import { calculateRentalDays } from "@/lib/booking-engine/pricing";
 import { submitPublicBookingAction } from "@/app/actions/bookings";
 import {
   Calendar,
@@ -75,35 +74,14 @@ export function BookingForm({ car, extras, initialPickup, initialReturn }: Booki
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
-  // Compute pricing live
-  const pricing = useMemo(() => {
+  // Compute valid rental duration
+  const rentalDays = useMemo(() => {
     try {
-      const days = calculateRentalDays(new Date(pickupDateTime), new Date(returnDateTime));
-      const activeExtras = extras
-        .filter((e) => selectedExtras[e.id])
-        .map((e) => ({
-          id: e.id,
-          name: e.name,
-          price: Number(e.price),
-          priceType: e.priceType as "PER_DAY" | "FLAT",
-          quantity: 1,
-        }));
-
-      return calculateBookingPrice(
-        {
-          dailyRate: car.dailyRate,
-          weeklyRate: car.weeklyRate,
-          monthlyRate: car.monthlyRate,
-          currency: car.currency,
-        },
-        days,
-        activeExtras,
-        car.currency
-      );
+      return calculateRentalDays(new Date(pickupDateTime), new Date(returnDateTime));
     } catch {
       return null;
     }
-  }, [car, extras, pickupDateTime, returnDateTime, selectedExtras]);
+  }, [pickupDateTime, returnDateTime]);
 
   const toggleExtra = (id: string) => {
     setSelectedExtras((prev) => ({ ...prev, [id]: !prev[id] }));
@@ -113,7 +91,7 @@ export function BookingForm({ car, extras, initialPickup, initialReturn }: Booki
     e.preventDefault();
     setError(null);
 
-    if (!pricing) {
+    if (!rentalDays) {
       setError("Please select valid pickup and return dates.");
       return;
     }
@@ -158,9 +136,9 @@ export function BookingForm({ car, extras, initialPickup, initialReturn }: Booki
   return (
     <div className="bg-white rounded-2xl border border-slate-200 shadow-xl p-6 sm:p-8">
       <div className="border-b pb-4 mb-6">
-        <h2 className="text-xl font-black text-slate-900 tracking-tight">Reserve This Vehicle</h2>
-        <p className="text-xs text-slate-500 mt-1">
-          Review pricing breakdown and submit your booking request for manual staff approval.
+        <h2 className="font-display text-xl font-bold text-stone-900 tracking-tight">Reserve This Vehicle</h2>
+        <p className="text-xs text-stone-500 mt-1">
+          Submit your dates and requirements. Our Gujrat team will confirm availability and share package details via WhatsApp/call.
         </p>
       </div>
 
@@ -260,18 +238,10 @@ export function BookingForm({ car, extras, initialPickup, initialReturn }: Booki
                         className="mt-1 w-4 h-4 text-brand-600 rounded border-slate-300 focus:ring-brand-500"
                       />
                       <div>
-                        <div className="text-sm font-bold text-slate-900">{extra.name}</div>
+                        <div className="text-sm font-semibold text-stone-900">{extra.name}</div>
                         {extra.description && (
-                          <div className="text-xs text-slate-500 mt-0.5">{extra.description}</div>
+                          <div className="text-xs text-stone-500 mt-0.5">{extra.description}</div>
                         )}
-                      </div>
-                    </div>
-                    <div className="text-right shrink-0 ml-4">
-                      <div className="text-sm font-extrabold text-slate-900">
-                        {formatCurrency(extra.price, car.currency)}
-                      </div>
-                      <div className="text-[11px] text-slate-500">
-                        {extra.priceType === "PER_DAY" ? "per day" : "flat fee"}
                       </div>
                     </div>
                   </label>
@@ -371,59 +341,30 @@ export function BookingForm({ car, extras, initialPickup, initialReturn }: Booki
           </div>
         </div>
 
-        {/* Pricing Summary Breakdown */}
-        {pricing && (
-          <div className="p-4 rounded-xl bg-slate-50 border border-slate-200 space-y-2.5">
-            <div className="text-xs font-bold uppercase tracking-wider text-slate-700">
-              Price Breakdown ({pricing.days} {pricing.days === 1 ? "day" : "days"})
-            </div>
-
-            <div className="flex justify-between text-xs text-slate-600">
-              <span>
-                Rental Base Rate ({pricing.rateApplied === "WEEKLY" ? "Weekly Package" : pricing.rateApplied === "MONTHLY" ? "Monthly Package" : "Daily Rate"}):
-              </span>
-              <span className="font-semibold text-slate-900">
-                {formatCurrency(pricing.rentalPrice, car.currency)}
-              </span>
-            </div>
-
-            {pricing.extrasTotal > 0 && (
-              <div className="flex justify-between text-xs text-slate-600">
-                <span>Selected Add-ons &amp; Extras:</span>
-                <span className="font-semibold text-slate-900">
-                  {formatCurrency(pricing.extrasTotal, car.currency)}
-                </span>
-              </div>
-            )}
-
-            <div className="flex justify-between text-xs text-slate-600">
-              <span>Refundable Security Deposit (Paid at pickup):</span>
-              <span className="font-semibold text-slate-900">
-                {formatCurrency(pricing.depositAmount, car.currency)}
-              </span>
-            </div>
-
-            <div className="pt-2 border-t border-slate-200 flex justify-between items-baseline">
-              <span className="text-sm font-extrabold text-slate-900">Total Rental Cost:</span>
-              <span className="text-xl font-black text-brand-600">
-                {formatCurrency(pricing.totalAmount, car.currency)}
-              </span>
-            </div>
+        {/* Duration summary */}
+        {rentalDays && (
+          <div className="p-3.5 rounded-xl bg-stone-50 border border-stone-200 flex items-center justify-between text-xs">
+            <span className="font-semibold text-stone-600 uppercase tracking-wider">
+              Selected Duration
+            </span>
+            <span className="font-bold text-brand-600 text-sm">
+              {rentalDays} {rentalDays === 1 ? "Day" : "Days"}
+            </span>
           </div>
         )}
 
         {/* Policy notice */}
-        <div className="flex items-start gap-2 text-xs text-slate-500">
+        <div className="flex items-start gap-2 text-xs text-stone-500">
           <ShieldCheck className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" />
           <span>
-            <strong>Manual Review Policy:</strong> No immediate credit card charge is required. Submitting creates a pending reservation. Our staff will confirm your booking via WhatsApp/call.
+            <strong>Manual Review Policy:</strong> Submitting creates a reservation request. Our staff will confirm vehicle readiness and package quote via WhatsApp/call.
           </span>
         </div>
 
         {/* Submit Button */}
         <button
           type="submit"
-          disabled={isSubmitting || !pricing}
+          disabled={isSubmitting || !rentalDays}
           className="w-full bg-brand-600 hover:bg-brand-700 disabled:opacity-50 text-white font-semibold py-3.5 px-6 rounded-xl transition flex items-center justify-center gap-2"
         >
           {isSubmitting ? (

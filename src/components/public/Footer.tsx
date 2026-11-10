@@ -5,7 +5,7 @@ import { SocialLinks } from "@/components/public/SocialLinks";
 
 export function Footer() {
   return (
-    <footer className="bg-slate-900 text-slate-400 border-t border-slate-800">
+    <footer className="bg-[#121318] text-stone-400 border-t border-stone-800">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-16">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           {/* Brand info */}
@@ -21,9 +21,9 @@ export function Footer() {
               </div>
               <div className="leading-tight">
                 <div className="font-bold text-white text-base tracking-tight">
-                  WARRAICH <span className="text-brand-300">MOTORS</span>
+                  WARRAICH <span className="text-gold-300">MOTORS</span>
                 </div>
-                <div className="text-[10px] tracking-wider text-slate-400 font-medium uppercase">
+                <div className="text-[10px] tracking-wider text-stone-400 font-medium uppercase">
                   And Rent A Car &bull; Gujrat
                 </div>
               </div>
