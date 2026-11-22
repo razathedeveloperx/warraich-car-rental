@@ -93,22 +93,23 @@ export default async function HomePage() {
   return (
     <div className="bg-[#FAF8F6]">
       {/* Full-Width Screen-Height Hero with Centered Text & Search Form */}
-      <section className="relative w-full min-h-[500px] lg:h-[calc(100vh-84px)] lg:max-h-[680px] flex items-center justify-center overflow-hidden bg-[#121318]">
+      <section className="relative w-full min-h-[560px] lg:min-h-[640px] lg:h-[calc(100vh-80px)] lg:max-h-[720px] flex items-center justify-center overflow-hidden bg-[#0a0b0e]">
         <HeroSlider />
 
         {/* Centered Text + Form */}
-        <div className="relative z-10 w-full max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-10 flex flex-col items-center text-center gap-6">
-          <div className="space-y-3 max-w-2xl">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 backdrop-blur-md border border-white/15 text-[11px] font-semibold uppercase tracking-[0.2em] text-gold-200">
+        <div className="relative z-10 w-full max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-12 flex flex-col items-center text-center gap-6 sm:gap-7">
+          <div className="space-y-3.5 max-w-2xl">
+            <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-black/60 backdrop-blur-md border border-white/20 text-[11px] font-semibold uppercase tracking-[0.2em] text-gold-200 shadow-md">
+              <span className="flex h-1.5 w-1.5 rounded-full bg-emerald-400 animate-pulse" />
               <span>GT Road, Gujrat</span>
               <span className="text-white/40">&bull;</span>
               <span>24/7 Service</span>
             </div>
-            <h1 className="text-3xl sm:text-5xl lg:text-[50px] tracking-tight text-white leading-[1.12]">
+            <h1 className="text-3xl sm:text-5xl lg:text-[52px] tracking-tight text-white leading-[1.12] drop-shadow-[0_2px_14px_rgba(0,0,0,0.9)]">
               <span className="font-extrabold">Warraich Motors</span>{" "}
               <span className="font-extralight text-gold-200">&amp; Rent A Car</span>
             </h1>
-            <p className="text-sm sm:text-base text-stone-200 font-light max-w-xl mx-auto">
+            <p className="text-sm sm:text-base text-stone-100 font-normal max-w-xl mx-auto leading-relaxed drop-shadow-[0_2px_8px_rgba(0,0,0,0.95)]">
               Verified self-drive &amp; chauffeur vehicles in Gujrat &mdash; instant quotes and airport transfers.
             </p>
           </div>
@@ -117,10 +118,10 @@ export default async function HomePage() {
             <HeroSearch />
           </div>
 
-          <div className="flex flex-wrap items-center justify-center gap-3">
+          <div className="flex flex-wrap items-center justify-center gap-3 pt-1">
             <a
               href="tel:03136225135"
-              className="inline-flex items-center gap-1.5 bg-brand-600 hover:bg-brand-700 text-white font-semibold px-4 py-2 rounded-lg transition text-xs border border-brand-500/40"
+              className="inline-flex items-center gap-2 bg-brand-600 hover:bg-brand-700 text-white font-semibold px-4.5 py-2.5 rounded-xl transition text-xs sm:text-sm border border-brand-500/40 shadow-lg shadow-black/30"
             >
               <Phone className="w-3.5 h-3.5 text-gold-200" />
               <span>0313 6225135</span>
@@ -129,7 +130,7 @@ export default async function HomePage() {
               href="https://wa.me/923136225135?text=Hello%20Warraich%20Motors,%20I%20want%20to%20rent%20a%20car%20in%20Gujrat"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-1.5 bg-white/95 hover:bg-white text-stone-900 font-semibold px-4 py-2 rounded-lg transition text-xs"
+              className="inline-flex items-center gap-2 bg-white/95 hover:bg-white text-stone-900 font-semibold px-4.5 py-2.5 rounded-xl transition text-xs sm:text-sm shadow-lg shadow-black/30"
             >
               <MessageCircle className="w-3.5 h-3.5 text-emerald-700" />
               <span>WhatsApp Dispatch</span>

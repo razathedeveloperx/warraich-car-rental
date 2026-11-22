@@ -40,19 +40,19 @@ export function HeroSearch() {
   return (
     <form
       onSubmit={handleSearch}
-      className="w-full bg-white/95 backdrop-blur-md rounded-2xl shadow-2xl p-3.5 sm:p-4 border border-white/80 text-left"
+      className="w-full bg-white/98 sm:bg-white/95 backdrop-blur-md rounded-2xl shadow-[0_20px_50px_rgba(0,0,0,0.5)] p-4 sm:p-5 border border-white/90 text-left"
     >
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-[1.3fr_1.2fr_1.2fr_0.95fr_auto] gap-3 items-end">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-[1.3fr_1.2fr_1.2fr_0.95fr_auto] gap-3.5 items-end">
         {/* Location */}
         <div className="min-w-0">
-          <label className="text-[11px] font-semibold text-stone-600 uppercase tracking-wider mb-1.5 flex items-center gap-1.5">
+          <label className="text-[11px] font-bold text-stone-700 uppercase tracking-wider mb-1.5 flex items-center gap-1.5">
             <MapPin className="w-3.5 h-3.5 text-brand-600 shrink-0" />
             <span>Pickup Location</span>
           </label>
           <select
             value={pickupLocation}
             onChange={(e) => setPickupLocation(e.target.value)}
-            className="w-full h-11 rounded-xl border border-stone-200 bg-stone-50/80 hover:bg-stone-50 focus:bg-white px-3 text-xs sm:text-sm text-stone-900 font-medium focus:outline-none focus:ring-2 focus:ring-brand-600/25 focus:border-brand-600 transition truncate"
+            className="w-full h-11 rounded-xl border border-stone-300 bg-white sm:bg-stone-50/90 hover:bg-white focus:bg-white px-3 text-xs sm:text-sm text-stone-900 font-semibold focus:outline-none focus:ring-2 focus:ring-brand-600/30 focus:border-brand-600 transition truncate shadow-xs"
           >
             <option value="Warraich Motors Hub, GT Rd Small Industrial Area, Gujrat">
               Gujrat Hub (GT Rd, Small Industrial Area)
@@ -80,7 +80,7 @@ export function HeroSearch() {
 
         {/* Pickup Date & Time */}
         <div className="min-w-0">
-          <label className="text-[11px] font-semibold text-stone-600 uppercase tracking-wider mb-1.5 flex items-center gap-1.5">
+          <label className="text-[11px] font-bold text-stone-700 uppercase tracking-wider mb-1.5 flex items-center gap-1.5">
             <Calendar className="w-3.5 h-3.5 text-brand-600 shrink-0" />
             <span>Pickup Date</span>
           </label>
@@ -88,14 +88,14 @@ export function HeroSearch() {
             type="datetime-local"
             value={pickupDateTime}
             onChange={(e) => setPickupDateTime(e.target.value)}
-            className="w-full h-11 rounded-xl border border-stone-200 bg-stone-50/80 hover:bg-stone-50 focus:bg-white px-3 text-xs sm:text-sm text-stone-900 font-medium focus:outline-none focus:ring-2 focus:ring-brand-600/25 focus:border-brand-600 transition"
+            className="w-full h-11 rounded-xl border border-stone-300 bg-white sm:bg-stone-50/90 hover:bg-white focus:bg-white px-3 text-xs sm:text-sm text-stone-900 font-semibold focus:outline-none focus:ring-2 focus:ring-brand-600/30 focus:border-brand-600 transition shadow-xs"
             required
           />
         </div>
 
         {/* Return Date & Time */}
         <div className="min-w-0">
-          <label className="text-[11px] font-semibold text-stone-600 uppercase tracking-wider mb-1.5 flex items-center gap-1.5">
+          <label className="text-[11px] font-bold text-stone-700 uppercase tracking-wider mb-1.5 flex items-center gap-1.5">
             <Clock className="w-3.5 h-3.5 text-brand-600 shrink-0" />
             <span>Return Date</span>
           </label>
@@ -103,21 +103,21 @@ export function HeroSearch() {
             type="datetime-local"
             value={returnDateTime}
             onChange={(e) => setReturnDateTime(e.target.value)}
-            className="w-full h-11 rounded-xl border border-stone-200 bg-stone-50/80 hover:bg-stone-50 focus:bg-white px-3 text-xs sm:text-sm text-stone-900 font-medium focus:outline-none focus:ring-2 focus:ring-brand-600/25 focus:border-brand-600 transition"
+            className="w-full h-11 rounded-xl border border-stone-300 bg-white sm:bg-stone-50/90 hover:bg-white focus:bg-white px-3 text-xs sm:text-sm text-stone-900 font-semibold focus:outline-none focus:ring-2 focus:ring-brand-600/30 focus:border-brand-600 transition shadow-xs"
             required
           />
         </div>
 
         {/* Vehicle Category */}
         <div className="min-w-0">
-          <label className="text-[11px] font-semibold text-stone-600 uppercase tracking-wider mb-1.5 flex items-center gap-1.5">
+          <label className="text-[11px] font-bold text-stone-700 uppercase tracking-wider mb-1.5 flex items-center gap-1.5">
             <Car className="w-3.5 h-3.5 text-brand-600 shrink-0" />
             <span>Vehicle Type</span>
           </label>
           <select
             value={category}
             onChange={(e) => setCategory(e.target.value)}
-            className="w-full h-11 rounded-xl border border-stone-200 bg-stone-50/80 hover:bg-stone-50 focus:bg-white px-3 text-xs sm:text-sm text-stone-900 font-medium focus:outline-none focus:ring-2 focus:ring-brand-600/25 focus:border-brand-600 transition"
+            className="w-full h-11 rounded-xl border border-stone-300 bg-white sm:bg-stone-50/90 hover:bg-white focus:bg-white px-3 text-xs sm:text-sm text-stone-900 font-semibold focus:outline-none focus:ring-2 focus:ring-brand-600/30 focus:border-brand-600 transition shadow-xs"
           >
             <option value="ALL">All Vehicles</option>
             <option value="LUXURY_SUV">Luxury SUV</option>
@@ -132,10 +132,10 @@ export function HeroSearch() {
         <div className="sm:col-span-2 lg:col-span-1">
           <button
             type="submit"
-            className="w-full lg:w-auto h-11 bg-brand-600 hover:bg-brand-700 text-white font-semibold px-6 rounded-xl flex items-center justify-center gap-2 transition text-sm whitespace-nowrap shadow-sm"
+            className="w-full lg:w-auto h-11 bg-brand-600 hover:bg-brand-700 active:scale-[0.99] text-white font-bold px-6 rounded-xl flex items-center justify-center gap-2 transition text-sm whitespace-nowrap shadow-md shadow-brand-600/30 border border-brand-500/30 cursor-pointer"
           >
-            <Search className="w-4 h-4" />
-            <span>Find Car</span>
+            <Search className="w-4 h-4 text-gold-200" />
+            <span>Search Fleet</span>
           </button>
         </div>
       </div>

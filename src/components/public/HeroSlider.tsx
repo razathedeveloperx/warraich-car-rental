@@ -7,8 +7,8 @@ import { ChevronLeft, ChevronRight } from "lucide-react";
 // Add additional banner image paths from /public here to enable automatic sliding
 const BANNER_SLIDES = [
   {
-    src: "/warraich-motors-banner.JPG",
-    alt: "Warraich Motors and Rent A Car Gujrat",
+    src: "/warraich-motors-banner.webp",
+    alt: "Warraich Motors and Rent A Car Gujrat Showroom & Fleet",
   },
 ];
 
@@ -44,15 +44,19 @@ export function HeroSlider() {
             src={slide.src}
             alt={slide.alt}
             fill
-            className="object-cover object-center"
+            className="object-cover object-center brightness-95"
             priority={idx === 0}
+            quality={90}
             sizes="100vw"
           />
         </div>
       ))}
 
-      {/* Calm dark overlay for centered text & form readability */}
-      <div className="absolute inset-0 bg-slate-950/60 pointer-events-none" />
+      {/* Multi-layered dark overlay for maximum readability of text & booking form */}
+      <div className="absolute inset-0 bg-slate-950/75 pointer-events-none" />
+      <div className="absolute inset-0 bg-gradient-to-b from-slate-950/85 via-slate-950/70 to-slate-950/90 pointer-events-none" />
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_transparent_20%,_rgba(2,6,23,0.6)_100%)] pointer-events-none" />
+      <div className="absolute inset-0 backdrop-blur-[1px] pointer-events-none" />
 
       {BANNER_SLIDES.length > 1 && (
         <>
