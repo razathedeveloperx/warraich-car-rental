@@ -103,7 +103,7 @@ async function main() {
 
   // 4. Fleet Vehicles
   const fleetData = [
-    // --- SECTION 1: AVAILABLE NOW ---
+    // --- SECTION 1: AVAILABLE NOW (Real Fleet) ---
     {
       registrationNumber: "GJT-24-5588",
       make: "Toyota",
@@ -122,38 +122,14 @@ async function main() {
       operationalStatus: OperationalStatus.AVAILABLE,
       isPublished: true,
       description: "The gold standard of executive reliability in Punjab. Full options with electric sunroof, cruise control, plush leather seats, paddle shifters, and chilled dual-zone AC.",
-      images: [
-        "https://images.unsplash.com/photo-1621007947382-bb3c3994e3fb?auto=format&fit=crop&w=1200&q=80",
-      ],
+      images: ["/Toyota-Grandi.webp"],
     },
     {
-      registrationNumber: "ISB-24-4412",
-      make: "Toyota",
-      model: "Fortuner Legender 4x4 Sigma 4",
+      registrationNumber: "GJT-24-7701",
+      make: "Hyundai",
+      model: "Elantra GLS 2.0",
       year: 2024,
-      slug: "toyota-fortuner-legender-2024",
-      category: "SUV",
-      transmission: "AUTOMATIC",
-      fuelType: "DIESEL",
-      seatingCapacity: 7,
-      luggageCapacity: 4,
-      dailyRate: 25000,
-      weeklyRate: 150000,
-      monthlyRate: 550000,
-      currency: "PKR",
-      operationalStatus: OperationalStatus.AVAILABLE,
-      isPublished: true,
-      description: "The muscular Fortuner Legender with bold front fascia, dual-tone roof, bi-beam LED headlights, JBL sound system, and rugged 4x4 off-road capability.",
-      images: [
-        "https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?auto=format&fit=crop&w=1200&q=80",
-      ],
-    },
-    {
-      registrationNumber: "GJT-23-1100",
-      make: "Honda",
-      model: "Civic RS Turbo 1.5L VTEC",
-      year: 2023,
-      slug: "honda-civic-rs-turbo-2023",
+      slug: "hyundai-elantra-2024",
       category: "SEDAN",
       transmission: "AUTOMATIC",
       fuelType: "PETROL",
@@ -165,39 +141,35 @@ async function main() {
       currency: "PKR",
       operationalStatus: OperationalStatus.AVAILABLE,
       isPublished: true,
-      description: "Sporty, aggressive, and prestigious. Equipped with Honda SENSING driver assist suite, sport pedals, black accented rear spoiler, and 17-inch alloy wheels.",
-      images: [
-        "https://images.unsplash.com/photo-1605559424843-9e4c228bf1c2?auto=format&fit=crop&w=1200&q=80",
-      ],
+      description: "Sleek and luxurious executive sedan parked right outside our Warraich Motors showroom. Features dynamic LED headlights, push start, premium leather interior, wireless charging, and whisper-quiet suspension.",
+      images: ["/Hyundai.webp"],
     },
     {
-      registrationNumber: "GJT-23-3320",
+      registrationNumber: "GJT-23-2289",
       make: "Toyota",
-      model: "Yaris ATIV X 1.5 CVT",
+      model: "Corolla GLi / Altis",
       year: 2023,
-      slug: "toyota-yaris-ativ-x-2023",
-      category: "ECONOMY",
+      slug: "toyota-corolla-gli-2023",
+      category: "SEDAN",
       transmission: "AUTOMATIC",
       fuelType: "PETROL",
       seatingCapacity: 5,
-      luggageCapacity: 2,
-      dailyRate: 8000,
-      weeklyRate: 48000,
-      monthlyRate: 180000,
+      luggageCapacity: 3,
+      dailyRate: 9000,
+      weeklyRate: 54000,
+      monthlyRate: 195000,
       currency: "PKR",
       operationalStatus: OperationalStatus.AVAILABLE,
       isPublished: true,
-      description: "Nimble, ultra-reliable, and highly economical. Delivers up to 18 km/L, push start, climate control, reverse camera, and flawless comfort.",
-      images: [
-        "https://images.unsplash.com/photo-1552519507-da3b142c6e3d?auto=format&fit=crop&w=1200&q=80",
-      ],
+      description: "The undisputed workhorse of Pakistani roads. Outstanding suspension, powerful air conditioning, exceptional ride comfort, and generous trunk capacity for family or business trips.",
+      images: ["/Corolla.webp"],
     },
     {
       registrationNumber: "GJT-24-1290",
       make: "Suzuki",
-      model: "Alto VXR 660cc AGS",
+      model: "Alto VXL 660cc AGS",
       year: 2024,
-      slug: "suzuki-alto-vxr-2024",
+      slug: "suzuki-alto-vxl-2024",
       category: "ECONOMY",
       transmission: "AUTOMATIC",
       fuelType: "PETROL",
@@ -210,9 +182,7 @@ async function main() {
       operationalStatus: OperationalStatus.AVAILABLE,
       isPublished: true,
       description: "Pakistan's #1 favorite city car. Incredible fuel average, ice-cool air conditioning, automatic gear shift, and effortless parking in bustling Gujrat bazaars.",
-      images: [
-        "https://images.unsplash.com/photo-1541899481282-d53bffe3c35d?auto=format&fit=crop&w=1200&q=80",
-      ],
+      images: ["/Alto.webp"],
     },
     {
       registrationNumber: "LHR-23-5510",
@@ -256,10 +226,7 @@ async function main() {
       operationalStatus: OperationalStatus.MAINTENANCE,
       isPublished: true,
       description: "The pinnacle of status and prestige in Gujrat. Toyota Land Cruiser Prado TX with 2.8L turbo diesel engine, sunroof, leather seating, 4WD terrain control, and chauffeur options.",
-      images: [
-        "https://images.unsplash.com/photo-1594502184342-2e12f877aa73?auto=format&fit=crop&w=1200&q=80",
-        "https://images.unsplash.com/photo-1549399542-7e3f8b79c341?auto=format&fit=crop&w=1200&q=80",
-      ],
+      images: ["/toyota-tx-prado.jpg"],
     },
     {
       registrationNumber: "LHR-23-7721",
@@ -347,9 +314,7 @@ async function main() {
       operationalStatus: OperationalStatus.RENTED,
       isPublished: true,
       description: "Unrivalled road authority. 4.6L V8 engine, rear entertainment screens, modelista body kit, height control, and ultimate bulletproof prestige.",
-      images: [
-        "https://images.unsplash.com/photo-1549399542-7e3f8b79c341?auto=format&fit=crop&w=1200&q=80",
-      ],
+      images: ["/toyota-v8-lc-300.webp"],
     },
     {
       registrationNumber: "ISB-23-0001",
@@ -400,12 +365,12 @@ async function main() {
   for (const carItem of fleetData) {
     const { images, ...carProps } = carItem;
     const car = await prisma.car.upsert({
-      where: { slug: carProps.slug },
+      where: { registrationNumber: carProps.registrationNumber },
       update: carProps,
       create: carProps,
     });
 
-    // Seed images
+    // Seed/update images
     for (let i = 0; i < images.length; i++) {
       const existingImage = await prisma.carImage.findFirst({
         where: { carId: car.id, sortOrder: i },
@@ -417,6 +382,14 @@ async function main() {
             imageUrl: images[i],
             altText: `${car.make} ${car.model} view ${i + 1}`,
             sortOrder: i,
+          },
+        });
+      } else {
+        await prisma.carImage.update({
+          where: { id: existingImage.id },
+          data: {
+            imageUrl: images[i],
+            altText: `${car.make} ${car.model} view ${i + 1}`,
           },
         });
       }

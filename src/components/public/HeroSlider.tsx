@@ -44,7 +44,7 @@ export function HeroSlider() {
             src={slide.src}
             alt={slide.alt}
             fill
-            className="object-cover object-center brightness-95"
+            className="object-cover object-center"
             priority={idx === 0}
             quality={90}
             sizes="100vw"
@@ -52,11 +52,8 @@ export function HeroSlider() {
         </div>
       ))}
 
-      {/* Multi-layered dark overlay for maximum readability of text & booking form */}
-      <div className="absolute inset-0 bg-slate-950/75 pointer-events-none" />
-      <div className="absolute inset-0 bg-gradient-to-b from-slate-950/85 via-slate-950/70 to-slate-950/90 pointer-events-none" />
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_transparent_20%,_rgba(2,6,23,0.6)_100%)] pointer-events-none" />
-      <div className="absolute inset-0 backdrop-blur-[1px] pointer-events-none" />
+      {/* 30% dark overlay as requested */}
+      <div className="absolute inset-0 bg-black/30 pointer-events-none" />
 
       {BANNER_SLIDES.length > 1 && (
         <>
