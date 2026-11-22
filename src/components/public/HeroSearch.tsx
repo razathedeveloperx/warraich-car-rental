@@ -120,7 +120,7 @@ export function HeroSearch() {
             className="w-full h-11 rounded-xl border border-stone-300 bg-white sm:bg-stone-50/90 hover:bg-white focus:bg-white px-3 text-xs sm:text-sm text-stone-900 font-semibold focus:outline-none focus:ring-2 focus:ring-brand-600/30 focus:border-brand-600 transition shadow-xs"
           >
             <option value="ALL">All Vehicles</option>
-            <option value="LUXURY_SUV">Luxury SUV</option>
+            <option value="LUXURY">Luxury Collection</option>
             <option value="SUV">SUV 4x4</option>
             <option value="SEDAN">Executive Sedan</option>
             <option value="ECONOMY">Economy</option>

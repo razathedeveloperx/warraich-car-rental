@@ -28,7 +28,11 @@ export default async function CarsPage({ searchParams }: CarsPageProps) {
     };
 
     if (category && category !== "ALL") {
-      whereClause.category = category;
+      if (category === "LUXURY") {
+        whereClause.category = { in: ["LUXURY", "LUXURY_SUV", "LUXURY_SEDAN"] };
+      } else {
+        whereClause.category = category;
+      }
     }
 
     if (transmission && transmission !== "ALL") {
@@ -51,7 +55,12 @@ export default async function CarsPage({ searchParams }: CarsPageProps) {
   } catch (err) {
     console.warn("Database offline in /cars, using fallback fleet:", err);
     allCars = FALLBACK_CARS.filter((c) => {
-      if (category && category !== "ALL" && c.category !== category) return false;
+      if (category && category !== "ALL") {
+        if (category === "LUXURY") {
+          return c.category === "LUXURY" || c.category === "LUXURY_SUV" || c.category === "LUXURY_SEDAN";
+        }
+        return c.category === category;
+      }
       return true;
     });
   }
@@ -89,7 +98,7 @@ export default async function CarsPage({ searchParams }: CarsPageProps) {
 
   const categories = [
     { label: "All Vehicles", value: "ALL" },
-    { label: "Luxury SUV", value: "LUXURY_SUV" },
+    { label: "Luxury", value: "LUXURY" },
     { label: "SUV (4x4)", value: "SUV" },
     { label: "Sedan", value: "SEDAN" },
     { label: "Economy", value: "ECONOMY" },
