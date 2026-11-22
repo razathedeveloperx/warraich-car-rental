@@ -52,8 +52,9 @@ export function HeroSlider() {
         </div>
       ))}
 
-      {/* 30% dark overlay as requested */}
-      <div className="absolute inset-0 bg-black/30 pointer-events-none" />
+      {/* Cinematic multi-layer overlay: protects text contrast while preserving showroom image vibrancy */}
+      <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/25 to-black/75 pointer-events-none" />
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-black/50 via-transparent to-black/60 pointer-events-none" />
 
       {BANNER_SLIDES.length > 1 && (
         <>

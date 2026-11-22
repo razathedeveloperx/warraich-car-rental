@@ -93,24 +93,25 @@ export default async function HomePage() {
   return (
     <div className="bg-[#FAF8F6]">
       {/* Full-Width Screen-Height Hero with Centered Text & Search Form */}
-      <section className="relative w-full min-h-[560px] lg:min-h-[640px] lg:h-[calc(100vh-80px)] lg:max-h-[720px] flex items-center justify-center overflow-hidden bg-[#0a0b0e]">
+      <section className="relative w-full min-h-[600px] lg:min-h-[680px] py-12 lg:py-16 flex items-center justify-center overflow-hidden bg-[#0a0b0e]">
         <HeroSlider />
 
         {/* Centered Text + Form */}
-        <div className="relative z-10 w-full max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-12 flex flex-col items-center text-center gap-6 sm:gap-7">
-          <div className="space-y-3.5 max-w-2xl">
-            <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-black/60 backdrop-blur-md border border-white/20 text-[11px] font-semibold uppercase tracking-[0.2em] text-gold-200 shadow-md">
-              <span className="flex h-1.5 w-1.5 rounded-full bg-emerald-400 animate-pulse" />
+        <div className="relative z-10 w-full max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col items-center text-center gap-6 sm:gap-7">
+          {/* Frosted Luxury Headline Card for 100% Crisp Legibility over the showroom banner */}
+          <div className="w-full max-w-3xl bg-black/65 backdrop-blur-md rounded-2xl sm:rounded-3xl px-6 py-6 sm:px-8 sm:py-7 border border-white/15 shadow-[0_20px_50px_rgba(0,0,0,0.8)] space-y-3">
+            <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-stone-900/90 border border-gold-400/40 text-[11px] font-bold uppercase tracking-[0.2em] text-gold-300 shadow-md">
+              <span className="flex h-2 w-2 rounded-full bg-emerald-400 animate-pulse" />
               <span>GT Road, Gujrat</span>
-              <span className="text-white/40">&bull;</span>
-              <span>24/7 Service</span>
+              <span className="text-white/30">&bull;</span>
+              <span>24/7 Car Rental &amp; Chauffeur</span>
             </div>
-            <h1 className="text-3xl sm:text-5xl lg:text-[52px] tracking-tight text-white leading-[1.12] drop-shadow-[0_2px_14px_rgba(0,0,0,0.9)]">
-              <span className="font-extrabold">Warraich Motors</span>{" "}
-              <span className="font-extralight text-gold-200">&amp; Rent A Car</span>
+            <h1 className="text-3xl sm:text-5xl lg:text-[52px] tracking-tight text-white leading-[1.14]">
+              <span className="font-extrabold text-white">Warraich Motors</span>{" "}
+              <span className="font-medium text-gold-300">&amp; Rent A Car</span>
             </h1>
-            <p className="text-sm sm:text-base text-stone-100 font-normal max-w-xl mx-auto leading-relaxed drop-shadow-[0_2px_8px_rgba(0,0,0,0.95)]">
-              Verified self-drive &amp; chauffeur vehicles in Gujrat &mdash; instant quotes and airport transfers.
+            <p className="text-sm sm:text-base text-stone-200 font-medium max-w-xl mx-auto leading-relaxed">
+              Verified luxury, SUV &amp; economy rentals in Gujrat &mdash; self-drive or chauffeur driven with 24/7 airport transfers.
             </p>
           </div>
 
@@ -118,22 +119,26 @@ export default async function HomePage() {
             <HeroSearch />
           </div>
 
-          <div className="flex flex-wrap items-center justify-center gap-3 pt-1">
-            <a
-              href="tel:03136225135"
-              className="inline-flex items-center gap-2 bg-brand-600 hover:bg-brand-700 text-white font-semibold px-4.5 py-2.5 rounded-xl transition text-xs sm:text-sm border border-brand-500/40 shadow-lg shadow-black/30"
-            >
-              <Phone className="w-3.5 h-3.5 text-gold-200" />
-              <span>0313 6225135</span>
-            </a>
+          {/* Improved Direct Dispatch & Call Buttons */}
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-3 w-full max-w-xl mx-auto">
             <a
               href="https://wa.me/923136225135?text=Hello%20Warraich%20Motors,%20I%20want%20to%20rent%20a%20car%20in%20Gujrat"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 bg-white/95 hover:bg-white text-stone-900 font-semibold px-4.5 py-2.5 rounded-xl transition text-xs sm:text-sm shadow-lg shadow-black/30"
+              className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 bg-emerald-600 hover:bg-emerald-500 active:scale-[0.98] text-white font-bold px-6 py-3 rounded-xl transition-all duration-200 text-sm shadow-xl shadow-black/50 border border-emerald-400/40 group cursor-pointer"
             >
-              <MessageCircle className="w-3.5 h-3.5 text-emerald-700" />
+              <MessageCircle className="w-4 h-4 fill-white text-emerald-600 group-hover:scale-110 transition-transform" />
               <span>WhatsApp Dispatch</span>
+              <span className="bg-emerald-800 text-[10px] uppercase font-bold tracking-wider px-2 py-0.5 rounded text-emerald-100 ml-1">
+                24/7 Online
+              </span>
+            </a>
+            <a
+              href="tel:03136225135"
+              className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 bg-black/80 hover:bg-stone-900 active:scale-[0.98] text-white font-bold px-6 py-3 rounded-xl transition-all duration-200 text-sm border border-white/20 backdrop-blur-md shadow-xl shadow-black/50 group cursor-pointer"
+            >
+              <Phone className="w-4 h-4 text-gold-300 group-hover:rotate-12 transition-transform" />
+              <span>Direct Call: 0313 6225135</span>
             </a>
           </div>
         </div>
