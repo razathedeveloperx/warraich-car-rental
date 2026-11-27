@@ -152,10 +152,10 @@ export function CarCard({ car, pickup, returnDate }: CarCardProps) {
               href={whatsappUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center justify-center gap-1.5 bg-stone-50 hover:bg-emerald-50 text-stone-800 hover:text-emerald-800 text-xs font-semibold py-2.5 px-2 rounded-xl border border-stone-200 hover:border-emerald-300 transition"
+              className="inline-flex items-center justify-center gap-1.5 bg-emerald-50/80 hover:bg-emerald-600 text-emerald-800 hover:text-white text-xs font-bold py-2.5 px-2 rounded-xl border border-emerald-300/80 hover:border-emerald-600 transition-all duration-200 shadow-2xs hover:shadow-sm"
               title="Request quote on WhatsApp"
             >
-              <MessageCircle className="w-3.5 h-3.5 text-emerald-600 shrink-0" />
+              <MessageCircle className="w-3.5 h-3.5 text-emerald-600 group-hover:text-white shrink-0 transition-colors" />
               <span>Get Quote</span>
             </a>
 
@@ -164,7 +164,7 @@ export function CarCard({ car, pickup, returnDate }: CarCardProps) {
                 href={whatsappUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center justify-center gap-1 bg-stone-900 hover:bg-brand-600 text-white text-xs font-semibold py-2.5 px-3 rounded-xl transition"
+                className="inline-flex items-center justify-center gap-1 bg-stone-900 hover:bg-stone-800 text-white text-xs font-bold py-2.5 px-3 rounded-xl transition-all duration-200 shadow-2xs hover:shadow-sm"
               >
                 <span>Join Waitlist</span>
                 <ArrowRight className="w-3.5 h-3.5" />
@@ -172,7 +172,7 @@ export function CarCard({ car, pickup, returnDate }: CarCardProps) {
             ) : isAvailableSoon ? (
               <Link
                 href={detailUrl}
-                className="inline-flex items-center justify-center gap-1 bg-stone-900 hover:bg-brand-600 text-white text-xs font-semibold py-2.5 px-3 rounded-xl transition"
+                className="inline-flex items-center justify-center gap-1 bg-stone-900 hover:bg-stone-800 text-white text-xs font-bold py-2.5 px-3 rounded-xl transition-all duration-200 shadow-2xs hover:shadow-sm"
               >
                 <span>Pre-Book</span>
                 <ArrowRight className="w-3.5 h-3.5" />
@@ -180,7 +180,7 @@ export function CarCard({ car, pickup, returnDate }: CarCardProps) {
             ) : (
               <Link
                 href={detailUrl}
-                className="inline-flex items-center justify-center gap-1 bg-brand-600 hover:bg-brand-700 text-white text-xs font-semibold py-2.5 px-3 rounded-xl transition shadow-sm"
+                className="inline-flex items-center justify-center gap-1 bg-gradient-to-r from-brand-600 to-brand-700 hover:from-brand-500 hover:to-brand-600 text-white text-xs font-bold py-2.5 px-3 rounded-xl transition-all duration-200 shadow-md shadow-brand-600/25 hover:shadow-lg hover:shadow-brand-600/40 hover:-translate-y-0.5 border border-brand-400/30"
               >
                 <span>Reserve Now</span>
                 <ArrowRight className="w-3.5 h-3.5" />

@@ -93,25 +93,24 @@ export default async function HomePage() {
   return (
     <div className="bg-[#FAF8F6]">
       {/* Full-Width Screen-Height Hero with Centered Text & Search Form */}
-      <section className="relative w-full min-h-[600px] lg:min-h-[680px] py-12 lg:py-16 flex items-center justify-center overflow-hidden bg-[#0a0b0e]">
+      <section className="relative w-full min-h-[560px] lg:min-h-[640px] lg:h-[calc(100vh-80px)] lg:max-h-[720px] flex items-center justify-center overflow-hidden bg-[#0a0b0e]">
         <HeroSlider />
 
         {/* Centered Text + Form */}
-        <div className="relative z-10 w-full max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col items-center text-center gap-6 sm:gap-7">
-          {/* Frosted Luxury Headline Card for 100% Crisp Legibility over the showroom banner */}
-          <div className="w-full max-w-3xl bg-black/65 backdrop-blur-md rounded-2xl sm:rounded-3xl px-6 py-6 sm:px-8 sm:py-7 border border-white/15 shadow-[0_20px_50px_rgba(0,0,0,0.8)] space-y-3">
-            <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-stone-900/90 border border-gold-400/40 text-[11px] font-bold uppercase tracking-[0.2em] text-gold-300 shadow-md">
+        <div className="relative z-10 w-full max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-12 flex flex-col items-center text-center gap-6 sm:gap-7">
+          <div className="space-y-3.5 max-w-2xl">
+            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-black/75 backdrop-blur-md border border-white/20 text-[11px] font-bold uppercase tracking-[0.2em] text-gold-200 shadow-xl">
               <span className="flex h-2 w-2 rounded-full bg-emerald-400 animate-pulse" />
               <span>GT Road, Gujrat</span>
-              <span className="text-white/30">&bull;</span>
-              <span>24/7 Car Rental &amp; Chauffeur</span>
+              <span className="text-white/40">&bull;</span>
+              <span>24/7 Service</span>
             </div>
-            <h1 className="text-3xl sm:text-5xl lg:text-[52px] tracking-tight text-white leading-[1.14]">
+            <h1 className="text-3xl sm:text-5xl lg:text-[54px] tracking-tight text-white leading-[1.12] drop-shadow-[0_4px_24px_rgba(0,0,0,0.95)]">
               <span className="font-extrabold text-white">Warraich Motors</span>{" "}
-              <span className="font-medium text-gold-300">&amp; Rent A Car</span>
+              <span className="font-light text-gold-300">&amp; Rent A Car</span>
             </h1>
-            <p className="text-sm sm:text-base text-stone-200 font-medium max-w-xl mx-auto leading-relaxed">
-              Verified luxury, SUV &amp; economy rentals in Gujrat &mdash; self-drive or chauffeur driven with 24/7 airport transfers.
+            <p className="text-sm sm:text-base md:text-lg text-stone-100 font-medium max-w-2xl mx-auto leading-relaxed drop-shadow-[0_2px_12px_rgba(0,0,0,0.98)]">
+              Verified self-drive &amp; chauffeur vehicles in Gujrat &mdash; instant quotes and airport transfers.
             </p>
           </div>
 
@@ -119,26 +118,27 @@ export default async function HomePage() {
             <HeroSearch />
           </div>
 
-          {/* Improved Direct Dispatch & Call Buttons */}
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-3 w-full max-w-xl mx-auto">
+          {/* Quick Connect CTA Buttons */}
+          <div className="flex flex-wrap items-center justify-center gap-3.5 pt-2">
+            <a
+              href="tel:03136225135"
+              className="group inline-flex items-center gap-2.5 bg-gradient-to-r from-brand-600 via-brand-700 to-brand-800 hover:from-brand-500 hover:to-brand-700 text-white font-bold px-6 py-3 rounded-xl transition-all duration-200 text-xs sm:text-sm border border-brand-400/40 shadow-[0_8px_25px_rgba(159,18,57,0.45)] hover:shadow-[0_12px_30px_rgba(159,18,57,0.65)] hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.98]"
+            >
+              <Phone className="w-4 h-4 text-gold-300 group-hover:rotate-12 transition-transform duration-200" />
+              <span className="tracking-wide">Call 0313 6225135</span>
+            </a>
             <a
               href="https://wa.me/923136225135?text=Hello%20Warraich%20Motors,%20I%20want%20to%20rent%20a%20car%20in%20Gujrat"
               target="_blank"
               rel="noopener noreferrer"
-              className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 bg-emerald-600 hover:bg-emerald-500 active:scale-[0.98] text-white font-bold px-6 py-3 rounded-xl transition-all duration-200 text-sm shadow-xl shadow-black/50 border border-emerald-400/40 group cursor-pointer"
+              className="group inline-flex items-center gap-2.5 bg-gradient-to-r from-emerald-600 to-emerald-700 hover:from-emerald-500 hover:to-emerald-600 text-white font-bold px-6 py-3 rounded-xl transition-all duration-200 text-xs sm:text-sm border border-emerald-400/50 shadow-[0_8px_25px_rgba(5,150,105,0.4)] hover:shadow-[0_12px_30px_rgba(5,150,105,0.6)] hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.98]"
             >
-              <MessageCircle className="w-4 h-4 fill-white text-emerald-600 group-hover:scale-110 transition-transform" />
-              <span>WhatsApp Dispatch</span>
-              <span className="bg-emerald-800 text-[10px] uppercase font-bold tracking-wider px-2 py-0.5 rounded text-emerald-100 ml-1">
-                24/7 Online
+              <span className="relative flex h-2 w-2">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-200 opacity-75" />
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-white" />
               </span>
-            </a>
-            <a
-              href="tel:03136225135"
-              className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 bg-black/80 hover:bg-stone-900 active:scale-[0.98] text-white font-bold px-6 py-3 rounded-xl transition-all duration-200 text-sm border border-white/20 backdrop-blur-md shadow-xl shadow-black/50 group cursor-pointer"
-            >
-              <Phone className="w-4 h-4 text-gold-300 group-hover:rotate-12 transition-transform" />
-              <span>Direct Call: 0313 6225135</span>
+              <MessageCircle className="w-4 h-4 text-white group-hover:scale-110 transition-transform duration-200" />
+              <span className="tracking-wide">WhatsApp Dispatch (24/7)</span>
             </a>
           </div>
         </div>
@@ -170,14 +170,14 @@ export default async function HomePage() {
               href="https://wa.me/923136225135?text=Hello%20Warraich%20Motors,%20what%20cars%20are%20available%20for%20rent%20right%20now?"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-1.5 text-xs font-semibold text-emerald-800 hover:text-emerald-900 bg-emerald-50 hover:bg-emerald-100 px-3.5 py-2 rounded-lg border border-emerald-200 transition"
+              className="inline-flex items-center gap-1.5 text-xs font-bold text-emerald-800 hover:text-white bg-emerald-50 hover:bg-emerald-600 px-4 py-2.5 rounded-xl border border-emerald-300 shadow-xs hover:shadow-md transition-all duration-200"
             >
-              <MessageCircle className="w-3.5 h-3.5" />
+              <MessageCircle className="w-4 h-4 text-emerald-600 group-hover:text-white" />
               <span>Ask Current Slot</span>
             </a>
             <Link
               href="/cars"
-              className="inline-flex items-center gap-1.5 text-sm font-semibold text-brand-600 hover:text-brand-700"
+              className="inline-flex items-center gap-1.5 text-sm font-bold text-brand-600 hover:text-brand-700 hover:translate-x-0.5 transition-transform"
             >
               <span>Full Fleet</span>
               <ArrowRight className="w-4 h-4" />
@@ -249,7 +249,7 @@ export default async function HomePage() {
               href="https://wa.me/923136225135?text=Hello%20Warraich%20Motors,%20I%20want%20to%20inquire%20about%20future%20dates%20for%20your%20luxury%20fleet"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-1.5 text-xs font-semibold text-brand-700 hover:text-white bg-brand-50 hover:bg-brand-600 px-3.5 py-2 rounded-lg border border-brand-200 hover:border-brand-600 transition"
+              className="inline-flex items-center gap-1.5 text-xs font-bold text-brand-700 hover:text-white bg-brand-50 hover:bg-brand-600 px-4 py-2.5 rounded-xl border border-brand-200 hover:border-brand-600 shadow-xs hover:shadow-md transition-all duration-200"
             >
               <Users className="w-3.5 h-3.5" />
               <span>Join Priority Waitlist</span>
@@ -306,7 +306,7 @@ export default async function HomePage() {
                   href="https://wa.me/923136225135?text=Hello%20Warraich%20Motors,%20I%20am%20arriving%20at%20the%20airport%20and%20need%20a%20car"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 bg-brand-600 hover:bg-brand-700 text-white font-semibold py-2.5 px-5 rounded-lg transition text-xs sm:text-sm border border-brand-500/40"
+                  className="inline-flex items-center gap-2 bg-gradient-to-r from-brand-600 to-brand-700 hover:from-brand-500 hover:to-brand-600 text-white font-bold py-3 px-6 rounded-xl transition-all duration-200 text-xs sm:text-sm border border-brand-400/30 shadow-lg shadow-brand-900/30 hover:shadow-xl hover:-translate-y-0.5"
                 >
                   <MessageCircle className="w-4 h-4 text-gold-200" />
                   <span>Book Airport Pickup</span>
@@ -425,10 +425,10 @@ export default async function HomePage() {
             </div>
           </div>
 
-          <div className="flex flex-col sm:flex-row gap-3 shrink-0 w-full sm:w-auto">
+          <div className="flex flex-col sm:flex-row gap-3.5 shrink-0 w-full sm:w-auto">
             <a
               href="tel:03136225135"
-              className="bg-brand-600 hover:bg-brand-700 text-white font-semibold py-3 px-5 rounded-xl text-center transition flex items-center justify-center gap-2 text-sm border border-brand-500/40"
+              className="bg-gradient-to-r from-brand-600 to-brand-700 hover:from-brand-500 hover:to-brand-600 text-white font-bold py-3.5 px-6 rounded-xl text-center transition-all duration-200 flex items-center justify-center gap-2 text-sm border border-brand-400/40 shadow-lg shadow-brand-950/40 hover:shadow-xl hover:-translate-y-0.5"
             >
               <Phone className="w-4 h-4 text-gold-200" />
               <span>Call 0313 6225135</span>
@@ -437,7 +437,7 @@ export default async function HomePage() {
               href="https://wa.me/923136225135?text=Hello%20Warraich%20Motors,%20I%20want%20to%20reserve%20a%20car"
               target="_blank"
               rel="noopener noreferrer"
-              className="bg-emerald-700 hover:bg-emerald-800 text-white font-semibold py-3 px-5 rounded-xl text-center transition flex items-center justify-center gap-2 text-sm"
+              className="bg-gradient-to-r from-emerald-600 to-emerald-700 hover:from-emerald-500 hover:to-emerald-600 text-white font-bold py-3.5 px-6 rounded-xl text-center transition-all duration-200 flex items-center justify-center gap-2 text-sm border border-emerald-400/40 shadow-lg shadow-emerald-950/40 hover:shadow-xl hover:-translate-y-0.5"
             >
               <MessageCircle className="w-4 h-4" />
               <span>WhatsApp Booking</span>

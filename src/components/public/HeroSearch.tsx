@@ -40,7 +40,7 @@ export function HeroSearch() {
   return (
     <form
       onSubmit={handleSearch}
-      className="w-full bg-white/98 sm:bg-white/95 backdrop-blur-md rounded-2xl shadow-[0_20px_50px_rgba(0,0,0,0.55)] p-4 sm:p-5 border border-white/90 text-left"
+      className="w-full bg-white/98 sm:bg-white/95 backdrop-blur-md rounded-2xl shadow-[0_20px_50px_rgba(0,0,0,0.5)] p-4 sm:p-5 border border-white/90 text-left"
     >
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-[1.3fr_1.2fr_1.2fr_0.95fr_auto] gap-3.5 items-end">
         {/* Location */}
@@ -52,7 +52,7 @@ export function HeroSearch() {
           <select
             value={pickupLocation}
             onChange={(e) => setPickupLocation(e.target.value)}
-            className="w-full h-12 rounded-xl border border-stone-300 bg-white sm:bg-stone-50/90 hover:bg-white focus:bg-white px-3 text-xs sm:text-sm text-stone-900 font-semibold focus:outline-none focus:ring-2 focus:ring-brand-600/30 focus:border-brand-600 transition truncate shadow-xs"
+            className="w-full h-12 rounded-xl border border-stone-300 bg-white sm:bg-stone-50/90 hover:bg-white focus:bg-white px-3.5 text-xs sm:text-sm text-stone-900 font-semibold focus:outline-none focus:ring-2 focus:ring-brand-600/30 focus:border-brand-600 transition truncate shadow-xs"
           >
             <option value="Warraich Motors Hub, GT Rd Small Industrial Area, Gujrat">
               Gujrat Hub (GT Rd, Small Industrial Area)
@@ -88,7 +88,7 @@ export function HeroSearch() {
             type="datetime-local"
             value={pickupDateTime}
             onChange={(e) => setPickupDateTime(e.target.value)}
-            className="w-full h-12 rounded-xl border border-stone-300 bg-white sm:bg-stone-50/90 hover:bg-white focus:bg-white px-3 text-xs sm:text-sm text-stone-900 font-semibold focus:outline-none focus:ring-2 focus:ring-brand-600/30 focus:border-brand-600 transition shadow-xs"
+            className="w-full h-12 rounded-xl border border-stone-300 bg-white sm:bg-stone-50/90 hover:bg-white focus:bg-white px-3.5 text-xs sm:text-sm text-stone-900 font-semibold focus:outline-none focus:ring-2 focus:ring-brand-600/30 focus:border-brand-600 transition shadow-xs"
             required
           />
         </div>
@@ -103,7 +103,7 @@ export function HeroSearch() {
             type="datetime-local"
             value={returnDateTime}
             onChange={(e) => setReturnDateTime(e.target.value)}
-            className="w-full h-12 rounded-xl border border-stone-300 bg-white sm:bg-stone-50/90 hover:bg-white focus:bg-white px-3 text-xs sm:text-sm text-stone-900 font-semibold focus:outline-none focus:ring-2 focus:ring-brand-600/30 focus:border-brand-600 transition shadow-xs"
+            className="w-full h-12 rounded-xl border border-stone-300 bg-white sm:bg-stone-50/90 hover:bg-white focus:bg-white px-3.5 text-xs sm:text-sm text-stone-900 font-semibold focus:outline-none focus:ring-2 focus:ring-brand-600/30 focus:border-brand-600 transition shadow-xs"
             required
           />
         </div>
@@ -117,7 +117,7 @@ export function HeroSearch() {
           <select
             value={category}
             onChange={(e) => setCategory(e.target.value)}
-            className="w-full h-12 rounded-xl border border-stone-300 bg-white sm:bg-stone-50/90 hover:bg-white focus:bg-white px-3 text-xs sm:text-sm text-stone-900 font-semibold focus:outline-none focus:ring-2 focus:ring-brand-600/30 focus:border-brand-600 transition shadow-xs"
+            className="w-full h-12 rounded-xl border border-stone-300 bg-white sm:bg-stone-50/90 hover:bg-white focus:bg-white px-3.5 text-xs sm:text-sm text-stone-900 font-semibold focus:outline-none focus:ring-2 focus:ring-brand-600/30 focus:border-brand-600 transition shadow-xs"
           >
             <option value="ALL">All Vehicles</option>
             <option value="LUXURY">Luxury Collection</option>
@@ -132,9 +132,9 @@ export function HeroSearch() {
         <div className="sm:col-span-2 lg:col-span-1">
           <button
             type="submit"
-            className="w-full lg:w-auto h-12 bg-gradient-to-r from-brand-600 via-brand-700 to-brand-800 hover:from-brand-500 hover:to-brand-700 active:scale-[0.98] text-white font-bold px-7 rounded-xl flex items-center justify-center gap-2.5 transition-all duration-200 text-sm whitespace-nowrap shadow-lg shadow-brand-900/40 border border-brand-400/40 cursor-pointer group"
+            className="group w-full lg:w-auto h-12 bg-gradient-to-r from-brand-600 via-brand-700 to-brand-800 hover:from-brand-500 hover:to-brand-600 active:scale-[0.98] text-white font-bold px-7 rounded-xl flex items-center justify-center gap-2.5 transition-all duration-200 text-sm whitespace-nowrap shadow-lg shadow-brand-700/35 hover:shadow-xl hover:shadow-brand-700/50 hover:-translate-y-0.5 border border-brand-400/30 cursor-pointer"
           >
-            <Search className="w-4 h-4 text-gold-300 group-hover:scale-110 transition-transform" />
+            <Search className="w-4 h-4 text-gold-300 group-hover:scale-110 transition-transform duration-200" />
             <span className="tracking-wide">Search Fleet</span>
           </button>
         </div>

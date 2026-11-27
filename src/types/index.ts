@@ -6,7 +6,19 @@ export type BookingStatus = "PENDING" | "CONFIRMED" | "ACTIVE" | "COMPLETED" | "
 
 export type PaymentMethod = "CASH" | "BANK_TRANSFER" | "CREDIT_CARD" | "POS" | "CHEQUE";
 
-export type PaymentType = "RENTAL" | "DEPOSIT" | "REFUND" | "DAMAGE_CHARGE";
+export type PaymentType =
+  | "RENTAL"
+  | "DEPOSIT"
+  | "REFUND"
+  | "DAMAGE_CHARGE"
+  | "PARKING_FEE"
+  | "MAINTENANCE_OIL"
+  | "SALARY"
+  | "FUEL"
+  | "EXPENSE"
+  | "OTHER";
+
+export type PaymentDirection = "INFLOW" | "OUTFLOW";
 
 export type PaymentStatus = "PENDING" | "COMPLETED" | "FAILED" | "REFUNDED";
 

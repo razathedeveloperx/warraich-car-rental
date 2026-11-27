@@ -10,6 +10,7 @@ import {
   CalendarDays,
   Users,
   CreditCard,
+  CircleParking,
   Wrench,
   Settings,
   LogOut,
@@ -31,6 +32,7 @@ export function AdminSidebar({ userRole, userName }: AdminSidebarProps) {
     { href: "/admin/bookings", label: "Bookings", icon: CalendarCheck },
     { href: "/admin/calendar", label: "Reservation Calendar", icon: CalendarDays },
     { href: "/admin/customers", label: "Customers CRM", icon: Users },
+    { href: "/admin/parking", label: "Car Parking (Monthly)", icon: CircleParking },
     { href: "/admin/payments", label: "Payments & Ledger", icon: CreditCard },
     { href: "/admin/maintenance", label: "Maintenance", icon: Wrench },
     ...(userRole === "ADMIN"

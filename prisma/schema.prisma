@@ -40,6 +40,12 @@ enum PaymentType {
   DEPOSIT
   REFUND
   DAMAGE_CHARGE
+  PARKING_FEE
+  MAINTENANCE_OIL
+  SALARY
+  FUEL
+  EXPENSE
+  OTHER
 }
 
 enum PaymentStatus {
@@ -112,6 +118,7 @@ model Car {
   images             CarImage[]
   bookings           Booking[]
   maintenanceRecords MaintenanceRecord[]
+  payments           Payment[]
 
   @@index([slug])
   @@index([operationalStatus, isPublished])
@@ -166,6 +173,7 @@ model Booking {
   updatedAt        DateTime           @updatedAt
   extras           BookingExtraItem[]
   payments         Payment[]
+  inspections      VehicleInspection[]
   auditLogs        BookingAuditLog[]
 
   @@index([carId, pickupDateTime, returnDateTime])
@@ -188,18 +196,91 @@ model BookingExtraItem {
 }
 
 model Payment {
-  id                   String        @id @default(uuid())
-  bookingId            String
-  booking              Booking       @relation(fields: [bookingId], references: [id], onDelete: Cascade)
-  amount               Decimal       @db.Decimal(10, 2)
-  currency             String        @default("PKR")
-  paymentMethod        PaymentMethod @default(CASH)
-  paymentType          PaymentType   @default(RENTAL)
-  status               PaymentStatus @default(COMPLETED)
+  id                   String         @id @default(uuid())
+  receiptNumber        String?
+  direction            String         @default("INFLOW") // "INFLOW" (Income) or "OUTFLOW" (Expense)
+  category             String         @default("RENTAL") // RENTAL, PARKING_FEE, DEPOSIT, REFUND, MAINTENANCE_OIL, EXPENSE, OTHER
+  bookingId            String?
+  booking              Booking?       @relation(fields: [bookingId], references: [id], onDelete: SetNull)
+  parkingRecordId      String?
+  parkingRecord        ParkingRecord? @relation(fields: [parkingRecordId], references: [id], onDelete: SetNull)
+  carId                String?
+  car                  Car?           @relation(fields: [carId], references: [id], onDelete: SetNull)
+  customerName         String?
+  customerPhone        String?
+  vehiclePlate         String?
+  monthBilled          String?
+  amount               Decimal        @db.Decimal(10, 2)
+  currency             String         @default("PKR")
+  paymentMethod        PaymentMethod  @default(CASH)
+  paymentType          PaymentType    @default(RENTAL)
+  status               PaymentStatus  @default(COMPLETED)
   transactionReference String?
   notes                String?
-  paidAt               DateTime      @default(now())
-  createdAt            DateTime      @default(now())
+  paidAt               DateTime       @default(now())
+  createdAt            DateTime       @default(now())
+
+  @@index([bookingId])
+  @@index([parkingRecordId])
+  @@index([carId])
+  @@index([receiptNumber])
+  @@index([direction])
+  @@index([category])
+  @@index([paidAt])
+}
+
+model ParkingRecord {
+  id              String    @id @default(uuid())
+  vehiclePlate    String
+  vehicleModel    String
+  ownerName       String
+  ownerPhone      String
+  ownerCnic       String?
+  monthlyFee      Decimal   @db.Decimal(10, 2)
+  startDate       DateTime  @default(now())
+  status          String    @default("ACTIVE") // ACTIVE, OVERDUE, SUSPENDED, ENDED
+  slotNumber      String?
+  lastPaymentDate DateTime?
+  paidUntilDate   DateTime?
+  notes           String?
+  createdAt       DateTime  @default(now())
+  updatedAt       DateTime  @updatedAt
+  payments        Payment[]
+
+  @@index([vehiclePlate])
+  @@index([ownerPhone])
+  @@index([status])
+}
+
+model VehicleInspection {
+  id                String   @id @default(uuid())
+  bookingId         String
+  booking           Booking  @relation(fields: [bookingId], references: [id], onDelete: Cascade)
+  inspectionType    String   @default("PRE_RENTAL") // PRE_RENTAL, POST_RENTAL
+  isMonthlyRental   Boolean  @default(false)
+
+  // Mobil oil & engine check
+  oilChanged        Boolean  @default(false)
+  oilBrand          String?  // e.g. "Mobil 1 10W-40", "Shell Helix HX7"
+  oilCost           Decimal? @db.Decimal(10, 2)
+  odometerReading   Int?
+  nextOilOdometer   Int?
+
+  // Complete vehicle checklist (OK / NOT OK)
+  engineOk          Boolean  @default(true)
+  brakesOk          Boolean  @default(true)
+  tiresOk           Boolean  @default(true)
+  acOk              Boolean  @default(true)
+  lightsOk          Boolean  @default(true)
+  bodyClean         Boolean  @default(true)
+  scratchesNotes    String?
+  fuelLevel         String   @default("FULL") // "FULL", "75%", "50%", "25%"
+  toolsAndSpare     Boolean  @default(true)
+
+  isVehicleApproved Boolean  @default(true)
+  inspectedBy       String?
+  notes             String?
+  createdAt         DateTime @default(now())
 
   @@index([bookingId])
 }

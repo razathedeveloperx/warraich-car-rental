@@ -18,6 +18,9 @@ export default async function AdminBookingsPage() {
         customer: true,
         extras: true,
         payments: true,
+        inspections: {
+          orderBy: { createdAt: "desc" },
+        },
         auditLogs: {
           orderBy: { createdAt: "desc" },
         },

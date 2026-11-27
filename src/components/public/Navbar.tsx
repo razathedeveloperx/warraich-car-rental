@@ -107,7 +107,7 @@ export function Navbar() {
           </a>
           <Link
             href="/cars"
-            className="inline-flex items-center justify-center rounded-lg bg-brand-600 px-4 py-2 text-xs font-semibold text-white hover:bg-brand-700 transition shadow-sm"
+            className="inline-flex items-center justify-center rounded-xl bg-gradient-to-r from-brand-600 to-brand-700 hover:from-brand-500 hover:to-brand-600 px-5 py-2 text-xs font-bold text-white shadow-md shadow-brand-600/25 hover:shadow-lg hover:shadow-brand-600/40 hover:-translate-y-0.5 active:translate-y-0 transition-all border border-brand-400/30 uppercase tracking-wider"
           >
             Book Now
           </Link>
