@@ -157,3 +157,9 @@ export async function updateCarOperationalStatusAction(id: string, operationalSt
     return { success: false, error: error.message };
   }
 }
+
+export async function deleteCarAction(id: string) {
+  await requireAuth(["ADMIN"]);
+  const { softDeleteEntityAction } = await import("./trash");
+  return softDeleteEntityAction("CAR", id);
+}

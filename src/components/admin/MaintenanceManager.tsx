@@ -10,9 +10,10 @@ import {
   AlertCircle,
   X,
   Loader2,
+  Trash2,
   Calendar,
 } from "lucide-react";
-import { createMaintenanceAction, updateMaintenanceStatusAction } from "@/app/actions/maintenance";
+import { createMaintenanceAction, updateMaintenanceStatusAction, deleteMaintenanceRecordAction } from "@/app/actions/maintenance";
 import { MaintenanceStatus } from "@/types";
 
 interface MaintenanceManagerProps {
@@ -73,6 +74,29 @@ export function MaintenanceManager({ initialRecords, cars }: MaintenanceManagerP
   const handleStatusChange = async (recordId: string, newStatus: MaintenanceStatus) => {
     await updateMaintenanceStatusAction(recordId, newStatus);
     window.location.reload();
+  };
+
+  const [deletingMaintenanceId, setDeletingMaintenanceId] = useState<string | null>(null);
+
+  const handleDeleteMaintenance = async (r: any) => {
+    if (
+      !confirm(
+        `Move maintenance record "${r.description}" to Trash? It will be removed from active maintenance and can be restored in Settings.`
+      )
+    ) {
+      return;
+    }
+
+    setDeletingMaintenanceId(r.id);
+    const res = await deleteMaintenanceRecordAction(r.id);
+    setDeletingMaintenanceId(null);
+
+    if (!res.success) {
+      alert(res.error || "Failed to delete maintenance record");
+      return;
+    }
+
+    setRecords((prev) => prev.filter((item) => item.id !== r.id));
   };
 
   return (
@@ -162,6 +186,19 @@ export function MaintenanceManager({ initialRecords, cars }: MaintenanceManagerP
                         Mark Done
                       </button>
                     )}
+
+                    <button
+                      onClick={() => handleDeleteMaintenance(r)}
+                      disabled={deletingMaintenanceId === r.id}
+                      className="p-1 rounded-lg text-slate-400 hover:text-red-600 hover:bg-red-50 transition inline-block align-middle"
+                      title="Move to Trash"
+                    >
+                      {deletingMaintenanceId === r.id ? (
+                        <Loader2 className="w-3.5 h-3.5 animate-spin text-red-600" />
+                      ) : (
+                        <Trash2 className="w-3.5 h-3.5" />
+                      )}
+                    </button>
                   </td>
                 </tr>
               ))}

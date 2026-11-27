@@ -63,3 +63,9 @@ export async function createCustomerAction(formData: any) {
     return { success: false, error: error.message || "Failed to create customer" };
   }
 }
+
+export async function deleteCustomerAction(id: string) {
+  await requireAuth(["ADMIN"]);
+  const { softDeleteEntityAction } = await import("./trash");
+  return softDeleteEntityAction("CUSTOMER", id);
+}

@@ -13,6 +13,7 @@ export default async function AdminBookingsPage() {
 
   const [bookings, cars] = await Promise.all([
     prisma.booking.findMany({
+      where: { isDeleted: false },
       include: {
         car: true,
         customer: true,
@@ -28,7 +29,7 @@ export default async function AdminBookingsPage() {
       orderBy: { createdAt: "desc" },
     }),
     prisma.car.findMany({
-      where: { operationalStatus: { in: ["AVAILABLE", "RENTED"] } },
+      where: { operationalStatus: { in: ["AVAILABLE", "RENTED"] }, isDeleted: false },
       select: { id: true, make: true, model: true, registrationNumber: true, dailyRate: true, currency: true },
     }),
   ]);

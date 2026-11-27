@@ -12,6 +12,7 @@ export default async function AdminParkingPage() {
   }
 
   const records = await prisma.parkingRecord.findMany({
+    where: { isDeleted: false },
     orderBy: { createdAt: "desc" },
   });
 

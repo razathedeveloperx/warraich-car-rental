@@ -17,9 +17,10 @@ import {
   Calendar,
   X,
   Loader2,
+  Trash2,
   ShieldAlert,
 } from "lucide-react";
-import { createParkingRecordAction, updateParkingRecordStatusAction } from "@/app/actions/parking";
+import { createParkingRecordAction, updateParkingRecordStatusAction, deleteParkingRecordAction } from "@/app/actions/parking";
 import { recordPaymentAction } from "@/app/actions/payments";
 import Link from "next/link";
 
@@ -60,6 +61,29 @@ export function ParkingManager({ initialRecords }: ParkingManagerProps) {
 
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [actionError, setActionError] = useState<string | null>(null);
+
+  const [deletingParkingId, setDeletingParkingId] = useState<string | null>(null);
+
+  const handleDeleteParking = async (record: any) => {
+    if (
+      !confirm(
+        `Move parking subscription "${record.vehiclePlate} (${record.ownerName})" to Trash? It will be removed from active parking yards and can be restored in Settings.`
+      )
+    ) {
+      return;
+    }
+
+    setDeletingParkingId(record.id);
+    const res = await deleteParkingRecordAction(record.id);
+    setDeletingParkingId(null);
+
+    if (!res.success) {
+      alert(res.error || "Failed to delete parking vehicle");
+      return;
+    }
+
+    setRecords((prev) => prev.filter((r) => r.id !== record.id));
+  };
 
   // Submit Registration
   const handleRegister = async (e: React.FormEvent) => {
@@ -369,13 +393,26 @@ export function ParkingManager({ initialRecords }: ParkingManagerProps) {
                         </span>
                       </td>
 
-                      <td className="py-3.5 px-4 text-right">
+                      <td className="py-3.5 px-4 text-right space-x-1">
                         <button
                           onClick={() => openCollectModal(r)}
                           className="inline-flex items-center gap-1.5 bg-slate-900 hover:bg-slate-800 text-white text-xs font-bold px-3 py-1.5 rounded-xl shadow-xs transition"
                         >
                           <Banknote className="w-3.5 h-3.5" />
                           <span>Collect Fee</span>
+                        </button>
+
+                        <button
+                          onClick={() => handleDeleteParking(r)}
+                          disabled={deletingParkingId === r.id}
+                          className="p-1.5 rounded-lg text-slate-400 hover:text-red-600 hover:bg-red-50 transition inline-block align-middle"
+                          title="Move to Trash"
+                        >
+                          {deletingParkingId === r.id ? (
+                            <Loader2 className="w-3.5 h-3.5 animate-spin text-red-600" />
+                          ) : (
+                            <Trash2 className="w-3.5 h-3.5" />
+                          )}
                         </button>
                       </td>
                     </tr>

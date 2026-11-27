@@ -28,8 +28,9 @@ import {
   Fuel,
   Gauge,
   ClipboardCheck,
+  Trash2,
 } from "lucide-react";
-import { updateBookingStatusAction } from "@/app/actions/bookings";
+import { updateBookingStatusAction, deleteBookingAction } from "@/app/actions/bookings";
 import { recordPaymentAction } from "@/app/actions/payments";
 import { submitVehicleInspectionAction } from "@/app/actions/inspections";
 import { BookingStatus, PaymentMethod, PaymentType } from "@/types";
@@ -91,6 +92,32 @@ export function BookingManager({ initialBookings, cars }: BookingManagerProps) {
 
   // Printable Inspection Certificate
   const [viewingCertificate, setViewingCertificate] = useState<any | null>(null);
+
+  const [deletingBookingId, setDeletingBookingId] = useState<string | null>(null);
+
+  const handleDeleteBooking = async (b: any) => {
+    if (
+      !confirm(
+        `Move Booking "${b.bookingReference}" (${b.customer.fullName}) to Trash? It will be removed from all active booking rosters and calendar views, and can be restored in Settings.`
+      )
+    ) {
+      return;
+    }
+
+    setDeletingBookingId(b.id);
+    const res = await deleteBookingAction(b.id);
+    setDeletingBookingId(null);
+
+    if (!res.success) {
+      alert(res.error || "Failed to delete booking");
+      return;
+    }
+
+    setBookings((prev) => prev.filter((item) => item.id !== b.id));
+    if (selectedBooking?.id === b.id) {
+      setSelectedBooking(null);
+    }
+  };
 
   const [actionError, setActionError] = useState<string | null>(null);
 
@@ -505,6 +532,19 @@ export function BookingManager({ initialBookings, cars }: BookingManagerProps) {
                         title="Record payment"
                       >
                         <CreditCard className="w-4 h-4" />
+                      </button>
+
+                      <button
+                        onClick={() => handleDeleteBooking(b)}
+                        disabled={deletingBookingId === b.id}
+                        className="p-1 rounded-lg text-slate-400 hover:text-red-600 hover:bg-red-50 transition"
+                        title="Move Booking to Trash"
+                      >
+                        {deletingBookingId === b.id ? (
+                          <Loader2 className="w-4 h-4 animate-spin text-red-600" />
+                        ) : (
+                          <Trash2 className="w-4 h-4" />
+                        )}
                       </button>
                     </td>
                   </tr>
@@ -1034,6 +1074,15 @@ export function BookingManager({ initialBookings, cars }: BookingManagerProps) {
                     Cancel Booking
                   </button>
                 )}
+
+                <button
+                  onClick={() => handleDeleteBooking(selectedBooking)}
+                  disabled={deletingBookingId === selectedBooking.id}
+                  className="px-3 py-1.5 rounded-lg bg-red-50 hover:bg-red-100 text-red-700 text-xs font-bold flex items-center gap-1 border border-red-200"
+                >
+                  <Trash2 className="w-3.5 h-3.5 text-red-600" />
+                  <span>Move to Trash</span>
+                </button>
               </div>
             </div>
 

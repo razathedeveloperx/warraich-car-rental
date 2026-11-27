@@ -152,3 +152,9 @@ export async function updateBookingStatusAction(input: {
     return { success: false, error: error.message || "Failed to update booking status" };
   }
 }
+
+export async function deleteBookingAction(id: string) {
+  await requireAuth(["ADMIN"]);
+  const { softDeleteEntityAction } = await import("./trash");
+  return softDeleteEntityAction("BOOKING", id);
+}

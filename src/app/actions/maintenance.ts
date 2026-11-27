@@ -89,3 +89,9 @@ export async function updateMaintenanceStatusAction(id: string, status: Maintena
     return { success: false, error: error.message || "Failed to update maintenance record" };
   }
 }
+
+export async function deleteMaintenanceRecordAction(id: string) {
+  await requireAuth(["ADMIN"]);
+  const { softDeleteEntityAction } = await import("./trash");
+  return softDeleteEntityAction("MAINTENANCE", id);
+}

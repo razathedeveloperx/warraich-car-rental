@@ -91,3 +91,9 @@ export async function updateParkingRecordStatusAction(id: string, status: string
     return { success: false, error: error.message || "Failed to update parking status" };
   }
 }
+
+export async function deleteParkingRecordAction(id: string) {
+  await requireAuth(["ADMIN"]);
+  const { softDeleteEntityAction } = await import("./trash");
+  return softDeleteEntityAction("PARKING", id);
+}

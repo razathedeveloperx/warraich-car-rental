@@ -211,7 +211,11 @@ export function PaymentLedgerManager({
 
   // Handle Delete Payment
   const handleDeletePayment = async (id: string) => {
-    if (!confirm("Are you sure you want to void/delete this payment record? This will adjust balances accordingly.")) {
+    if (
+      !confirm(
+        "Move this payment record to Trash? It will be removed from all active ledger totals and can be restored in Settings."
+      )
+    ) {
       return;
     }
     setDeletingId(id);
@@ -221,7 +225,7 @@ export function PaymentLedgerManager({
       alert(res.error || "Failed to delete payment");
       return;
     }
-    window.location.reload();
+    setPayments((prev) => prev.filter((p) => p.id !== id));
   };
 
   // Filtered Payments

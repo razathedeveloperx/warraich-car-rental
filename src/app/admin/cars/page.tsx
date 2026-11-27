@@ -12,6 +12,7 @@ export default async function AdminCarsPage() {
   }
 
   const cars = await prisma.car.findMany({
+    where: { isDeleted: false },
     include: {
       images: {
         orderBy: { sortOrder: "asc" },

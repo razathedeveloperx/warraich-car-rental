@@ -8,6 +8,7 @@ import {
   Eye,
   EyeOff,
   Edit,
+  Trash2,
   Wrench,
   CheckCircle,
   X,
@@ -20,6 +21,7 @@ import {
   updateCarAction,
   toggleCarPublishAction,
   updateCarOperationalStatusAction,
+  deleteCarAction,
 } from "@/app/actions/cars";
 import { OperationalStatus } from "@/types";
 
@@ -163,6 +165,26 @@ export function FleetManager({ initialCars }: FleetManagerProps) {
     setCars((prev) =>
       prev.map((c) => (c.id === carId ? { ...c, operationalStatus: newStatus } : c))
     );
+  };
+
+  const [deletingCarId, setDeletingCarId] = useState<string | null>(null);
+
+  const handleDeleteCar = async (car: any) => {
+    if (
+      !confirm(
+        `Move "${car.make} ${car.model} (${car.registrationNumber})" to Trash? It will be removed from all active fleet views and can be restored in Settings.`
+      )
+    ) {
+      return;
+    }
+    setDeletingCarId(car.id);
+    const res = await deleteCarAction(car.id);
+    setDeletingCarId(null);
+    if (!res.success) {
+      alert(res.error || "Failed to delete vehicle");
+      return;
+    }
+    setCars((prev) => prev.filter((c) => c.id !== car.id));
   };
 
   // Filter cars
@@ -313,13 +335,26 @@ export function FleetManager({ initialCars }: FleetManagerProps) {
                     </button>
                   </td>
 
-                  <td className="py-3.5 px-4 text-right">
+                  <td className="py-3.5 px-4 text-right space-x-1">
                     <button
                       onClick={() => openEditModal(car)}
                       className="p-1.5 rounded-lg text-slate-500 hover:text-blue-600 hover:bg-blue-50 transition"
                       title="Edit vehicle details"
                     >
                       <Edit className="w-4 h-4" />
+                    </button>
+
+                    <button
+                      onClick={() => handleDeleteCar(car)}
+                      disabled={deletingCarId === car.id}
+                      className="p-1.5 rounded-lg text-slate-400 hover:text-red-600 hover:bg-red-50 transition"
+                      title="Move vehicle to Trash"
+                    >
+                      {deletingCarId === car.id ? (
+                        <Loader2 className="w-4 h-4 animate-spin text-red-600" />
+                      ) : (
+                        <Trash2 className="w-4 h-4" />
+                      )}
                     </button>
                   </td>
                 </tr>

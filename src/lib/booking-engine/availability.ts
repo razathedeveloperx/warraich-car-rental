@@ -47,7 +47,7 @@ export async function checkCarAvailability(
     where: { id: carId },
   });
 
-  if (!car) {
+  if (!car || car.isDeleted) {
     return {
       isAvailable: false,
       carId,
@@ -103,6 +103,7 @@ export async function checkCarAvailability(
       status: { in: blockingStatuses },
       pickupDateTime: { lt: bufferedReqReturn },
       returnDateTime: { gt: bufferedReqPickup },
+      isDeleted: false,
     },
     select: {
       id: true,
@@ -132,6 +133,7 @@ export async function checkCarAvailability(
         { endDateTime: null },
         { endDateTime: { gt: pickup } },
       ],
+      isDeleted: false,
     },
     select: {
       id: true,

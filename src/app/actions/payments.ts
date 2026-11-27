@@ -170,53 +170,7 @@ export async function recordPaymentAction(input: {
 }
 
 export async function deletePaymentAction(paymentId: string) {
-  const staff = await requireAuth(["ADMIN"]);
-
-  try {
-    await prisma.$transaction(async (tx) => {
-      const payment = await tx.payment.findUnique({
-        where: { id: paymentId },
-      });
-
-      if (!payment) throw new Error("Payment record not found");
-
-      // If linked to a booking, recalculate or deduct from booking
-      if (payment.bookingId) {
-        const booking = await tx.booking.findUnique({ where: { id: payment.bookingId } });
-        if (booking) {
-          const currentPaid = Number(booking.amountPaid);
-          const amt = Number(payment.amount);
-          const newPaid = payment.paymentType === "REFUND"
-            ? currentPaid + amt
-            : Math.max(0, currentPaid - amt);
-
-          await tx.booking.update({
-            where: { id: payment.bookingId },
-            data: { amountPaid: newPaid },
-          });
-
-          await tx.bookingAuditLog.create({
-            data: {
-              bookingId: payment.bookingId,
-              userId: staff.id,
-              action: "PAYMENT_VOIDED",
-              details: `Payment receipt ${payment.receiptNumber || payment.id} voided by Admin ${staff.name}`,
-            },
-          });
-        }
-      }
-
-      await tx.payment.delete({
-        where: { id: paymentId },
-      });
-    });
-
-    revalidatePath("/admin/payments");
-    revalidatePath("/admin/bookings");
-    revalidatePath("/admin");
-
-    return { success: true };
-  } catch (error: any) {
-    return { success: false, error: error.message || "Failed to delete payment" };
-  }
+  await requireAuth(["ADMIN", "STAFF"]);
+  const { softDeleteEntityAction } = await import("./trash");
+  return softDeleteEntityAction("PAYMENT", paymentId);
 }

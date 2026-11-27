@@ -13,6 +13,7 @@ export default async function AdminPaymentsPage() {
 
   // Fetch all payments with relations
   const payments = await prisma.payment.findMany({
+    where: { isDeleted: false },
     include: {
       booking: {
         include: {
@@ -32,6 +33,7 @@ export default async function AdminPaymentsPage() {
   const bookings = await prisma.booking.findMany({
     where: {
       status: { in: ["PENDING", "CONFIRMED", "ACTIVE"] },
+      isDeleted: false,
     },
     include: {
       customer: { select: { fullName: true, phone: true } },
@@ -43,11 +45,13 @@ export default async function AdminPaymentsPage() {
 
   // Fetch registered parking records
   const parkingRecords = await prisma.parkingRecord.findMany({
+    where: { isDeleted: false },
     orderBy: { createdAt: "desc" },
   });
 
   // Fetch fleet cars for maintenance / oil expenses
   const cars = await prisma.car.findMany({
+    where: { isDeleted: false },
     select: { id: true, make: true, model: true, registrationNumber: true },
     orderBy: { make: "asc" },
   });

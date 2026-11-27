@@ -86,12 +86,15 @@ model Customer {
   address               String?
   drivingLicenceDetails String?
   internalNotes         String?
+  isDeleted             Boolean   @default(false)
+  deletedAt             DateTime?
   createdAt             DateTime  @default(now())
   updatedAt             DateTime  @updatedAt
   bookings              Booking[]
 
   @@index([email])
   @@index([phone])
+  @@index([isDeleted])
 }
 
 model Car {
@@ -113,6 +116,8 @@ model Car {
   currency           String              @default("PKR")
   operationalStatus  OperationalStatus   @default(AVAILABLE)
   isPublished        Boolean             @default(true)
+  isDeleted          Boolean             @default(false)
+  deletedAt          DateTime?
   createdAt          DateTime            @default(now())
   updatedAt          DateTime            @updatedAt
   images             CarImage[]
@@ -122,6 +127,7 @@ model Car {
 
   @@index([slug])
   @@index([operationalStatus, isPublished])
+  @@index([isDeleted])
 }
 
 model CarImage {
@@ -169,6 +175,8 @@ model Booking {
   currency         String             @default("PKR")
   customerNotes    String?
   internalNotes    String?
+  isDeleted        Boolean            @default(false)
+  deletedAt        DateTime?
   createdAt        DateTime           @default(now())
   updatedAt        DateTime           @updatedAt
   extras           BookingExtraItem[]
@@ -180,6 +188,7 @@ model Booking {
   @@index([status])
   @@index([customerId])
   @@index([bookingReference])
+  @@index([isDeleted])
 }
 
 model BookingExtraItem {
@@ -217,6 +226,8 @@ model Payment {
   status               PaymentStatus  @default(COMPLETED)
   transactionReference String?
   notes                String?
+  isDeleted            Boolean        @default(false)
+  deletedAt            DateTime?
   paidAt               DateTime       @default(now())
   createdAt            DateTime       @default(now())
 
@@ -227,6 +238,7 @@ model Payment {
   @@index([direction])
   @@index([category])
   @@index([paidAt])
+  @@index([isDeleted])
 }
 
 model ParkingRecord {
@@ -243,6 +255,8 @@ model ParkingRecord {
   lastPaymentDate DateTime?
   paidUntilDate   DateTime?
   notes           String?
+  isDeleted       Boolean   @default(false)
+  deletedAt       DateTime?
   createdAt       DateTime  @default(now())
   updatedAt       DateTime  @updatedAt
   payments        Payment[]
@@ -250,6 +264,7 @@ model ParkingRecord {
   @@index([vehiclePlate])
   @@index([ownerPhone])
   @@index([status])
+  @@index([isDeleted])
 }
 
 model VehicleInspection {
@@ -294,10 +309,13 @@ model MaintenanceRecord {
   description   String
   cost          Decimal?          @db.Decimal(10, 2)
   status        MaintenanceStatus @default(SCHEDULED)
+  isDeleted     Boolean           @default(false)
+  deletedAt     DateTime?
   createdAt     DateTime          @default(now())
   updatedAt     DateTime          @updatedAt
 
   @@index([carId, startDateTime])
+  @@index([isDeleted])
 }
 
 model BookingAuditLog {

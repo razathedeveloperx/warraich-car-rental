@@ -11,12 +11,13 @@ import {
   Calendar,
   FileText,
   Edit,
+  Trash2,
   X,
   Loader2,
   Plus,
   ShieldAlert,
 } from "lucide-react";
-import { updateCustomerAction, createCustomerAction } from "@/app/actions/customers";
+import { updateCustomerAction, createCustomerAction, deleteCustomerAction } from "@/app/actions/customers";
 
 interface CustomerManagerProps {
   initialCustomers: Array<any>;
@@ -41,6 +42,32 @@ export function CustomerManager({ initialCustomers }: CustomerManagerProps) {
   const [internalNotes, setInternalNotes] = useState("");
   const [formError, setFormError] = useState<string | null>(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
+
+  const [deletingCustomerId, setDeletingCustomerId] = useState<string | null>(null);
+
+  const handleDeleteCustomer = async (customer: any) => {
+    if (
+      !confirm(
+        `Move customer "${customer.fullName}" to Trash? All historical records will be safely archived and can be restored in Settings.`
+      )
+    ) {
+      return;
+    }
+
+    setDeletingCustomerId(customer.id);
+    const res = await deleteCustomerAction(customer.id);
+    setDeletingCustomerId(null);
+
+    if (!res.success) {
+      alert(res.error || "Failed to delete customer");
+      return;
+    }
+
+    setCustomers((prev) => prev.filter((c) => c.id !== customer.id));
+    if (selectedCustomer?.id === customer.id) {
+      setSelectedCustomer(null);
+    }
+  };
 
   const handleOpenCustomer = (customer: any) => {
     setSelectedCustomer(customer);
@@ -185,12 +212,25 @@ export function CustomerManager({ initialCustomers }: CustomerManagerProps) {
                       {formatCurrency(totalSpent, "PKR")}
                     </td>
 
-                    <td className="py-3.5 px-4 text-right">
+                    <td className="py-3.5 px-4 text-right space-x-1">
                       <button
                         onClick={() => handleOpenCustomer(c)}
                         className="px-3 py-1 rounded-lg bg-blue-50 hover:bg-blue-100 text-blue-700 font-bold text-xs transition"
                       >
                         Profile & History
+                      </button>
+
+                      <button
+                        onClick={() => handleDeleteCustomer(c)}
+                        disabled={deletingCustomerId === c.id}
+                        className="p-1.5 rounded-lg text-slate-400 hover:text-red-600 hover:bg-red-50 transition inline-block align-middle"
+                        title="Move Customer to Trash"
+                      >
+                        {deletingCustomerId === c.id ? (
+                          <Loader2 className="w-3.5 h-3.5 animate-spin text-red-600" />
+                        ) : (
+                          <Trash2 className="w-3.5 h-3.5" />
+                        )}
                       </button>
                     </td>
                   </tr>

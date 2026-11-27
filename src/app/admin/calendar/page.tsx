@@ -27,7 +27,7 @@ export default async function AdminCalendarPage({
   // Fetch cars and their bookings in this month
   const [cars, bookings, maintenanceRecords] = await Promise.all([
     prisma.car.findMany({
-      where: { isPublished: true },
+      where: { isPublished: true, isDeleted: false },
       orderBy: { make: "asc" },
       select: { id: true, make: true, model: true, registrationNumber: true },
     }),
@@ -36,6 +36,7 @@ export default async function AdminCalendarPage({
         status: { in: ["CONFIRMED", "ACTIVE", "PENDING"] },
         pickupDateTime: { lte: endOfMonth },
         returnDateTime: { gte: startOfMonth },
+        isDeleted: false,
       },
       include: {
         customer: { select: { fullName: true } },
@@ -46,6 +47,7 @@ export default async function AdminCalendarPage({
         status: { in: ["SCHEDULED", "IN_PROGRESS"] },
         startDateTime: { lte: endOfMonth },
         OR: [{ endDateTime: null }, { endDateTime: { gte: startOfMonth } }],
+        isDeleted: false,
       },
     }),
   ]);

@@ -12,6 +12,7 @@ export default async function AdminCustomersPage() {
   }
 
   const customers = await prisma.customer.findMany({
+    where: { isDeleted: false },
     include: {
       bookings: {
         orderBy: { createdAt: "desc" },

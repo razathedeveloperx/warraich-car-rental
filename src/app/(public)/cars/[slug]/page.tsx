@@ -49,7 +49,7 @@ export default async function CarDetailPage({ params, searchParams }: CarDetailP
     car = FALLBACK_CARS.find((c) => c.slug === params.slug);
   }
 
-  if (!car || !car.isPublished) {
+  if (!car || !car.isPublished || car.isDeleted) {
     notFound();
   }
 

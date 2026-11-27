@@ -13,12 +13,14 @@ export default async function AdminMaintenancePage() {
 
   const [records, cars] = await Promise.all([
     prisma.maintenanceRecord.findMany({
+      where: { isDeleted: false },
       include: {
         car: true,
       },
       orderBy: { startDateTime: "desc" },
     }),
     prisma.car.findMany({
+      where: { isDeleted: false },
       orderBy: { make: "asc" },
       select: { id: true, make: true, model: true, registrationNumber: true },
     }),

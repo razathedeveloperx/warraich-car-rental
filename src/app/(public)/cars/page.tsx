@@ -25,6 +25,7 @@ export default async function CarsPage({ searchParams }: CarsPageProps) {
   try {
     const whereClause: any = {
       isPublished: true,
+      isDeleted: false,
     };
 
     if (category && category !== "ALL") {

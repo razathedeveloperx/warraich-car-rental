@@ -32,6 +32,7 @@ export default async function HomePage() {
     const allCars = await prisma.car.findMany({
       where: {
         isPublished: true,
+        isDeleted: false,
       },
       include: {
         images: {

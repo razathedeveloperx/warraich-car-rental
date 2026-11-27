@@ -51,28 +51,30 @@ export default async function AdminDashboardPage() {
       pendingList,
       activeList,
     ] = await Promise.all([
-      prisma.car.count(),
-      prisma.car.count({ where: { operationalStatus: "AVAILABLE", isPublished: true } }),
-      prisma.booking.count({ where: { status: "ACTIVE" } }),
-      prisma.booking.count({ where: { status: "PENDING" } }),
+      prisma.car.count({ where: { isDeleted: false } }),
+      prisma.car.count({ where: { operationalStatus: "AVAILABLE", isPublished: true, isDeleted: false } }),
+      prisma.booking.count({ where: { status: "ACTIVE", isDeleted: false } }),
+      prisma.booking.count({ where: { status: "PENDING", isDeleted: false } }),
       prisma.booking.count({
         where: {
           status: "CONFIRMED",
           pickupDateTime: { gte: now },
+          isDeleted: false,
         },
       }),
       prisma.booking.count({
         where: {
           status: "ACTIVE",
           returnDateTime: { lte: endOfToday },
+          isDeleted: false,
         },
       }),
       prisma.booking.findMany({
-        where: { status: { not: "CANCELLED" } },
+        where: { status: { not: "CANCELLED" }, isDeleted: false },
         select: { totalAmount: true, amountPaid: true, currency: true },
       }),
       prisma.booking.findMany({
-        where: { status: "PENDING" },
+        where: { status: "PENDING", isDeleted: false },
         include: {
           car: true,
           customer: true,
@@ -81,7 +83,7 @@ export default async function AdminDashboardPage() {
         take: 5,
       }),
       prisma.booking.findMany({
-        where: { status: "ACTIVE" },
+        where: { status: "ACTIVE", isDeleted: false },
         include: {
           car: true,
           customer: true,
