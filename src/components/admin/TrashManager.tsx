@@ -12,6 +12,7 @@ import {
   CreditCard,
   CircleParking,
   Wrench,
+  Receipt,
   AlertTriangle,
   Loader2,
   CheckCircle2,
@@ -151,6 +152,8 @@ export function TrashManager({ initialItems }: TrashManagerProps) {
         return <CircleParking className="w-4 h-4 text-amber-600" />;
       case "MAINTENANCE":
         return <Wrench className="w-4 h-4 text-rose-600" />;
+      case "INVOICE":
+        return <Receipt className="w-4 h-4 text-brand-600" />;
     }
   };
 
@@ -168,6 +171,8 @@ export function TrashManager({ initialItems }: TrashManagerProps) {
         return "bg-amber-100 text-amber-800";
       case "MAINTENANCE":
         return "bg-rose-100 text-rose-800";
+      case "INVOICE":
+        return "bg-brand-100 text-brand-800";
     }
   };
 
@@ -241,6 +246,7 @@ export function TrashManager({ initialItems }: TrashManagerProps) {
             { id: "PAYMENT", label: `Payments (${items.filter((i) => i.entityType === "PAYMENT").length})` },
             { id: "PARKING", label: `Parking (${items.filter((i) => i.entityType === "PARKING").length})` },
             { id: "MAINTENANCE", label: `Maintenance (${items.filter((i) => i.entityType === "MAINTENANCE").length})` },
+            { id: "INVOICE", label: `Invoices (${items.filter((i) => i.entityType === "INVOICE").length})` },
           ].map((tab) => (
             <button
               key={tab.id}

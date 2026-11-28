@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 import { formatCurrency, formatDateTime } from "@/lib/utils";
 import {
   CalendarCheck,
@@ -11,6 +12,7 @@ import {
   AlertTriangle,
   XCircle,
   CreditCard,
+  Receipt,
   Plus,
   FileText,
   User,
@@ -33,6 +35,7 @@ import {
 import { updateBookingStatusAction, deleteBookingAction } from "@/app/actions/bookings";
 import { recordPaymentAction } from "@/app/actions/payments";
 import { submitVehicleInspectionAction } from "@/app/actions/inspections";
+import { createInvoiceFromBookingAction } from "@/app/actions/invoices";
 import { BookingStatus, PaymentMethod, PaymentType } from "@/types";
 
 interface BookingManagerProps {
@@ -41,10 +44,23 @@ interface BookingManagerProps {
 }
 
 export function BookingManager({ initialBookings, cars }: BookingManagerProps) {
+  const router = useRouter();
   const [bookings, setBookings] = useState(initialBookings);
   const [searchTerm, setSearchTerm] = useState("");
   const [statusFilter, setStatusFilter] = useState("ALL");
   const [durationFilter, setDurationFilter] = useState("ALL");
+  const [generatingInvoiceId, setGeneratingInvoiceId] = useState<string | null>(null);
+
+  const handleGenerateInvoice = async (b: any) => {
+    setGeneratingInvoiceId(b.id);
+    const res = await createInvoiceFromBookingAction(b.id);
+    setGeneratingInvoiceId(null);
+    if (!res.success) {
+      alert(res.error || "Failed to generate proforma invoice");
+      return;
+    }
+    router.push("/admin/invoices");
+  };
 
   // Selected booking for detail drawer
   const [selectedBooking, setSelectedBooking] = useState<any | null>(null);
@@ -532,6 +548,19 @@ export function BookingManager({ initialBookings, cars }: BookingManagerProps) {
                         title="Record payment"
                       >
                         <CreditCard className="w-4 h-4" />
+                      </button>
+
+                      <button
+                        onClick={() => handleGenerateInvoice(b)}
+                        disabled={generatingInvoiceId === b.id}
+                        className="p-1 rounded-lg text-slate-500 hover:text-brand-600 hover:bg-brand-50 transition"
+                        title="Generate / View Proforma Invoice"
+                      >
+                        {generatingInvoiceId === b.id ? (
+                          <Loader2 className="w-4 h-4 animate-spin text-brand-600" />
+                        ) : (
+                          <Receipt className="w-4 h-4" />
+                        )}
                       </button>
 
                       <button
@@ -1074,6 +1103,19 @@ export function BookingManager({ initialBookings, cars }: BookingManagerProps) {
                     Cancel Booking
                   </button>
                 )}
+
+                <button
+                  onClick={() => handleGenerateInvoice(selectedBooking)}
+                  disabled={generatingInvoiceId === selectedBooking.id}
+                  className="px-3 py-1.5 rounded-lg bg-brand-600 hover:bg-brand-700 text-white text-xs font-bold flex items-center gap-1 shadow-xs transition"
+                >
+                  {generatingInvoiceId === selectedBooking.id ? (
+                    <Loader2 className="w-3.5 h-3.5 animate-spin" />
+                  ) : (
+                    <Receipt className="w-3.5 h-3.5" />
+                  )}
+                  <span>Proforma Invoice</span>
+                </button>
 
                 <button
                   onClick={() => handleDeleteBooking(selectedBooking)}

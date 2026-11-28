@@ -10,7 +10,8 @@ export type TrashEntityType =
   | "BOOKING"
   | "PAYMENT"
   | "PARKING"
-  | "MAINTENANCE";
+  | "MAINTENANCE"
+  | "INVOICE";
 
 export interface TrashItem {
   id: string;
@@ -121,6 +122,14 @@ export async function softDeleteEntityAction(entityType: TrashEntityType, id: st
         revalidatePath("/admin/maintenance");
         revalidatePath("/admin/cars");
         break;
+
+      case "INVOICE":
+        await prisma.invoice.update({
+          where: { id },
+          data: { isDeleted: true, deletedAt: now },
+        });
+        revalidatePath("/admin/invoices");
+        break;
     }
 
     revalidatePath("/admin/settings");
@@ -203,6 +212,14 @@ export async function restoreEntityAction(entityType: TrashEntityType, id: strin
         revalidatePath("/admin/maintenance");
         revalidatePath("/admin/cars");
         break;
+
+      case "INVOICE":
+        await prisma.invoice.update({
+          where: { id },
+          data: { isDeleted: false, deletedAt: null },
+        });
+        revalidatePath("/admin/invoices");
+        break;
     }
 
     revalidatePath("/admin/settings");
@@ -253,6 +270,10 @@ export async function permanentDeleteEntityAction(entityType: TrashEntityType, i
 
       case "MAINTENANCE":
         await prisma.maintenanceRecord.delete({ where: { id } });
+        break;
+
+      case "INVOICE":
+        await prisma.invoice.delete({ where: { id } });
         break;
     }
 
@@ -306,6 +327,9 @@ export async function emptyTrashAction(entityType?: TrashEntityType) {
     if (!entityType || entityType === "CUSTOMER") {
       await prisma.customer.deleteMany({ where: { isDeleted: true } });
     }
+    if (!entityType || entityType === "INVOICE") {
+      await prisma.invoice.deleteMany({ where: { isDeleted: true } });
+    }
 
     revalidatePath("/admin/settings");
     revalidatePath("/admin");
@@ -318,7 +342,7 @@ export async function emptyTrashAction(entityType?: TrashEntityType) {
 export async function getTrashItems(): Promise<TrashItem[]> {
   await requireAuth(["ADMIN", "STAFF"]);
 
-  const [cars, customers, bookings, payments, parking, maintenance] = await Promise.all([
+  const [cars, customers, bookings, payments, parking, maintenance, invoices] = await Promise.all([
     prisma.car.findMany({
       where: { isDeleted: true },
       orderBy: { deletedAt: "desc" },
@@ -343,6 +367,10 @@ export async function getTrashItems(): Promise<TrashItem[]> {
     prisma.maintenanceRecord.findMany({
       where: { isDeleted: true },
       include: { car: true },
+      orderBy: { deletedAt: "desc" },
+    }),
+    prisma.invoice.findMany({
+      where: { isDeleted: true },
       orderBy: { deletedAt: "desc" },
     }),
   ]);
@@ -412,6 +440,17 @@ export async function getTrashItems(): Promise<TrashItem[]> {
       subtitle: m.description,
       deletedAt: m.deletedAt ? m.deletedAt.toISOString() : new Date().toISOString(),
       details: `Cost: PKR ${Number(m.cost || 0).toLocaleString()} • Status: ${m.status}`,
+    });
+  }
+
+  for (const inv of invoices) {
+    items.push({
+      id: inv.id,
+      entityType: "INVOICE",
+      title: `Invoice ${inv.invoiceNumber} — ${inv.customerName}`,
+      subtitle: `Vehicle: ${inv.vehicleMakeModel || "N/A"} • Total: PKR ${Number(inv.grandTotal).toLocaleString()}`,
+      deletedAt: inv.deletedAt ? inv.deletedAt.toISOString() : new Date().toISOString(),
+      details: `Advance: PKR ${Number(inv.advancePaid).toLocaleString()} • Balance Due: PKR ${Number(inv.balanceDue).toLocaleString()} • Status: ${inv.status}`,
     });
   }
 

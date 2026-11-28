@@ -91,6 +91,7 @@ model Customer {
   createdAt             DateTime  @default(now())
   updatedAt             DateTime  @updatedAt
   bookings              Booking[]
+  invoices              Invoice[]
 
   @@index([email])
   @@index([phone])
@@ -124,6 +125,7 @@ model Car {
   bookings           Booking[]
   maintenanceRecords MaintenanceRecord[]
   payments           Payment[]
+  invoices           Invoice[]
 
   @@index([slug])
   @@index([operationalStatus, isPublished])
@@ -182,6 +184,7 @@ model Booking {
   extras           BookingExtraItem[]
   payments         Payment[]
   inspections      VehicleInspection[]
+  invoices         Invoice[]
   auditLogs        BookingAuditLog[]
 
   @@index([carId, pickupDateTime, returnDateTime])
@@ -347,4 +350,60 @@ model BusinessSettings {
   bookingPolicy         String   @default("Bookings are reviewed manually by staff. Confirmation sent via email/SMS.")
   cancellationPolicy    String   @default("Free cancellation up to 24 hours prior to pickup.")
   updatedAt             DateTime @updatedAt
+}
+
+model Invoice {
+  id               String        @id @default(uuid())
+  invoiceNumber    String        @unique
+  invoiceDate      DateTime      @default(now())
+  dueDate          DateTime?
+  currency         String        @default("PKR")
+  status           String        @default("UNPAID") // DRAFT, ISSUED, PARTIAL, PAID, CANCELLED
+
+  // Optional relations
+  bookingId        String?
+  booking          Booking?      @relation(fields: [bookingId], references: [id], onDelete: SetNull)
+  customerId       String?
+  customer         Customer?     @relation(fields: [customerId], references: [id], onDelete: SetNull)
+  carId            String?
+  car              Car?          @relation(fields: [carId], references: [id], onDelete: SetNull)
+
+  // Customer & Rental Details
+  customerName     String
+  customerCnic     String?
+  customerPhone    String
+  pickupLocation   String?       @default("Gujrat Main Hub")
+  dropoffLocation  String?       @default("Gujrat Main Hub")
+  vehicleColor     String?
+  vehicleMakeModel String
+  modelYearNumber  String // Year & Registration plate
+  rentalStartDate  DateTime
+  rentalEndDate    DateTime
+
+  // Rental Charges Grid
+  rentPerDay       Decimal       @db.Decimal(10, 2)
+  numberOfDays     Int           @default(1)
+  totalRent        Decimal       @db.Decimal(10, 2)
+  advancePaid      Decimal       @default(0) @db.Decimal(10, 2)
+  otherCharges     Decimal       @default(0) @db.Decimal(10, 2)
+  discount         Decimal       @default(0) @db.Decimal(10, 2)
+  grandTotal       Decimal       @db.Decimal(10, 2)
+  balanceDue       Decimal       @db.Decimal(10, 2)
+
+  paymentMethod    PaymentMethod @default(CASH)
+  terms            String?       @default("1. Customer is responsible for returning the vehicle in the agreed condition.\n2. Fuel, tolls, fines, damages and late-return charges (if applicable) are subject to the rental agreement.\n3. This is a proforma invoice; final charges may be adjusted as agreed.")
+  notes            String?
+
+  isDeleted        Boolean       @default(false)
+  deletedAt        DateTime?
+  createdAt        DateTime      @default(now())
+  updatedAt        DateTime      @updatedAt
+
+  @@index([invoiceNumber])
+  @@index([bookingId])
+  @@index([customerId])
+  @@index([carId])
+  @@index([status])
+  @@index([isDeleted])
+  @@index([invoiceDate])
 }
